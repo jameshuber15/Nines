@@ -24,9 +24,9 @@ class PlayingCard : Card {
         super.init()
     }
     
-    init(withRank: Int, ofSuit: String, cardColor: UIColor){
+    init(withRank: Int, ofSuit: String){
         frontImage = UIImage(named: "cardfront")!
-        color = cardColor
+        color = UIColor.red
         rank = withRank
         suit = ofSuit
         if (withRank == 10) {
@@ -46,5 +46,33 @@ class PlayingCard : Card {
         }
         
         return "This PlayingCard is the \(color) : \(rank) of \(suit), the back is \(self.backImage), and \(facing)"
+    }
+    
+    func getRank() -> Int {
+        return rank
+    }
+    
+    func setRank(rank: Int) {
+        self.rank = rank
+    }
+    
+    func getSuit() -> String {
+        return suit
+    }
+    
+    func setSuit(suit: String) {
+        self.suit = suit
+    }
+    
+    class func validRanks() -> [String] {
+        return ["??","??","2","3","4","5","6","7","8","9","10","J","Q","K","A"]
+    }
+    
+    class func maxRank() -> Int {
+        return validRanks().count - 1
+    }
+    
+    class func validSuits() -> [String] {
+        return ["❤️","♠️","♦️","♣️"]
     }
 }
