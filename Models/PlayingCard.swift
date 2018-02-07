@@ -62,7 +62,7 @@ class PlayingCard : Card {
     }
     
     class func validRanks() -> [String] {
-        return ["??","??","2","3","4","5","6","7","8","9","10","J","Q","K","A"]
+        return ["??","??","??","??","4","5","6","7","8","9","10","J","Q","K","A", "2", "10"]
     }
     
     class func maxRank() -> Int {

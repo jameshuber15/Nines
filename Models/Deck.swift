@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CardDeck {
-    lazy var cards = [PlayingCard]()
+class Deck {
+    internal var cards = [PlayingCard]()
     
     init() {
         for suit in PlayingCard.validSuits() {
