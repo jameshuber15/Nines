@@ -1,15 +1,39 @@
 //
-//  Deck.swift
+//  PlayingCardDeck.swift
 //  Nines
 //
 //  Created by James HUBER on 2/6/18.
 //  Copyright © 2018 James HUBER. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Deck {
+class CardDeck {
     lazy var cards = [PlayingCard]()
+    
+    init() {
+        for suit in PlayingCard.validSuits() {
+            for rank in 2 ... PlayingCard.maxRank() {
+                var suitName:String
+                switch suit {
+                case "♠️":
+                    suitName = "spades"
+                case "❤️":
+                    suitName = "hearts"
+                case "♣️":
+                    suitName = "clubs"
+                case "♦️":
+                    suitName = "diamonds"
+                default:
+                    suitName = ""
+                }
+                
+                let frontImage = "\(rank)_of_\(suitName)"
+                let currentCard = PlayingCard(withRank: rank, ofSuit: suit, frontImage: frontImage)
+                self.cards.append(currentCard)
+            }
+        }
+    }
     
     func shuffleDeck() {
         for currentCard in 0...cards.count {
