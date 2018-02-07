@@ -9,24 +9,41 @@
 import Foundation
 
 class Player {
-    lazy var cardHand = [PlayingCard]()
-    internal var turn : Bool
-    internal var nextPlayer : Player
+    enum PlayerType {
+        case AI
+        case Human
+    }
     
-    func sortDeckByRank() {
-        guard self.cardHand.count > 1 else { return }
-        
-        for x in 0 ..< self.cardHand.count - 1 {
-            var lowest = x
-            for y in x + 1 ..< self.cardHand.count {
-                if self.cardHand[y].rank < self.cardHand[lowest].rank {
-                    lowest = y
-                }
-            }
-            
-            if x != lowest {
-                self.cardHand.swapAt(x, lowest)
+    internal var cardHand : PlayerHand
+    internal var nextPlayer : Player
+    internal var playerType : PlayerType
+    internal var difficulty : String
+    
+    init(cardHand: PlayerHand, nextPlayer: Player, playerType: PlayerType) {
+        self.cardHand = cardHand
+        self.cardHand.sortHandByRank()
+        self.nextPlayer = nextPlayer
+        self.playerType = playerType
+        self.difficulty = "Easy"
+    }
+    
+    func selectCardToPlay(topCard: PlayingCard) -> PlayingCard? {
+        var playingCard : PlayingCard?
+        playingCard = nil
+        if difficulty == "Easy" {
+            let validCards = cardHand.findValidCards(topCard: topCard)
+            if validCards.count < 1 {
+                playingCard = validCards[0]
             }
         }
+        return playingCard
+    }
+    
+    func pickupOrSortHand(discardPile: [PlayingCard]) {
+        cardHand.mergeDiscardPile(discardPile: discardPile)
+    }
+    
+    func findValidCardsToPlay(topCard: PlayingCard) -> [PlayingCard] {
+        return cardHand.findValidCards(topCard: topCard)
     }
 }
