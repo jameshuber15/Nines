@@ -13,7 +13,7 @@ class Card {
     internal var isFaceUp : Bool
     
     init() {
-        backImage = UIImage(named: "cardback")!
+        backImage = UIImage(named: "back")!
         isFaceUp = false
     }
     

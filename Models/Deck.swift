@@ -9,21 +9,21 @@
 import Foundation
 
 class Deck {
-    lazy var cards = [Card]()
+    lazy var cards = [PlayingCard]()
     
     func shuffleDeck() {
-        
+        for currentCard in 0...cards.count {
+            let randomNum:UInt32 = arc4random_uniform(52)
+            let num:Int = Int(randomNum)
+            (cards[currentCard], cards[num]) = (cards[num], cards[currentCard])
+        }
     }
     
     func cutDeck() {
-        
-    }
-    
-    func sortDeckByRank() {
-        
-    }
-    
-    func sortDeckBySuit() {
-        
+        let randomNum:UInt32 = arc4random_uniform(52)
+        let num:Int = Int(randomNum)
+        let tempCards = Array(cards[0...num])
+        cards.removeSubrange(ClosedRange(uncheckedBounds: (lower: 0, upper: num)))
+        cards.append(contentsOf: tempCards)
     }
 }
