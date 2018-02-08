@@ -35,6 +35,12 @@ class Player {
             if validCards.count < 1 {
                 playingCard = validCards[0]
             }
+        } else {
+            //TODO Make AI smarter
+            let validCards = cardHand.findValidCards(topCard: topCard)
+            if validCards.count < 1 {
+                playingCard = validCards[0]
+            }
         }
         return playingCard
     }

@@ -34,17 +34,6 @@ class PlayingCard : Card {
         super.init()
     }
     
-    override func toString() -> String {
-        let facing : String
-        if self.isFaceUp {
-            facing = " is face up"
-        } else {
-            facing = " is face down"
-        }
-        
-        return "This PlayingCard is the: \(rank) of \(suit), the back is \(self.backImage), and \(facing)"
-    }
-    
     func getRank() -> Int {
         return rank
     }
@@ -70,6 +59,10 @@ class PlayingCard : Card {
     }
     
     class func validSuits() -> [String] {
-        return ["❤️","♠️","♦️","♣️"]
+        return ["spades","hearts","diamonds","clubs"]
+    }
+    
+    override func toString() -> String {
+        return "\(rank) of \(suit)"
     }
 }
