@@ -51,7 +51,7 @@ class PlayingCard : Card {
     }
     
     class func validRanks() -> [String] {
-        return ["??","??","??","??","4","5","6","7","8","9","10","J","Q","K","A", "2", "10"]
+        return ["??","??","2","3","4","5","6","7","8","9","10","J","Q","K","A"]
     }
     
     class func maxRank() -> Int {
@@ -63,6 +63,19 @@ class PlayingCard : Card {
     }
     
     override func toString() -> String {
-        return "\(rank) of \(suit)"
+        var rankStr : String
+        switch rank {
+        case 11:
+            rankStr = "jack"
+        case 12:
+            rankStr = "queen"
+        case 13:
+            rankStr = "king"
+        case 14:
+            rankStr = "ace"
+        default:
+            rankStr = String(rank)
+        }
+        return "\(rankStr) of \(suit)"
     }
 }
