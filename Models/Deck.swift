@@ -16,6 +16,7 @@ class Deck: CardGroup {
         for suit in PlayingCard.validSuits() {
             for rank in 2 ... PlayingCard.maxRank() {
                 var rankStr : String
+                var suitStr : String
                 switch rank {
                 case 11:
                     rankStr = "jack"
@@ -28,10 +29,30 @@ class Deck: CardGroup {
                 default:
                     rankStr = String(rank)
                 }
-                let frontImage = "\(rankStr)_of_\(suit)"
+                switch suit {
+                case "♠️":
+                    suitStr = "spades"
+                case "❤️":
+                    suitStr = "hearts"
+                case "♦️":
+                    suitStr = "diamonds"
+                case "♣️":
+                    suitStr = "clubs"
+                default:
+                    suitStr = ""
+                }
+                let frontImage = "\(rankStr)_of_\(suitStr)"
                 let currentCard = PlayingCard(withRank: rank, ofSuit: suit, frontImage: frontImage)
                 self.cards.append(currentCard)
             }
         }
+    }
+    
+    func toString() -> String {
+        var result = "Deck:\n "
+        for x in 0..<cards.count{
+            result = "\(result) \(cards[x].toString())"
+        }
+        return result
     }
 }

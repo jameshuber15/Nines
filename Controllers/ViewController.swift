@@ -16,13 +16,13 @@ class ViewController: UIViewController {
         UIDevice.current.setValue(value, forKey: "orientation")
         // Do any additional setup after loading the view, typically from a nib.
         let deck = Deck()
-        print("\(deck.toString()) \n\n")
+        print("\(deck.toString()) \n")
         deck.shuffleDeck()
-        print("\(deck.toString()) \n\n")
+        print("\(deck.toString()) \n")
         deck.sortHandByRank()
-        print("\(deck.toString()) \n\n")
+        print("\(deck.toString()) \n")
         deck.cutDeck(cutAt: 26)
-        print("\(deck.toString()) \n\n")
+        print("\(deck.toString()) \n")
     }
     
     override func didReceiveMemoryWarning() {

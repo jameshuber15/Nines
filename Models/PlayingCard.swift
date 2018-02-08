@@ -59,23 +59,23 @@ class PlayingCard : Card {
     }
     
     class func validSuits() -> [String] {
-        return ["spades","hearts","diamonds","clubs"]
+        return ["♠️","❤️","♦️","♣️"]
     }
     
     override func toString() -> String {
         var rankStr : String
         switch rank {
         case 11:
-            rankStr = "jack"
+            rankStr = "J"
         case 12:
-            rankStr = "queen"
+            rankStr = "Q"
         case 13:
-            rankStr = "king"
+            rankStr = "K"
         case 14:
-            rankStr = "ace"
+            rankStr = "A"
         default:
             rankStr = String(rank)
         }
-        return "\(rankStr) of \(suit)"
+        return "\(rankStr)\(suit)"
     }
 }
