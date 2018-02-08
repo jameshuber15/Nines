@@ -37,27 +37,23 @@ class CardGroup {
     }
     
     func shuffleDeck() {
-        for currentCard in 0...cards.count {
+        for currentCard in 0..<cards.count {
             let randomNum:UInt32 = arc4random_uniform(52)
             let num:Int = Int(randomNum)
             (cards[currentCard], cards[num]) = (cards[num], cards[currentCard])
         }
     }
     
-    func cutDeck() {
-        let randomNum:UInt32 = arc4random_uniform(52)
-        let num:Int = Int(randomNum)
-        let tempCards = Array(cards[0...num])
-        cards.removeSubrange(ClosedRange(uncheckedBounds: (lower: 0, upper: num)))
+    func cutDeck(cutAt: Int) {
+        let tempCards = Array(cards[0...cutAt])
+        cards.removeSubrange(ClosedRange(uncheckedBounds: (lower: 0, upper: cutAt)))
         cards.append(contentsOf: tempCards)
     }
     
     func toString() {
-        let temp = self
-        temp.sortHandByRank()
-        
-        for x in 0..<temp.cards.count {
-            print(temp.cards[x].toString())
+        print("Current Card Order:\n")
+        for x in 0..<self.cards.count {
+            print(self.cards[x].toString())
         }
     }
 }

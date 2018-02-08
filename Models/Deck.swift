@@ -15,7 +15,20 @@ class Deck: CardGroup {
         
         for suit in PlayingCard.validSuits() {
             for rank in 2 ... PlayingCard.maxRank() {
-                let frontImage = "\(rank)_of_\(suit)"
+                var rankStr : String
+                switch rank {
+                case 11:
+                    rankStr = "jack"
+                case 12:
+                    rankStr = "queen"
+                case 13:
+                    rankStr = "king"
+                case 14:
+                    rankStr = "ace"
+                default:
+                    rankStr = String(rank)
+                }
+                let frontImage = "\(rankStr)_of_\(suit)"
                 let currentCard = PlayingCard(withRank: rank, ofSuit: suit, frontImage: frontImage)
                 self.cards.append(currentCard)
             }
