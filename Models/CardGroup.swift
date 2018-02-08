@@ -50,10 +50,10 @@ class CardGroup {
         cards.append(contentsOf: tempCards)
     }
     
-    func toString() {
-        print("Current Card Order:\n")
-        for x in 0..<self.cards.count {
-            print(self.cards[x].toString())
-        }
-    }
+//    func printString() {
+//        print("Current Card Order:\n")
+//        for x in 0..<self.cards.count {
+//            print(self.cards[x].toString())
+//        }
+//    }
 }

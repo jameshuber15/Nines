@@ -9,20 +9,20 @@
 import Foundation
 
 class Player {
-    enum PlayerType {
-        case AI
-        case Human
-    }
     
     internal var cardHand : PlayerHand
-    internal var nextPlayer : Player
     internal var playerType : PlayerType
     internal var difficulty : String
     
-    init(cardHand: PlayerHand, nextPlayer: Player, playerType: PlayerType) {
+    init() {
+        cardHand = PlayerHand()
+        playerType = PlayerType.NA
+        difficulty = ""
+    }
+    
+    init(cardHand: PlayerHand, playerType: PlayerType) {
         self.cardHand = cardHand
         self.cardHand.sortHandByRank()
-        self.nextPlayer = nextPlayer
         self.playerType = playerType
         self.difficulty = "Easy"
     }
@@ -51,5 +51,33 @@ class Player {
     
     func findValidCardsToPlay(topCard: PlayingCard) -> [PlayingCard] {
         return cardHand.findValidCards(topCard: topCard)
+    }
+    
+    func getPlayerType() -> PlayerType{
+        return playerType
+    }
+    
+    func setPlayerType(playerType: PlayerType) {
+        self.playerType = playerType
+    }
+    
+    func getCardHand() -> PlayerHand{
+        return cardHand
+    }
+    
+    func setCardHand(cardHand: PlayerHand) {
+        self.cardHand = cardHand
+    }
+    
+    func getDifficulty() -> String{
+        return difficulty
+    }
+    
+    func setDifficulty(difficulty: String) {
+        self.difficulty = difficulty
+    }
+    
+    func toString() -> String {
+        return "\(self.playerType): \(self.cardHand.toString())"
     }
 }

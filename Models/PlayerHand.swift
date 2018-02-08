@@ -10,6 +10,10 @@ import Foundation
 
 class PlayerHand : CardGroup {
     
+    override init() {
+        super.init()
+    }
+    
     override init(cards : [PlayingCard]) {
         super.init(cards: cards)
     }
@@ -29,5 +33,13 @@ class PlayerHand : CardGroup {
             }
         }
         return playableCards
+    }
+    
+    func toString() -> String {
+        var result = "Hand: "
+        for x in 0..<cards.count{
+            result = "\(result) \(cards[x].toString())"
+        }
+        return result
     }
 }
