@@ -48,7 +48,11 @@ class Deck: CardGroup {
         }
     }
     
-    func toString() -> String {
+    func takeCard() -> PlayingCard {
+        return cards.remove(at: 0)
+    }
+    
+    override func toString() -> String {
         var result = "Deck:\n "
         for x in 0..<cards.count{
             result = "\(result) \(cards[x].toString())"

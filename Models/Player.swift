@@ -12,22 +12,25 @@ class Player {
     
     internal var cardHand : PlayerHand
     internal var playerType : PlayerType
-    internal var difficulty : String
+    internal var difficulty : Difficulty
     internal var moveType : MoveType
+    internal var playerNum : Int
     
     init() {
         cardHand = PlayerHand()
         playerType = PlayerType.NA
-        difficulty = ""
+        difficulty = Difficulty.None
         moveType = MoveType.ThreeCardsDown
+        playerNum = 0
     }
     
     init(cardHand: PlayerHand, playerType: PlayerType) {
         self.cardHand = cardHand
         self.cardHand.sortHandByRank()
         self.playerType = playerType
-        self.difficulty = "Easy"
+        self.difficulty = Difficulty.None
         moveType = MoveType.ThreeCardsDown
+        playerNum = 0
     }
     
     func playersTurn() {
@@ -46,7 +49,7 @@ class Player {
     func selectCardToPlay(topCard: PlayingCard) -> PlayingCard? {
         var playingCard : PlayingCard?
         playingCard = nil
-        if difficulty == "Easy" {
+        if difficulty == Difficulty.Easy {
             let validCards = cardHand.findValidCards(topCard: topCard)
             if validCards.count < 1 {
                 playingCard = validCards[0]
@@ -85,11 +88,11 @@ class Player {
         self.cardHand = cardHand
     }
     
-    func getDifficulty() -> String{
+    func getDifficulty() -> Difficulty{
         return difficulty
     }
     
-    func setDifficulty(difficulty: String) {
+    func setDifficulty(difficulty: Difficulty) {
         self.difficulty = difficulty
     }
     
@@ -101,7 +104,15 @@ class Player {
         self.moveType = moveType
     }
     
+    func getPlayerNum() -> Int {
+        return playerNum
+    }
+    
+    func setPlayerNum(playerNum: Int) {
+        self.playerNum = playerNum
+    }
+    
     func toString() -> String {
-        return "\(self.playerType): \(self.cardHand.toString())"
+        return "\(self.playerType) \(self.getPlayerNum()): \(self.cardHand.toString())"
     }
 }

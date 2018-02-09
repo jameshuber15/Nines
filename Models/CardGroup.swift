@@ -34,6 +34,20 @@ class CardGroup {
                 self.cards.swapAt(x, lowest)
             }
         }
+        push2And10ToEnd()
+    }
+    
+    func push2And10ToEnd() {
+        for x in 0..<self.cards.count-1 {
+            if cards[x].rank == 2 {
+                cards.append(cards.remove(at: x))
+            }
+        }
+        for y in 0..<self.cards.count-1 {
+            if cards[y].rank == 10 {
+                cards.append(cards.remove(at: y))
+            }
+        }
     }
     
     func shuffleDeck() {
@@ -50,10 +64,15 @@ class CardGroup {
         cards.append(contentsOf: tempCards)
     }
     
-//    func printString() {
-//        print("Current Card Order:\n")
-//        for x in 0..<self.cards.count {
-//            print(self.cards[x].toString())
-//        }
-//    }
+    func getCards() -> [PlayingCard]{
+        return cards
+    }
+    
+    func toString() -> String {
+        var result = "Hand: "
+        for x in 0..<cards.count{
+            result = "\(result) \(cards[x].toString())"
+        }
+        return result
+    }
 }
