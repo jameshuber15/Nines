@@ -15,14 +15,15 @@ class ViewController: UIViewController {
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         // Do any additional setup after loading the view, typically from a nib.
-        let deck = Deck()
-        print("\(deck.toString()) \n")
-        deck.shuffleDeck()
-        print("\(deck.toString()) \n")
-        deck.sortHandByRank()
-        print("\(deck.toString()) \n")
-        deck.cutDeck(cutAt: 26)
-        print("\(deck.toString()) \n")
+        let gameBoard = GameBoard(numOfPlayers: 4, difficulty: Difficulty.Easy)
+        gameBoard.setDeck(deck: Deck())
+        print("Created \(gameBoard.getDeck().toString()) \n")
+        gameBoard.getDeck().shuffleDeck()
+        print("Shuffled \(gameBoard.getDeck().toString()) \n")
+        gameBoard.getDeck().cutDeck(cutAt: 25)
+        print("Cut \(gameBoard.getDeck().toString()) \n")
+        gameBoard.deal()
+        print(gameBoard.getPlayerList().toString())
     }
     
     override func didReceiveMemoryWarning() {

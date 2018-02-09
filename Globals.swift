@@ -19,3 +19,9 @@ enum MoveType {
     case ThreeCardsUp
     case GamePlay
 }
+
+enum Difficulty {
+    case Easy
+    case Hard
+    case None //For Humans
+}

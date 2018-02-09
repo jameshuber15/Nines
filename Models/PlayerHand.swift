@@ -35,11 +35,10 @@ class PlayerHand : CardGroup {
         return playableCards
     }
     
-    func toString() -> String {
-        var result = "Hand: "
-        for x in 0..<cards.count{
-            result = "\(result) \(cards[x].toString())"
+    func addCard(newCard: PlayingCard) {
+        if newCard.rank == 10 {
+            newCard.setClearCards(clearCards: true)
         }
-        return result
+        cards.append(newCard)
     }
 }

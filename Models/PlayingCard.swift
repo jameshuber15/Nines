@@ -50,6 +50,14 @@ class PlayingCard : Card {
         self.suit = suit
     }
     
+    func setClearCards(clearCards: Bool) {
+        self.clearCards = clearCards
+    }
+    
+    func getClearCards() -> Bool {
+        return clearCards
+    }
+    
     class func validRanks() -> [String] {
         return ["??","??","2","3","4","5","6","7","8","9","10","J","Q","K","A"]
     }
