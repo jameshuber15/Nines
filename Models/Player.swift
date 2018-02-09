@@ -13,11 +13,13 @@ class Player {
     internal var cardHand : PlayerHand
     internal var playerType : PlayerType
     internal var difficulty : String
+    internal var moveType : MoveType
     
     init() {
         cardHand = PlayerHand()
         playerType = PlayerType.NA
         difficulty = ""
+        moveType = MoveType.ThreeCardsDown
     }
     
     init(cardHand: PlayerHand, playerType: PlayerType) {
@@ -25,6 +27,20 @@ class Player {
         self.cardHand.sortHandByRank()
         self.playerType = playerType
         self.difficulty = "Easy"
+        moveType = MoveType.ThreeCardsDown
+    }
+    
+    func playersTurn() {
+        switch moveType {
+        case MoveType.ThreeCardsDown:
+            print("State: ThreeCardsDown")
+            self.setMoveType(moveType: MoveType.ThreeCardsUp)
+        case MoveType.ThreeCardsUp:
+            print("State: ThreeCardsUp")
+            self.setMoveType(moveType: MoveType.GamePlay)
+        case MoveType.GamePlay:
+            print("State: GamePlay")
+        }
     }
     
     func selectCardToPlay(topCard: PlayingCard) -> PlayingCard? {
@@ -75,6 +91,14 @@ class Player {
     
     func setDifficulty(difficulty: String) {
         self.difficulty = difficulty
+    }
+    
+    func getMoveType() -> MoveType {
+        return moveType
+    }
+    
+    func setMoveType(moveType: MoveType) {
+        self.moveType = moveType
     }
     
     func toString() -> String {

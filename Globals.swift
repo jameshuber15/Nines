@@ -13,3 +13,9 @@ enum PlayerType {
     case Human
     case NA
 }
+
+enum MoveType {
+    case ThreeCardsDown
+    case ThreeCardsUp
+    case GamePlay
+}
