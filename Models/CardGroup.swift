@@ -38,12 +38,12 @@ class CardGroup {
     }
     
     func push2And10ToEnd() {
-        for x in 0..<self.cards.count-1 {
+        for x in 0..<self.cards.count {
             if cards[x].rank == 2 {
                 cards.append(cards.remove(at: x))
             }
         }
-        for y in 0..<self.cards.count-1 {
+        for y in 0..<self.cards.count {
             if cards[y].rank == 10 {
                 cards.append(cards.remove(at: y))
             }
@@ -70,6 +70,9 @@ class CardGroup {
     
     func toString() -> String {
         var result = "Hand: "
+        if cards.count == 0 {
+            return result + "Empty"
+        }
         for x in 0..<cards.count{
             result = "\(result) \(cards[x].toString())"
         }

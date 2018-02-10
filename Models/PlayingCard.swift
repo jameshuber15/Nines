@@ -70,7 +70,7 @@ class PlayingCard : Card {
         return ["♠️","❤️","♦️","♣️"]
     }
     
-    override func toString() -> String {
+    func toString() -> String {
         var rankStr : String
         switch rank {
         case 11:

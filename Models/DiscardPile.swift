@@ -17,4 +17,17 @@ class DiscardPile: CardGroup {
         self.numTopCards = 0
         super.init()
     }
+    
+    override func toString() -> String {
+        var result = "Discard Pile: "
+        if cards.count == 0 {
+            return result + "Empty"
+        }
+        
+        for x in cards.count-1...0{
+            result = "\(result) \(cards[x].toString())"
+            print(result)
+        }
+        return result
+    }
 }

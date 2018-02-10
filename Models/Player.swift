@@ -16,12 +16,12 @@ class Player {
     internal var moveType : MoveType
     internal var playerNum : Int
     
-    init() {
+    init(playerNum: Int) {
         cardHand = PlayerHand()
         playerType = PlayerType.NA
         difficulty = Difficulty.None
         moveType = MoveType.ThreeCardsDown
-        playerNum = 0
+        self.playerNum = playerNum
     }
     
     init(cardHand: PlayerHand, playerType: PlayerType) {
@@ -113,6 +113,6 @@ class Player {
     }
     
     func toString() -> String {
-        return "\(self.playerType) \(self.getPlayerNum()): \(self.cardHand.toString())"
+        return "Player \(self.getPlayerNum()) \(self.cardHand.toString())\n"
     }
 }
