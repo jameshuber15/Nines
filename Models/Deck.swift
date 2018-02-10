@@ -54,6 +54,9 @@ class Deck: CardGroup {
     
     override func toString() -> String {
         var result = "Deck:\n "
+        if cards.count == 0 {
+            return result + "Empty"
+        }
         for x in 0..<cards.count{
             result = "\(result) \(cards[x].toString())"
         }

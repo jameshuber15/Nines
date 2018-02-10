@@ -9,20 +9,143 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baskerville.ttc">
+            <string>Baskerville-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Menu Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="BYZ-38-t0r" customClass="MenuController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Menu View">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nines Card Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auf-fe-o0B">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="69"/>
+                                <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="57"/>
+                                <color key="textColor" red="0.091102502887030201" green="0.088933795675530739" blue="0.46619210025380708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.45258594262844837" green="0.45128172187402582" blue="0.88334787439999995" alpha="0.65663512319999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="4" height="3"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dWB-Zm-BkY" userLabel="Player Stack">
+                                <rect key="frame" x="0.0" y="83" width="667" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Players:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMm-9T-dCR">
+                                        <rect key="frame" x="231" y="0.0" width="205.5" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="C0g-Ig-wdT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5nx-N1-hup">
+                                        <rect key="frame" x="227.5" y="27" width="212" height="29"/>
+                                        <color key="backgroundColor" red="0.089392654597759247" green="0.0" blue="0.98288708925247192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <segments>
+                                            <segment title="2 Players"/>
+                                            <segment title="3 Players"/>
+                                            <segment title="4 Players"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.96994942426681519" green="0.97065049409866333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="5nx-N1-hup" firstAttribute="top" secondItem="LMm-9T-dCR" secondAttribute="bottom" id="qry-qF-5ru"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FQ9-Ej-73W" userLabel="Difficulty Stack">
+                                <rect key="frame" x="0.0" y="167" width="667" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjF-gp-FgN">
+                                        <rect key="frame" x="281" y="0.0" width="105.5" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2nY-r3-DMy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YF2-bq-VJI" userLabel="Switch Stack">
+                                        <rect key="frame" x="243.5" y="40" width="180.5" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayg-Db-nhd">
+                                                <rect key="frame" x="0.0" y="0.0" width="60.5" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="6EN-Hz-HaI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iOS-op-HMe">
+                                                <rect key="frame" x="60.5" y="0.0" width="62" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="DvX-x1-ckO"/>
+                                                </constraints>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-R7-PV4">
+                                                <rect key="frame" x="120.5" y="0.0" width="60" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="raB-Ki-eUP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="iOS-op-HMe" firstAttribute="leading" secondItem="ayg-Db-nhd" secondAttribute="trailing" id="5GJ-hE-5eM"/>
+                                            <constraint firstItem="iOS-op-HMe" firstAttribute="top" secondItem="YF2-bq-VJI" secondAttribute="top" id="A9T-51-4dU"/>
+                                            <constraint firstAttribute="height" constant="40" id="Kyf-fm-CG2"/>
+                                            <constraint firstAttribute="bottom" secondItem="iOS-op-HMe" secondAttribute="bottom" id="dBb-dK-ikv"/>
+                                            <constraint firstItem="i6A-R7-PV4" firstAttribute="leading" secondItem="iOS-op-HMe" secondAttribute="trailing" id="gac-ai-BRr"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnP-bk-V6X">
+                                <rect key="frame" x="277" y="282" width="113" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Sly-nL-1uf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="22"/>
+                                <state key="normal" title="Play Game">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ka4-32-AXT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.42077252832354367" green="0.58917133615460071" blue="0.88334787436548223" alpha="0.65663512323943662" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="auf-fe-o0B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AQE-5S-AGj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FQ9-Ej-73W" secondAttribute="trailing" id="FMn-Fl-e98"/>
+                            <constraint firstItem="auf-fe-o0B" firstAttribute="leading" secondItem="dWB-Zm-BkY" secondAttribute="leading" id="KNg-uz-VpF"/>
+                            <constraint firstItem="FQ9-Ej-73W" firstAttribute="top" secondItem="dWB-Zm-BkY" secondAttribute="bottom" constant="29" id="QZz-0Z-PIk"/>
+                            <constraint firstItem="BnP-bk-V6X" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="T6k-aL-ccN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BnP-bk-V6X" secondAttribute="bottom" constant="39" id="WlT-vr-4S7"/>
+                            <constraint firstItem="FQ9-Ej-73W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yqa-O7-YAb"/>
+                            <constraint firstItem="auf-fe-o0B" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aDY-8M-3wy"/>
+                            <constraint firstItem="auf-fe-o0B" firstAttribute="trailing" secondItem="dWB-Zm-BkY" secondAttribute="trailing" id="dUR-bd-VME"/>
+                            <constraint firstItem="dWB-Zm-BkY" firstAttribute="top" secondItem="auf-fe-o0B" secondAttribute="bottom" constant="14" id="nus-WK-VF7"/>
+                            <constraint firstAttribute="trailing" secondItem="auf-fe-o0B" secondAttribute="trailing" id="wWa-dC-UM9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="difficultySwitch" destination="iOS-op-HMe" id="sxc-RO-cwW"/>
+                        <outlet property="playerSelector" destination="5nx-N1-hup" id="Nvt-du-lef"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="138.0809595202399" y="116"/>
         </scene>
     </scenes>
 </document>

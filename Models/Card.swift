@@ -17,10 +17,6 @@ class Card {
         isFaceUp = false
     }
     
-    func toString() -> String {
-        return "The card is \(isFaceUp)"
-    }
-    
     func getBackImage() -> UIImage {
         return backImage
     }
