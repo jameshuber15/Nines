@@ -39,12 +39,20 @@ class MenuController: UIViewController {
     
     @IBAction func playGame(_ sender: UIButton) {
         print("Start Game")
-        let gameBoard = GameBoard()
+        let loadingController = storyboard?.instantiateViewController(withIdentifier: "LoadingController") as! LoadingController
+        
         let numOfPlayers = playerSelector.selectedSegmentIndex+2
-        let difficulty = !difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard
         print("Number of Players: \(numOfPlayers)")
-        print("Difficulty: \(difficulty)")
-        gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
+        print("Difficulty: \(!difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard)")
+        
+        loadingController.intPassed = numOfPlayers
+        loadingController.boolPassed = difficultySwitch.isOn
+
+        navigationController?.pushViewController(myVC, animated: true)
+
+        let difficulty = !difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard
+        let gameBoard = GameBoard()
+        gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: !difficulty ? Difficulty.Easy : Difficulty.Hard)
 
     }
 }
