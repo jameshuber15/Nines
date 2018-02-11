@@ -13,15 +13,6 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var playerSelector: UISegmentedControl!
     @IBOutlet weak var difficultySwitch: UISwitch!
     
-    lazy var gameTitle: UILabel! = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.borderStyle = .RoundedRect
-        view.textAlignment = .Center
-        
-        return view
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let value = UIInterfaceOrientation.landscapeRight.rawValue
@@ -46,18 +37,15 @@ class MenuViewController: UIViewController {
         UIDevice.current.setValue(value, forKey: "orientation")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    @IBAction func playGame(_ sender: UIButton) {
         print("Start Game")
         let numOfPlayers = playerSelector.selectedSegmentIndex+2
         print("Number of Players: \(numOfPlayers)")
         let difficulty = !difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard
         print("Difficulty: \(difficulty)")
-        if let gvc = segue.destination as? GameViewController
-        {
-            gvc.difficulty = difficulty
-            gvc.numOfPlayers = numOfPlayers
-        }
+        let gvc = GameViewController()
+        gvc.difficulty = difficulty
+        gvc.numOfPlayers = numOfPlayers
+        self.present(gvc, animated: true, completion: nil)
     }
-
 }
