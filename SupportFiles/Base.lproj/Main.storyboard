@@ -27,8 +27,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="69"/>
                                 <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="57"/>
                                 <color key="textColor" red="0.091102502887030201" green="0.088933795675530739" blue="0.46619210025380708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.45258594262844837" green="0.45128172187402582" blue="0.88334787439999995" alpha="0.65663512319999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.090086184442043304" green="0.089944399893283844" blue="0.46694958209991455" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.50681328773498535" green="0.54840993881225586" blue="0.89677751064300537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="4" height="3"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dWB-Zm-BkY" userLabel="Player Stack">
@@ -118,7 +118,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ib7-Fe-TbX" kind="show" id="Q21-A6-D6U"/>
+                                    <action selector="playGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Roz-Fg-uEs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -147,21 +147,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="328.78560719640183" y="116"/>
-        </scene>
-        <!--Game View Controller-->
-        <scene sceneID="a1t-cz-uiD">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="syf-nQ-Cwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="Ib7-Fe-TbX" customClass="GameViewController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JE1-4L-cm7">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.6192442774772644" green="0.73379945755004883" blue="0.92489331960678101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="xOI-Ra-zed"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1061.9190404797603" y="112.8"/>
         </scene>
     </scenes>
 </document>

@@ -15,19 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Initialize the window
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-        
-        // Set Background Color of window
-        window?.backgroundColor = UIColor.white
-        
-        // Allocate memory for an instance of the 'MainViewController' class
-        let mainViewController = MenuViewController()
-        
-        // Set the root view controller of the app's window
-        window!.rootViewController = mainViewController
-        
-        // Make the window visible
-        window!.makeKeyAndVisible()
+//        window = UIWindow.init(frame: UIScreen.main.bounds)
+//
+//        // Set Background Color of window
+//        window?.backgroundColor = UIColor.white
+//
+//        // Allocate memory for an instance of the 'MainViewController' class
+//        let mainViewController = MenuViewController2()
+//
+//        // Set the root view controller of the app's window
+//        window!.rootViewController = mainViewController
+//
+//        // Make the window visible
+//        window!.makeKeyAndVisible()
         
         return true
     }
