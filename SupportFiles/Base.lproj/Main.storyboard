@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Menu Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MenuController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MenuViewController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Menu View">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,8 +118,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="playGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ka4-32-AXT"/>
-                                    <segue destination="ahW-Rd-SA7" kind="show" id="OOU-ei-QBW"/>
+                                    <segue destination="Ib7-Fe-TbX" kind="show" id="Q21-A6-D6U"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -149,44 +148,20 @@
             </objects>
             <point key="canvasLocation" x="328.78560719640183" y="116"/>
         </scene>
-        <!--Dealing Screen Controller-->
-        <scene sceneID="Uqd-On-boS">
+        <!--Game View Controller-->
+        <scene sceneID="a1t-cz-uiD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="taA-wp-krf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="ahW-Rd-SA7" customClass="DealingScreenController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NrY-M5-6Tn">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="syf-nQ-Cwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Ib7-Fe-TbX" customClass="GameViewController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JE1-4L-cm7">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dealing Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-hd-2re">
-                                <rect key="frame" x="193.5" y="122.5" width="279" height="47.5"/>
-                                <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="41"/>
-                                <color key="textColor" red="0.090086184442043304" green="0.089944399893283844" blue="0.46694958209991455" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.50681328773498535" green="0.54840993881225586" blue="0.89677751064300537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zx7-gj-nPY">
-                                <rect key="frame" x="258" y="203" width="150" height="2"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="RmD-HP-lIX"/>
-                                </constraints>
-                                <color key="progressTintColor" red="0.090086184442043304" green="0.089944399893283844" blue="0.46694958209991455" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="trackTintColor" red="0.50681328773498535" green="0.54840993881225586" blue="0.89677751064300537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </progressView>
-                        </subviews>
                         <color key="backgroundColor" red="0.6192442774772644" green="0.73379945755004883" blue="0.92489331960678101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="DPk-4N-lTp" firstAttribute="bottom" secondItem="Zx7-gj-nPY" secondAttribute="bottom" constant="170" id="570-65-0Nh"/>
-                            <constraint firstItem="Zx7-gj-nPY" firstAttribute="top" secondItem="cdk-hd-2re" secondAttribute="bottom" constant="33" id="Tk0-TB-PBP"/>
-                            <constraint firstItem="Zx7-gj-nPY" firstAttribute="centerX" secondItem="cdk-hd-2re" secondAttribute="centerX" id="fh7-VV-zHv"/>
-                            <constraint firstItem="cdk-hd-2re" firstAttribute="centerX" secondItem="DPk-4N-lTp" secondAttribute="centerX" id="vJY-Ib-Ooc"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="DPk-4N-lTp"/>
+                        <viewLayoutGuide key="safeArea" id="xOI-Ra-zed"/>
                     </view>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1023.2383808095952" y="117.59999999999999"/>
+            <point key="canvasLocation" x="1061.9190404797603" y="112.8"/>
         </scene>
     </scenes>
 </document>

@@ -8,10 +8,19 @@
 
 import UIKit
 
-class MenuController: UIViewController {
+class MenuViewController: UIViewController {
     //UI: Objects
     @IBOutlet weak var playerSelector: UISegmentedControl!
     @IBOutlet weak var difficultySwitch: UISwitch!
+    
+    lazy var gameTitle: UILabel! = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.borderStyle = .RoundedRect
+        view.textAlignment = .Center
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +46,18 @@ class MenuController: UIViewController {
         UIDevice.current.setValue(value, forKey: "orientation")
     }
     
-    @IBAction func playGame(_ sender: UIButton) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         print("Start Game")
-        let loadingController = storyboard?.instantiateViewController(withIdentifier: "LoadingController") as! LoadingController
-        
         let numOfPlayers = playerSelector.selectedSegmentIndex+2
         print("Number of Players: \(numOfPlayers)")
-        print("Difficulty: \(!difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard)")
-        
-        loadingController.intPassed = numOfPlayers
-        loadingController.boolPassed = difficultySwitch.isOn
-
-        navigationController?.pushViewController(myVC, animated: true)
-
         let difficulty = !difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard
-        let gameBoard = GameBoard()
-        gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: !difficulty ? Difficulty.Easy : Difficulty.Hard)
-
+        print("Difficulty: \(difficulty)")
+        if let gvc = segue.destination as? GameViewController
+        {
+            gvc.difficulty = difficulty
+            gvc.numOfPlayers = numOfPlayers
+        }
     }
+
 }
