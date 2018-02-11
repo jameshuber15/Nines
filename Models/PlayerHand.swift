@@ -6,7 +6,7 @@
 //  Copyright © 2018 James HUBER. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class PlayerHand : CardGroup {
     internal var upCards: [PlayingCard]

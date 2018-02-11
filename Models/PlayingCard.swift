@@ -13,6 +13,7 @@ class PlayingCard : Card {
     internal var suit : String
     internal var frontImage : UIImage
     internal var clearCards : Bool
+    internal var cardButton : UIButton = UIButton()
     
     override init(){
         self.frontImage = UIImage(named: "cardfront")!
@@ -20,6 +21,7 @@ class PlayingCard : Card {
         self.suit = String()
         self.clearCards = false
         super.init()
+        createCard()
     }
     
     init(withRank: Int, ofSuit: String, frontImage : String){
@@ -32,6 +34,12 @@ class PlayingCard : Card {
             clearCards = false
         }
         super.init()
+        createCard()
+    }
+    
+    func createCard() {
+        cardButton.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
+        cardButton.frame = CGRect(x: 15, y: 50, width: 200, height: 100)
     }
     
     func getRank() -> Int {
