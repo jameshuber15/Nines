@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nines Card Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auf-fe-o0B">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Three-Down" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auf-fe-o0B">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="69"/>
                                 <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="57"/>
                                 <color key="textColor" red="0.091102502887030201" green="0.088933795675530739" blue="0.46619210025380708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -151,7 +150,6 @@
         <!--Game View Controller-->
         <scene sceneID="gTI-3S-yqB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdc-hM-6qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="uNZ-gT-R7D" customClass="GameViewController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jeo-9d-xeg" userLabel="Game View">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
@@ -206,6 +204,7 @@
                         <outlet property="player4View" destination="PZ7-HY-4ct" id="uaO-76-Y0d"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdc-hM-6qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1075.4122938530736" y="116"/>
         </scene>
