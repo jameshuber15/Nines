@@ -37,15 +37,16 @@ class MenuViewController: UIViewController {
         UIDevice.current.setValue(value, forKey: "orientation")
     }
     
-    @IBAction func playGame(_ sender: UIButton) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Start Game")
         let numOfPlayers = playerSelector.selectedSegmentIndex+2
         print("Number of Players: \(numOfPlayers)")
         let difficulty = !difficultySwitch.isOn ? Difficulty.Easy : Difficulty.Hard
         print("Difficulty: \(difficulty)")
-        let gvc = GameViewController()
-        gvc.difficulty = difficulty
-        gvc.numOfPlayers = numOfPlayers
-        self.present(gvc, animated: true, completion: nil)
+        if let gvc = segue.destination as? GameViewController
+        {
+            gvc.difficulty = difficulty
+            gvc.numOfPlayers = numOfPlayers
+        }
     }
 }
