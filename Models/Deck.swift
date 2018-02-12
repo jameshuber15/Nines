@@ -1,6 +1,6 @@
 //
 //  PlayingCardDeck.swift
-//  Nines
+//  Three-Down
 //
 //  Created by James HUBER on 2/6/18.
 //  Copyright © 2018 James HUBER. All rights reserved.
