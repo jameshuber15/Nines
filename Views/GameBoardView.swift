@@ -1,8 +1,8 @@
 //
-//  GameVIew.swift
-//  Nines
+//  GameBoardView.swift
+//  Three-Down
 //
-//  Created by James HUBER on 2/10/18.
+//  Created by James HUBER on 2/12/18.
 //  Copyright © 2018 James HUBER. All rights reserved.
 //
 
