@@ -118,7 +118,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="playGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Roz-Fg-uEs"/>
+                                    <segue destination="uNZ-gT-R7D" kind="show" id="SZo-vU-ev6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -147,6 +147,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="328.78560719640183" y="116"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="gTI-3S-yqB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdc-hM-6qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="uNZ-gT-R7D" customClass="GameViewController" customModule="Nines" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jeo-9d-xeg" userLabel="Game View">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eI3-WX-pzf" userLabel="Player 1" customClass="Player1View" customModule="Nines" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="247" width="667" height="128"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wE-hb-wu3" userLabel="Player 2" customClass="Player2View" customModule="Nines" customModuleProvider="target">
+                                <rect key="frame" x="497" y="101" width="170" height="150"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IP9-v4-C8m" userLabel="Player 3" customClass="Player3View" customModule="Nines" customModuleProvider="target">
+                                <rect key="frame" x="167" y="0.0" width="332" height="103"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZ7-HY-4ct" userLabel="Player 4" customClass="Player4View" customModule="Nines" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="101" width="170" height="150"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWZ-Nb-TW1" userLabel="Game Board" customClass="GameBoardView" customModule="Nines" customModuleProvider="target">
+                                <rect key="frame" x="167" y="101" width="332" height="150"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.61971169710159302" green="0.72904902696609497" blue="0.92514318227767944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uWZ-Nb-TW1" firstAttribute="top" secondItem="IP9-v4-C8m" secondAttribute="bottom" constant="-2" id="1dh-jI-YeB"/>
+                            <constraint firstItem="uWZ-Nb-TW1" firstAttribute="top" secondItem="7wE-hb-wu3" secondAttribute="top" id="4VF-wI-QOF"/>
+                            <constraint firstItem="PZ7-HY-4ct" firstAttribute="top" secondItem="uWZ-Nb-TW1" secondAttribute="top" id="G1K-O2-MUf"/>
+                            <constraint firstItem="PZ7-HY-4ct" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" constant="101" id="Hsd-LL-hJ6"/>
+                            <constraint firstItem="7wE-hb-wu3" firstAttribute="leading" secondItem="uWZ-Nb-TW1" secondAttribute="trailing" constant="-2" id="KKl-qx-Euk"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="bottom" secondItem="ndJ-Mq-biX" secondAttribute="bottom" id="MVx-HO-LG2"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="centerX" secondItem="IP9-v4-C8m" secondAttribute="centerX" id="Oq4-MB-bM0"/>
+                            <constraint firstItem="7wE-hb-wu3" firstAttribute="trailing" secondItem="ndJ-Mq-biX" secondAttribute="trailing" id="QK5-40-OYS"/>
+                            <constraint firstItem="IP9-v4-C8m" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" id="UAj-2X-U6v"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="trailing" secondItem="7wE-hb-wu3" secondAttribute="trailing" id="Ve7-za-Xzc"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="centerX" secondItem="uWZ-Nb-TW1" secondAttribute="centerX" id="ZLz-eH-RC5"/>
+                            <constraint firstItem="IP9-v4-C8m" firstAttribute="leading" secondItem="uWZ-Nb-TW1" secondAttribute="leading" id="Zpq-su-3bu"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="top" secondItem="7wE-hb-wu3" secondAttribute="bottom" constant="-4" id="cia-fD-awD"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="top" secondItem="PZ7-HY-4ct" secondAttribute="bottom" constant="-4" id="g0A-WN-uKO"/>
+                            <constraint firstItem="IP9-v4-C8m" firstAttribute="leading" secondItem="ndJ-Mq-biX" secondAttribute="leading" constant="167" id="i3f-j8-RsC"/>
+                            <constraint firstItem="PZ7-HY-4ct" firstAttribute="leading" secondItem="ndJ-Mq-biX" secondAttribute="leading" id="juu-qn-NXt"/>
+                            <constraint firstItem="uWZ-Nb-TW1" firstAttribute="leading" secondItem="PZ7-HY-4ct" secondAttribute="trailing" constant="-3" id="oIm-r0-I8Y"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="top" secondItem="uWZ-Nb-TW1" secondAttribute="bottom" constant="-4" id="pRh-v3-kbj"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="leading" secondItem="PZ7-HY-4ct" secondAttribute="leading" id="sfG-Jf-P2L"/>
+                            <constraint firstItem="eI3-WX-pzf" firstAttribute="top" secondItem="Jeo-9d-xeg" secondAttribute="top" constant="247" id="wEo-wS-kGo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ndJ-Mq-biX"/>
+                    </view>
+                    <connections>
+                        <outlet property="gameBoardView" destination="uWZ-Nb-TW1" id="VlR-VU-RiY"/>
+                        <outlet property="player1View" destination="eI3-WX-pzf" id="r30-wV-XKB"/>
+                        <outlet property="player2View" destination="7wE-hb-wu3" id="kv8-Kh-8UN"/>
+                        <outlet property="player3View" destination="IP9-v4-C8m" id="I5L-KN-Q7V"/>
+                        <outlet property="player4View" destination="PZ7-HY-4ct" id="uaO-76-Y0d"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1075.4122938530736" y="116"/>
         </scene>
     </scenes>
 </document>
