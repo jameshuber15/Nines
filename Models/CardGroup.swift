@@ -25,7 +25,7 @@ class CardGroup {
         for x in 0 ..< self.cards.count - 1 {
             var lowest = x
             for y in x + 1 ..< self.cards.count {
-                if self.cards[y].rank < self.cards[lowest].rank {
+                if self.cards[y].getRank() < self.cards[lowest].getRank(){
                     lowest = y
                 }
             }
@@ -39,12 +39,12 @@ class CardGroup {
     
     func push2And10ToEnd() {
         for x in 0..<self.cards.count {
-            if cards[x].rank == 2 {
+            if cards[x].getRank() == 2 {
                 cards.append(cards.remove(at: x))
             }
         }
         for y in 0..<self.cards.count {
-            if cards[y].rank == 10 {
+            if cards[y].getRank() == 10 {
                 cards.append(cards.remove(at: y))
             }
         }

@@ -20,4 +20,8 @@ class GameView: UIView {
     func changeColor() {
         self.backgroundColor = UIColor.black
     }
+    
+    func choose3Down(player: Player) {
+        
+    }
 }
