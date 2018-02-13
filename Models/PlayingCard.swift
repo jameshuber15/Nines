@@ -13,7 +13,8 @@ class PlayingCard : Card {
     internal var suit : String
     internal var frontImage : UIImage
     internal var clearCards : Bool
-    internal var cardButton : UIButton = UIButton()
+    internal var selected : Bool = false
+    internal var cardButton : UIButton = UIButton(type: UIButtonType.custom)
     
     override init(){
         self.frontImage = UIImage(named: "cardfront")!
@@ -38,8 +39,38 @@ class PlayingCard : Card {
     }
     
     func createCard() {
-        cardButton.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
-        cardButton.frame = CGRect(x: 15, y: 50, width: 200, height: 100)
+        //cardButton.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
+        cardButton.setImage(frontImage, for: UIControlState.normal)
+        cardButton.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
+        cardButton.backgroundColor = UIColor.white
+        cardButton.frame = CGRect(x: 15, y: 50, width: 204, height: 104)
+        cardButton.addTarget(self, action: #selector(selectCard), for: .touchUpInside)
+        cardButton.layer.borderWidth = 3.0
+        cardButton.layer.borderColor = UIColor.black.cgColor
+        cardButton.layer.cornerRadius = 4.0
+    }
+    
+    @objc func selectCard(sender:UIButton!) {
+        print(self.toString())
+        toggleSelection(button: sender)
+    }
+    
+    func toggleSelection(button: UIButton) {
+        if self.isSelected() {
+            button.layer.borderColor = UIColor.black.cgColor
+            setSelected(selected: false)
+        } else {
+            button.layer.borderColor = UIColor.red.cgColor
+            setSelected(selected: true)
+        }
+    }
+    
+    func isSelected() -> Bool {
+        return selected
+    }
+    
+    func setSelected(selected: Bool) {
+        self.selected = selected
     }
     
     func getRank() -> Int {
@@ -64,6 +95,14 @@ class PlayingCard : Card {
     
     func getClearCards() -> Bool {
         return clearCards
+    }
+    
+    func setCardButton(cardButton: UIButton) {
+        self.cardButton = cardButton
+    }
+    
+    func getCardButton() -> UIButton {
+        return cardButton
     }
     
     class func validRanks() -> [String] {

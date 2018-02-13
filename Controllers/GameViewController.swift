@@ -26,12 +26,17 @@ class GameViewController: UIViewController {
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
         buildGameViewMap()
         changeColors()
+        displayPlayer1Cards()
 //        self.view.backgroundColor = UIColor(red: 0.42, green: 0.59, blue: 0.88, alpha: 1)
 //
 //        gameView = GameView()
 //        self.view.addSubview(gameView)
 //
 //        gameView.buildGameViews()
+    }
+    
+    func displayPlayer1Cards() {
+        player1View.choose3Down(player: gameBoard.getPlayerArray()[0])
     }
     
     func changeColors() {
