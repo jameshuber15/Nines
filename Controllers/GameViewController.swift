@@ -14,6 +14,11 @@ class GameViewController: UIViewController {
     var gameBoard : GameBoard!
     var playerControllers: [PlayerViewController] = []
     @IBOutlet var gameView: UIView!
+    @IBOutlet weak var player1View: UIView!
+    @IBOutlet weak var player2View: UIView!
+    @IBOutlet weak var player3View: UIView!
+    @IBOutlet weak var player4View: UIView!
+    @IBOutlet weak var gameBoardView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +26,7 @@ class GameViewController: UIViewController {
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
         buildPlayerControllers()
         changeColor()
+        choose3DownCards()
     }
     
     func changeColor() {
@@ -29,13 +35,20 @@ class GameViewController: UIViewController {
         }
     }
     
+    func choose3DownCards() {
+        playerControllers[0].displayPlayer1Cards(player: gameBoard.getPlayerArray()[0])
+    }
+    
     func buildPlayerControllers() {
         playerControllers.append(player1Controller)
-        playerControllers.append(player2Controller)
         switch numOfPlayers {
+        case 2:
+            playerControllers.append(player3Controller)
         case 3:
+            playerControllers.append(player2Controller)
             playerControllers.append(player3Controller)
         case 4:
+            playerControllers.append(player2Controller)
             playerControllers.append(player3Controller)
             playerControllers.append(player4Controller)
         default:
@@ -52,6 +65,14 @@ class GameViewController: UIViewController {
         
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player1View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player1View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player1View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player1View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+        
         return viewController
     }()
     
@@ -65,6 +86,13 @@ class GameViewController: UIViewController {
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
         
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player2View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player2View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player2View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player2View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+
         return viewController
     }()
     
@@ -77,6 +105,13 @@ class GameViewController: UIViewController {
         
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player3View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player3View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player3View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player3View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
         
         return viewController
     }()
@@ -91,6 +126,13 @@ class GameViewController: UIViewController {
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
         
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player4View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player4View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player4View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player4View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+
         return viewController
     }()
     
@@ -104,12 +146,20 @@ class GameViewController: UIViewController {
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
         
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: gameBoardView, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: gameBoardView, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: gameBoardView, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: gameBoardView, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+        
         return viewController
     }()
     
     private func add(asChildViewController viewController: UIViewController) {
         // Add Child View Controller
         addChildViewController(viewController)
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         // Configure Child View
         viewController.view.frame = view.bounds
