@@ -10,6 +10,8 @@ import UIKit
 
 class Player1ViewController: PlayerViewController {
     @IBOutlet weak var playerView: Player1View!
+    var selectedCards = CardGroup()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,26 +25,22 @@ class Player1ViewController: PlayerViewController {
         let hand = player.getCardHand().cards
         for x in 0..<hand.count {
             let card = hand[x]
-            card.getCardButton().addTarget(self, action: #selector(selectCard), for: .touchUpInside)
+            card.addTarget(self, action: #selector(selectCard), for: .touchUpInside)
             let cardName = "button\(x)"
-            cards[cardName] = card.getCardButton()
+            cards[cardName] = card
         }
         playerView.drawCardsOnScreen(cards: cards)
     }
     
-    @objc func selectCard(sender:UIButton!) {
-        print("Selected")
-//        print(self.toString())
-//        self.toggleSelection(button: sender)
+    @objc func selectCard(sender:PlayingCard!) {
+        print("Selected: \(sender.toString())")
+        let addCard = sender.toggleSelection(button: sender, cardCount: selectedCards.getCardCount())
+        if addCard {
+            selectedCards.addCard(newCard: sender)
+        } else {
+            selectedCards.removeCard(newCard: sender)
+        }
+        print("Currently Selected: \(self.selectedCards.toString())")
+        
     }
-    
-//    func toggleSelection(button: UIButton) {
-//        if self.isSelected() {
-//            button.layer.borderColor = UIColor.black.cgColor
-//            setSelected(selected: false)
-//        } else {
-//            button.layer.borderColor = UIColor.red.cgColor
-//            setSelected(selected: true)
-//        }
-//    }
 }

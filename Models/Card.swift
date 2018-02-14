@@ -8,13 +8,20 @@
 
 import UIKit
 
-class Card {
+class Card: UIButton{
     internal var backImage : UIImage
     internal var isFaceUp : Bool
     
-    init() {
+    required init() {
         backImage = UIImage(named: "back")!
         isFaceUp = false
+        super.init(frame: CGRect.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        backImage = UIImage(named: "back")!
+        isFaceUp = false
+        super.init(coder: aDecoder)
     }
     
     func getBackImage() -> UIImage {

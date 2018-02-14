@@ -34,9 +34,7 @@ class CardGroup {
                 self.cards.swapAt(x, lowest)
             }
         }
-        print("Before: \(self.toString())\n")
         push2And10ToEnd()
-        print("After: \(self.toString())\n\n")
     }
     
     func push2And10ToEnd() {
@@ -73,6 +71,23 @@ class CardGroup {
     
     func getCards() -> [PlayingCard]{
         return cards
+    }
+    
+    func addCard(newCard: PlayingCard) {
+        cards.append(newCard)
+    }
+    
+    func removeCard(newCard: PlayingCard) {
+        for x in 0..<cards.count {
+            if cards[x] === newCard {
+                cards.remove(at: x)
+                break
+            }
+        }
+    }
+    
+    func getCardCount() -> Int {
+        return cards.count
     }
     
     func toString() -> String {

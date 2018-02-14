@@ -31,7 +31,7 @@ class PlayerHand : CardGroup {
     
     func findValidCards(topCard: PlayingCard) -> [PlayingCard] {
         var playableCards : [PlayingCard] = []
-        for card in 0 ..< self.cards.count {
+        for card in 0 ..< cards.count {
             if topCard.getRank() <= cards[card].getRank() {
                 playableCards.append(cards[card])
             } else if cards[card].getRank() == 10 || cards[card].getRank() == 2 {
@@ -39,13 +39,6 @@ class PlayerHand : CardGroup {
             }
         }
         return playableCards
-    }
-    
-    func addCard(newCard: PlayingCard) {
-        if newCard.rank == 10 {
-            newCard.setClearCards(clearCards: true)
-        }
-        cards.append(newCard)
     }
     
     func setUpCards(upCards: [PlayingCard]) {
