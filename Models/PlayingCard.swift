@@ -13,10 +13,10 @@ class PlayingCard : Card {
     internal var suit : String
     internal var frontImage : UIImage
     internal var clearCards : Bool
-    internal var selected : Bool = false
-    internal var cardButton : UIButton = UIButton(type: UIButtonType.custom)
+    internal var cardSelected : Bool = false
+    //internal var cardButton : UIButton = UIButton(type: UIButtonType.custom)
     
-    override init(){
+    required init(){
         self.frontImage = UIImage(named: "cardfront")!
         self.rank = 0
         self.suit = String()
@@ -38,24 +38,51 @@ class PlayingCard : Card {
         createCard()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        self.frontImage = UIImage(named: "cardfront")!
+        self.rank = 0
+        self.suit = String()
+        self.clearCards = false
+        super.init(coder: aDecoder)
+        createCard()
+    }
+    
     func createCard() {
         //TODO
-        //cardButton.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
-        cardButton.setImage(frontImage, for: UIControlState.normal)
-        cardButton.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
-        cardButton.backgroundColor = UIColor.white
-        cardButton.frame = CGRect(x: 15, y: 50, width: 204, height: 104)
-        cardButton.layer.borderWidth = 3.0
-        cardButton.layer.borderColor = UIColor.black.cgColor
-        cardButton.layer.cornerRadius = 4.0
+        //self.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
+        self.setImage(frontImage, for: UIControlState.normal)
+        self.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
+        self.backgroundColor = UIColor.white
+        self.frame = CGRect(x: 15, y: 50, width: 204, height: 104)
+        self.layer.borderWidth = 3.0
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = 4.0
+    }
+    
+    func toggleSelection(button: UIButton, cardCount: Int) -> Bool{
+        var addCard = false
+        if self.isSelected() {
+            button.layer.borderColor = UIColor.black.cgColor
+            setSelected(cardSelected: false)
+        } else {
+            if cardCount < 3 {
+                button.layer.borderColor = UIColor.red.cgColor
+                setSelected(cardSelected: true)
+                addCard = true
+            } else {
+                print("Already selected 3 cards")
+                addCard = false
+            }
+        }
+        return addCard
     }
     
     func isSelected() -> Bool {
-        return selected
+        return cardSelected
     }
     
-    func setSelected(selected: Bool) {
-        self.selected = selected
+    func setSelected(cardSelected: Bool) {
+        self.cardSelected = cardSelected
     }
     
     func getRank() -> Int {
@@ -80,14 +107,6 @@ class PlayingCard : Card {
     
     func getClearCards() -> Bool {
         return clearCards
-    }
-    
-    func setCardButton(cardButton: UIButton) {
-        self.cardButton = cardButton
-    }
-    
-    func getCardButton() -> UIButton {
-        return cardButton
     }
     
     class func validRanks() -> [String] {

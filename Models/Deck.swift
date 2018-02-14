@@ -43,6 +43,9 @@ class Deck: CardGroup {
                 }
                 let frontImage = "\(rankStr)_of_\(suitStr)"
                 let currentCard = PlayingCard(withRank: rank, ofSuit: suit, frontImage: frontImage)
+                if rank == 10 {
+                    currentCard.setClearCards(clearCards: true)
+                }
                 self.cards.append(currentCard)
             }
         }
