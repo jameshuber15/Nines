@@ -34,19 +34,26 @@ class CardGroup {
                 self.cards.swapAt(x, lowest)
             }
         }
+        print("Before: \(self.toString())\n")
         push2And10ToEnd()
+        print("After: \(self.toString())\n\n")
     }
     
     func push2And10ToEnd() {
+        var twoAndTen: [PlayingCard] = []
+        var count = 0
         for x in 0..<self.cards.count {
-            if cards[x].getRank() == 2 {
-                cards.append(cards.remove(at: x))
+            if cards[x].getRank() == 2 || cards[x].getRank() == 10 {
+                twoAndTen.append(cards[x])
+            } else {
+                cards[count] = cards[x]
+                count+=1
             }
         }
-        for y in 0..<self.cards.count {
-            if cards[y].getRank() == 10 {
-                cards.append(cards.remove(at: y))
-            }
+
+        for z in 0..<twoAndTen.count {
+            cards[count] = twoAndTen[z]
+            count+=1
         }
     }
     
