@@ -39,6 +39,7 @@ class PlayingCard : Card {
     }
     
     func createCard() {
+        //TODO
         //cardButton.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
         cardButton.setImage(frontImage, for: UIControlState.normal)
         cardButton.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)

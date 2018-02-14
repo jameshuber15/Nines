@@ -12,56 +12,113 @@ class GameViewController: UIViewController {
     var numOfPlayers: Int = 0
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
-    var gameBoardMap: [GameView] = []
-    
-    @IBOutlet weak var player1View: Player1View!
-    @IBOutlet weak var player3View: Player3View!
-    @IBOutlet weak var player4View: Player4View!
-    @IBOutlet weak var player2View: Player2View!
-    @IBOutlet weak var gameBoardView: GameBoardView!
+    var playerControllers: [PlayerViewController] = []
+    @IBOutlet var gameView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         gameBoard = GameBoard()
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
-        buildGameViewMap()
-        changeColors()
-        displayPlayer1Cards()
-//        self.view.backgroundColor = UIColor(red: 0.42, green: 0.59, blue: 0.88, alpha: 1)
-//
-//        gameView = GameView()
-//        self.view.addSubview(gameView)
-//
-//        gameView.buildGameViews()
+        buildPlayerControllers()
+        changeColor()
     }
     
-    func displayPlayer1Cards() {
-        player1View.choose3Down(player: gameBoard.getPlayerArray()[0])
-    }
-    
-    func changeColors() {
-        for x in 0..<gameBoardMap.count {
-            gameBoardMap[x].changeColor()
+    func changeColor() {
+        for x in 0..<playerControllers.count {
+            playerControllers[x].changeColor()
         }
-        gameBoardView.changeColor()
     }
     
-    func buildGameViewMap() {
+    func buildPlayerControllers() {
+        playerControllers.append(player1Controller)
+        playerControllers.append(player2Controller)
         switch numOfPlayers {
-        case 2:
-            gameBoardMap.append(player1View)
-            gameBoardMap.append(player3View)
         case 3:
-            gameBoardMap.append(player1View)
-            gameBoardMap.append(player2View)
-            gameBoardMap.append(player3View)
+            playerControllers.append(player3Controller)
         case 4:
-            gameBoardMap.append(player1View)
-            gameBoardMap.append(player2View)
-            gameBoardMap.append(player3View)
-            gameBoardMap.append(player4View)
+            playerControllers.append(player3Controller)
+            playerControllers.append(player4Controller)
         default:
-            gameBoardMap = []
+            return
         }
+    }
+    
+    private lazy var player1Controller: Player1ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player1ViewController") as! Player1ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        return viewController
+    }()
+    
+    private lazy var player2Controller: Player2ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player2ViewController") as! Player2ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var player3Controller: Player3ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player3ViewController") as! Player3ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var player4Controller: Player4ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player4ViewController") as! Player4ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var gameBoardController: GameBoardViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "GameBoardViewController") as! GameBoardViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Configure Child View
+        viewController.view.frame = view.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Add Child View as Subview
+        view.addSubview(viewController.view)
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
     }
 }
