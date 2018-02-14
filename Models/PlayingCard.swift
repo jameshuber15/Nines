@@ -45,25 +45,9 @@ class PlayingCard : Card {
         cardButton.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         cardButton.backgroundColor = UIColor.white
         cardButton.frame = CGRect(x: 15, y: 50, width: 204, height: 104)
-        cardButton.addTarget(self, action: #selector(selectCard), for: .touchUpInside)
         cardButton.layer.borderWidth = 3.0
         cardButton.layer.borderColor = UIColor.black.cgColor
         cardButton.layer.cornerRadius = 4.0
-    }
-    
-    @objc func selectCard(sender:UIButton!) {
-        print(self.toString())
-        toggleSelection(button: sender)
-    }
-    
-    func toggleSelection(button: UIButton) {
-        if self.isSelected() {
-            button.layer.borderColor = UIColor.black.cgColor
-            setSelected(selected: false)
-        } else {
-            button.layer.borderColor = UIColor.red.cgColor
-            setSelected(selected: true)
-        }
     }
     
     func isSelected() -> Bool {
