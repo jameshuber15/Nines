@@ -8,8 +8,7 @@
 
 import UIKit
 
-class Player1View: GameView {
-    var cards = [String: UIButton]()
+class Player1View: UIView {
     var allConstraints = [NSLayoutConstraint]()
     
     override init(frame: CGRect){
@@ -20,11 +19,16 @@ class Player1View: GameView {
         super.init(coder: aDecoder)
     }
     
-    override func changeColor() {
+    func changeColor() {
         self.backgroundColor = UIColor.blue
     }
     
-    override func choose3Down(player: Player) {
+    func choose3Down(player: Player) {
+        drawCardsOnScreen(player: player)
+    }
+    
+    func drawCardsOnScreen(player: Player) {
+        var cards = [String: UIButton]()
         let hand = player.getCardHand().cards
         let cardWidth = self.bounds.size.width/10.0
         let cardSpace = (self.bounds.size.width-(cardWidth*9))/10.0

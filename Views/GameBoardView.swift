@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameBoardView: GameView {
+class GameBoardView: UIView {
     override init(frame: CGRect){
         super.init(frame: frame)
     }
@@ -17,7 +17,7 @@ class GameBoardView: GameView {
         super.init(coder: aDecoder)
     }
     
-    override func changeColor() {
+    func changeColor() {
         self.backgroundColor = UIColor.green
     }
 }

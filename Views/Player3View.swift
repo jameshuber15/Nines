@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Player3View: GameView {
+class Player3View: UIView {
     override init(frame: CGRect){
         super.init(frame: frame)
     }
@@ -17,7 +17,7 @@ class Player3View: GameView {
         super.init(coder: aDecoder)
     }
     
-    override func changeColor() {
+    func changeColor() {
         self.backgroundColor = UIColor.purple
     }
 }
