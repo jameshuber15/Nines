@@ -213,12 +213,17 @@
                         <viewLayoutGuide key="safeArea" id="ndJ-Mq-biX"/>
                     </view>
                     <connections>
+                        <outlet property="gameBoardView" destination="wgX-yA-dL4" id="hwV-9j-ple"/>
                         <outlet property="gameView" destination="Jeo-9d-xeg" id="MUI-cY-bMs"/>
+                        <outlet property="player1View" destination="e8l-97-tBt" id="Ged-So-LO1"/>
+                        <outlet property="player2View" destination="ntS-JV-N9V" id="389-zH-idk"/>
+                        <outlet property="player3View" destination="mhO-Dx-iHm" id="XkX-lc-ocx"/>
+                        <outlet property="player4View" destination="iJi-km-Ro8" id="g89-jY-5TD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hdc-hM-6qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1074.5" y="115.5"/>
+            <point key="canvasLocation" x="1073.6131934032985" y="114.40000000000001"/>
         </scene>
         <!--Player1 View Controller-->
         <scene sceneID="LWK-E9-qrp">
@@ -228,13 +233,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="149"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p99-wM-YSH" customClass="Player1View" customModule="Three_Down" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p99-wM-YSH" customClass="Player1View" customModule="Three_Down" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="149"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="trailing" secondItem="2Um-fC-t5i" secondAttribute="trailing" id="3Ue-o4-bwt"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="top" secondItem="2Um-fC-t5i" secondAttribute="top" id="BYq-BD-xiW"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="top" secondItem="2Um-fC-t5i" secondAttribute="top" id="HMw-Yk-7KE"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="bottom" secondItem="2Um-fC-t5i" secondAttribute="bottom" id="Ow5-Zy-sma"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="bottom" secondItem="2Um-fC-t5i" secondAttribute="bottom" id="abo-R0-51r"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="trailing" secondItem="2Um-fC-t5i" secondAttribute="trailing" id="bjB-gc-ElS"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="leading" secondItem="2Um-fC-t5i" secondAttribute="leading" id="wWh-3W-XtL"/>
+                            <constraint firstItem="p99-wM-YSH" firstAttribute="leading" secondItem="2Um-fC-t5i" secondAttribute="leading" id="wzn-mn-VbI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2Um-fC-t5i"/>
                     </view>
                     <connections>
@@ -253,13 +267,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="200" height="133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7S-YU-r92" customClass="Player4View" customModule="Three_Down" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7S-YU-r92" customClass="Player4View" customModule="Three_Down" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="133"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="a7S-YU-r92" firstAttribute="trailing" secondItem="69H-qG-VhJ" secondAttribute="trailing" id="Ixc-3C-ZVl"/>
+                            <constraint firstItem="a7S-YU-r92" firstAttribute="leading" secondItem="69H-qG-VhJ" secondAttribute="leading" id="YFX-PP-dFy"/>
+                            <constraint firstItem="a7S-YU-r92" firstAttribute="top" secondItem="69H-qG-VhJ" secondAttribute="top" id="itm-3Q-GBs"/>
+                            <constraint firstItem="a7S-YU-r92" firstAttribute="bottom" secondItem="69H-qG-VhJ" secondAttribute="bottom" id="jM4-fz-ZmP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="69H-qG-VhJ"/>
                     </view>
                     <connections>
@@ -278,13 +297,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="200" height="133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPO-xc-gzr" customClass="Player2View" customModule="Three_Down" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPO-xc-gzr" customClass="Player2View" customModule="Three_Down" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="133"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EPO-xc-gzr" firstAttribute="bottom" secondItem="hFz-VH-oay" secondAttribute="bottom" id="6Qk-sd-Kuc"/>
+                            <constraint firstItem="EPO-xc-gzr" firstAttribute="top" secondItem="hFz-VH-oay" secondAttribute="top" id="FJk-gI-37Z"/>
+                            <constraint firstItem="EPO-xc-gzr" firstAttribute="trailing" secondItem="hFz-VH-oay" secondAttribute="trailing" id="mYr-ty-Hle"/>
+                            <constraint firstItem="EPO-xc-gzr" firstAttribute="leading" secondItem="hFz-VH-oay" secondAttribute="leading" id="wB8-QA-CN4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hFz-VH-oay"/>
                     </view>
                     <connections>
@@ -303,13 +327,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="273" height="99"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVt-Cg-BCF" customClass="Player3View" customModule="Three_Down" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVt-Cg-BCF" customClass="Player3View" customModule="Three_Down" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="273" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bVt-Cg-BCF" firstAttribute="bottom" secondItem="fMe-WL-XNA" secondAttribute="bottom" id="Bng-55-cBH"/>
+                            <constraint firstItem="bVt-Cg-BCF" firstAttribute="top" secondItem="fMe-WL-XNA" secondAttribute="top" id="QOs-kC-UwK"/>
+                            <constraint firstItem="bVt-Cg-BCF" firstAttribute="trailing" secondItem="fMe-WL-XNA" secondAttribute="trailing" id="lAY-TL-PZ8"/>
+                            <constraint firstItem="bVt-Cg-BCF" firstAttribute="leading" secondItem="fMe-WL-XNA" secondAttribute="leading" id="qic-fc-WBO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fMe-WL-XNA"/>
                     </view>
                     <connections>
@@ -329,13 +358,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="273" height="133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADp-CS-M3V" customClass="GameBoardView" customModule="Three_Down" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ADp-CS-M3V" customClass="GameBoardView" customModule="Three_Down" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="273" height="133"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ADp-CS-M3V" firstAttribute="top" secondItem="Njp-If-SUc" secondAttribute="top" id="1Y8-C4-z5w"/>
+                            <constraint firstItem="ADp-CS-M3V" firstAttribute="bottom" secondItem="Njp-If-SUc" secondAttribute="bottom" id="9HX-Pj-ao9"/>
+                            <constraint firstItem="ADp-CS-M3V" firstAttribute="trailing" secondItem="Njp-If-SUc" secondAttribute="trailing" id="o8l-fz-r7d"/>
+                            <constraint firstItem="ADp-CS-M3V" firstAttribute="leading" secondItem="Njp-If-SUc" secondAttribute="leading" id="vps-Ad-zCN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Njp-If-SUc"/>
                     </view>
                     <connections>
