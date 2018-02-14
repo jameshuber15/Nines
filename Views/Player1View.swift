@@ -8,8 +8,7 @@
 
 import UIKit
 
-class Player1View: GameView {
-    var cards = [String: UIButton]()
+class Player1View: UIView {
     var allConstraints = [NSLayoutConstraint]()
     
     override init(frame: CGRect){
@@ -20,31 +19,29 @@ class Player1View: GameView {
         super.init(coder: aDecoder)
     }
     
-    override func changeColor() {
+    func changeColor() {
         self.backgroundColor = UIColor.blue
     }
     
-    override func choose3Down(player: Player) {
-        let hand = player.getCardHand().cards
+    func drawCardsOnScreen(cards: [String: UIButton]) {
         let cardWidth = self.bounds.size.width/10.0
         let cardSpace = (self.bounds.size.width-(cardWidth*9))/10.0
         let cardHeight = (self.bounds.size.height*0.3)/2.0
         
         var horizontalConstraintsString = "H:|-\(cardWidth/2)-"
-        for x in 0..<hand.count {
-            let card = hand[x].getCardButton()
+        for x in 0..<cards.count {
             let cardName = "button\(x)"
-            card.translatesAutoresizingMaskIntoConstraints = false
-            card.clipsToBounds = true
-            self.addSubview(card)
-            cards[cardName] = card
+            let card = cards[cardName]
+            card!.translatesAutoresizingMaskIntoConstraints = false
+            card!.clipsToBounds = true
+            self.addSubview(card!)
             // add vertical constraints to label
             let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(cardHeight)-[\(cardName)]-\(cardHeight)-|", options: [], metrics: nil, views: cards)
             allConstraints.append(contentsOf: verticalConstraints)
             
             // add label to horizontal VFL string
             horizontalConstraintsString += "[\(cardName)(\(cardWidth))]"
-            if x<hand.count-1 {
+            if x<cards.count-1 {
                 horizontalConstraintsString += "-\(cardSpace)-"
             }
         }

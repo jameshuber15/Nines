@@ -92,7 +92,7 @@ class GameBoard {
     }
     
     func toString() -> String {
-        var result = "Cards left in deck: \(deck.cards.count)\n\n"
+        var result = "Cards left in deck: \(deck.getCardCount())\n\n"
         result += "Cards in discard pile(top->bottom): \n\(discardPile.toString())\n\n"
         result += "Player's Hands: \n\(logPlayersHands())"
         return result

@@ -12,56 +12,163 @@ class GameViewController: UIViewController {
     var numOfPlayers: Int = 0
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
-    var gameBoardMap: [GameView] = []
-    
-    @IBOutlet weak var player1View: Player1View!
-    @IBOutlet weak var player3View: Player3View!
-    @IBOutlet weak var player4View: Player4View!
-    @IBOutlet weak var player2View: Player2View!
-    @IBOutlet weak var gameBoardView: GameBoardView!
+    var playerControllers: [PlayerViewController] = []
+    @IBOutlet var gameView: UIView!
+    @IBOutlet weak var player1View: UIView!
+    @IBOutlet weak var player2View: UIView!
+    @IBOutlet weak var player3View: UIView!
+    @IBOutlet weak var player4View: UIView!
+    @IBOutlet weak var gameBoardView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         gameBoard = GameBoard()
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
-        buildGameViewMap()
-        changeColors()
-        displayPlayer1Cards()
-//        self.view.backgroundColor = UIColor(red: 0.42, green: 0.59, blue: 0.88, alpha: 1)
-//
-//        gameView = GameView()
-//        self.view.addSubview(gameView)
-//
-//        gameView.buildGameViews()
+        buildPlayerControllers()
+        changeColor()
+        choose3DownCards()
     }
     
-    func displayPlayer1Cards() {
-        player1View.choose3Down(player: gameBoard.getPlayerArray()[0])
-    }
-    
-    func changeColors() {
-        for x in 0..<gameBoardMap.count {
-            gameBoardMap[x].changeColor()
+    func changeColor() {
+        for x in 0..<playerControllers.count {
+            playerControllers[x].changeColor()
         }
-        gameBoardView.changeColor()
     }
     
-    func buildGameViewMap() {
+    func choose3DownCards() {
+        playerControllers[0].displayPlayer1Cards(player: gameBoard.getPlayerArray()[0])
+    }
+    
+    func buildPlayerControllers() {
+        playerControllers.append(player1Controller)
         switch numOfPlayers {
         case 2:
-            gameBoardMap.append(player1View)
-            gameBoardMap.append(player3View)
+            playerControllers.append(player3Controller)
         case 3:
-            gameBoardMap.append(player1View)
-            gameBoardMap.append(player2View)
-            gameBoardMap.append(player3View)
+            playerControllers.append(player2Controller)
+            playerControllers.append(player3Controller)
         case 4:
-            gameBoardMap.append(player1View)
-            gameBoardMap.append(player2View)
-            gameBoardMap.append(player3View)
-            gameBoardMap.append(player4View)
+            playerControllers.append(player2Controller)
+            playerControllers.append(player3Controller)
+            playerControllers.append(player4Controller)
         default:
-            gameBoardMap = []
+            return
         }
+    }
+    
+    private lazy var player1Controller: Player1ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player1ViewController") as! Player1ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player1View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player1View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player1View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player1View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+        
+        return viewController
+    }()
+    
+    private lazy var player2Controller: Player2ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player2ViewController") as! Player2ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player2View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player2View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player2View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player2View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+
+        return viewController
+    }()
+    
+    private lazy var player3Controller: Player3ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player3ViewController") as! Player3ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player3View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player3View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player3View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player3View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+        
+        return viewController
+    }()
+    
+    private lazy var player4Controller: Player4ViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "Player4ViewController") as! Player4ViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: player4View, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player4View, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player4View, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player4View, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+
+        return viewController
+    }()
+    
+    private lazy var gameBoardController: GameBoardViewController = {
+        // Load Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "GameBoardViewController") as! GameBoardViewController
+        
+        // Add View Controller as Child View Controller
+        self.add(asChildViewController: viewController)
+        
+        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: gameBoardView, attribute: .width, multiplier: 1.0, constant: 0)
+        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: gameBoardView, attribute: .height, multiplier: 1.0, constant: 0)
+        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: gameBoardView, attribute: .top, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: gameBoardView, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        NSLayoutConstraint.activate([width,height,top,leading])
+        
+        return viewController
+    }()
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        // Add Child View Controller
+        addChildViewController(viewController)
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure Child View
+        viewController.view.frame = view.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Add Child View as Subview
+        view.addSubview(viewController.view)
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
     }
 }
