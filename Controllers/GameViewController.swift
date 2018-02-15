@@ -36,21 +36,28 @@ class GameViewController: UIViewController {
     }
     
     func choose3DownCards() {
-        playerControllers[0].displayPlayer1Cards(player: gameBoard.getPlayerArray()[0])
+        playerControllers[0].displayPlayer1Cards()
     }
     
     func buildPlayerControllers() {
+        player1Controller.setPlayer(player: gameBoard.getPlayerArray()[0])
         playerControllers.append(player1Controller)
         switch numOfPlayers {
         case 2:
             playerControllers.append(player3Controller)
+            player3Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
         case 3:
             playerControllers.append(player2Controller)
+            player2Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
             playerControllers.append(player3Controller)
+            player3Controller.setPlayer(player: gameBoard.getPlayerArray()[2])
         case 4:
             playerControllers.append(player2Controller)
+            player2Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
             playerControllers.append(player3Controller)
+            player3Controller.setPlayer(player: gameBoard.getPlayerArray()[2])
             playerControllers.append(player4Controller)
+            player4Controller.setPlayer(player: gameBoard.getPlayerArray()[3])
         default:
             return
         }
@@ -62,7 +69,7 @@ class GameViewController: UIViewController {
         
         // Instantiate View Controller
         var viewController = storyboard.instantiateViewController(withIdentifier: "Player1ViewController") as! Player1ViewController
-        
+
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
         
