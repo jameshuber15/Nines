@@ -9,18 +9,14 @@
 import UIKit
 
 class PlayerHand : CardGroup {
-    internal var upCards: [PlayingCard]
-    internal var downCards: [PlayingCard]
+    internal var upCards: CardGroup = CardGroup()
+    internal var downCards: CardGroup = CardGroup()
 
     override init() {
-        upCards = []
-        downCards = []
         super.init()
     }
     
     override init(cards : [PlayingCard]) {
-        upCards = []
-        downCards = []
         super.init(cards: cards)
     }
     
@@ -41,19 +37,28 @@ class PlayerHand : CardGroup {
         return playableCards
     }
     
-    func setUpCards(upCards: [PlayingCard]) {
+    func setUpCards(upCards: CardGroup) {
         self.upCards = upCards
+        for x in 0..<upCards.getCardCount() {
+            let card = upCards.getCards()[x]
+            removeCard(newCard: card)
+        }
     }
     
-    func getUpCards() -> [PlayingCard] {
+    func getUpCards() -> CardGroup {
         return upCards
     }
     
-    func setDownCards(downCards: [PlayingCard]) {
+    func setDownCards(downCards: CardGroup) {
         self.downCards = downCards
+        for x in 0..<downCards.getCardCount() {
+            let card = downCards.getCards()[x]
+            removeCard(newCard: card)
+        }
+        print(self.toString())
     }
     
-    func getDownCards() -> [PlayingCard] {
+    func getDownCards() -> CardGroup {
         return downCards
     }
     
@@ -68,14 +73,14 @@ class PlayerHand : CardGroup {
         }
         
         result += "\nCards up: "
-        if upCards.count == 0 {
+        if upCards.getCardCount() == 0 {
             result += "Empty\n"
         } else {
-            for x in 0..<upCards.count{
-                result = "\(result) \(upCards[x].toString())"
+            for x in 0..<upCards.getCardCount(){
+                result = "\(result) \(upCards.getCards()[x].toString())"
             }
         }
-        result += "Number of down cards: \(self.downCards.count)"
+        result += "Number of down cards: \(self.downCards.getCardCount())"
 
         return result
     }

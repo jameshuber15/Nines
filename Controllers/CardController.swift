@@ -20,23 +20,44 @@ class CardController: UIViewController {
         cardView.changeColor()
     }
     
-    func displayCards(player: Player) {
+    func redrawView(player: Player) {
         var cards = [String: PlayingCard]()
-        let hand = player.getCardHand().cards
-        for x in 0..<hand.count {
-            let card = hand[x]
-            card.addTarget(self, action: #selector(selectCard), for: .touchUpInside)
+        var upCards = [String: PlayingCard]()
+        var downCards = [String: PlayingCard]()
+        
+        let cardHand = player.getCardHand().cards
+        for x in 0..<cardHand.count {
+            let card = cardHand[x]
+            card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
             let cardName = "button\(x)"
             cards[cardName] = card
         }
-        cardView.drawCardsOnScreen(cards: cards)
+        
+        let upHand = player.getCardHand().getUpCards()
+        for x in 0..<upHand.getCardCount() {
+            let card = upHand.getCards()[x]
+            card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
+            let cardName = "button\(x)"
+            upCards[cardName] = card
+        }
+        
+        
+        let downHand = player.getCardHand().getDownCards()
+        for x in 0..<downHand.getCardCount() {
+            let card = downHand.getCards()[x]
+            card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
+            let cardName = "button\(x)"
+            downCards[cardName] = card
+        }
+        
+        cardView.redrawCards(cards: cards, upCards: upCards, downCards: downCards, moveType: player.getMoveType())
     }
     
     func getSelectedCards() -> CardGroup {
             return selectedCards
     }
     
-    @objc func selectCard(sender:PlayingCard!) {
+    @objc func selectFromHand(sender:PlayingCard!) {
         print("Selected: \(sender.toString())")
         let addCard = sender.toggleSelection(button: sender, cardCount: selectedCards.getCardCount())
         if addCard {

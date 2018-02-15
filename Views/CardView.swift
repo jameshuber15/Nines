@@ -23,7 +23,21 @@ class CardView: UIView {
         self.backgroundColor = UIColor.orange
     }
     
-    func drawCardsOnScreen(cards: [String: UIButton]) {
+    
+    func redrawCards(cards: [String: UIButton], upCards: [String: UIButton], downCards: [String: UIButton], moveType: MoveType) {
+        switch moveType {
+        case MoveType.ThreeCardsDown:
+            print("ThreeCardsDown move")
+            drawForThreeCardsDown(cards: cards)
+        case MoveType.ThreeCardsUp:
+            print("ThreeCardsUp move")
+        case MoveType.GamePlay:
+            print("GamePlay move")
+        }
+        
+    }
+    
+    func drawForThreeCardsDown(cards: [String: UIButton]) {
         let cardWidth = self.bounds.size.width/9.5
         let cardSpace = cardWidth/15.0
         let cardEnd = (self.bounds.size.width - (cardWidth*9.0))*1.5
@@ -48,7 +62,6 @@ class CardView: UIView {
         }
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: horizontalConstraintsString, options: [], metrics: nil, views: cards)
         allConstraints.append(contentsOf: horizontalConstraints)
-        
         
         NSLayoutConstraint.activate(allConstraints)
     }

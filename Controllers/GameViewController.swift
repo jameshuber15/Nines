@@ -36,7 +36,8 @@ class GameViewController: UIViewController {
     }
     
     func choose3DownCards() {
-        playerControllers[0].displayPlayer1Cards()
+        playerControllers[0].drawCards()
+        playerControllers[0].getPlayer().nextMove()
     }
     
     func buildPlayerControllers() {

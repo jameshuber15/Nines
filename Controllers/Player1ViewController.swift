@@ -25,8 +25,8 @@ class Player1ViewController: PlayerViewController {
         cardController.changeColor()
     }
     
-    override func displayPlayer1Cards() {
-        cardController.displayCards(player: player)
+    override func drawCards() {
+        cardController.redrawView(player: player)
     }
     
     @IBAction func playCards(_ sender: UIButton) {
@@ -34,6 +34,7 @@ class Player1ViewController: PlayerViewController {
         if selectedCards.getCardCount() != 3 {
             print("Please select 3 cards")
         } else {
+            player.getCardHand().setDownCards(downCards: selectedCards)
             print("Playing cards:\n\(selectedCards.toString())")
         }
     }

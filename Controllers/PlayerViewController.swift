@@ -15,8 +15,12 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
     }
     func changeColor(){}
-    func displayPlayer1Cards() {}
+    func drawCards() {}
     func setPlayer(player: Player) {
         self.player = player
+    }
+    
+    func getPlayer() -> Player {
+        return player
     }
 }

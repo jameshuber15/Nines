@@ -64,6 +64,17 @@ class Player {
         return playingCard
     }
     
+    func nextMove() {
+        switch self.moveType {
+        case MoveType.ThreeCardsDown:
+            self.moveType = MoveType.ThreeCardsUp
+        case MoveType.ThreeCardsUp:
+            self.moveType = MoveType.GamePlay
+        case MoveType.GamePlay:
+            self.moveType = MoveType.GamePlay
+        }
+    }
+    
     func pickupOrSortHand(discardPile: [PlayingCard]) {
         cardHand.mergeDiscardPile(discardPile: discardPile)
     }
