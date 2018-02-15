@@ -10,7 +10,6 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     internal var player: Player!
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

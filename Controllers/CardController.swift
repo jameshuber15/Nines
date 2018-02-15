@@ -20,6 +20,10 @@ class CardController: UIViewController {
         cardView.changeColor()
     }
     
+    func delete() {
+        cardView.delete()
+    }
+    
     func redrawView(player: Player) {
         var cards = [String: PlayingCard]()
         var upCards = [String: PlayingCard]()

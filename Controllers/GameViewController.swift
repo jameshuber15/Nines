@@ -13,12 +13,14 @@ class GameViewController: UIViewController {
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
     var playerControllers: [PlayerViewController] = []
+    var playersTurn = 0
     @IBOutlet var gameView: UIView!
     @IBOutlet weak var player1View: UIView!
     @IBOutlet weak var player2View: UIView!
     @IBOutlet weak var player3View: UIView!
     @IBOutlet weak var player4View: UIView!
     @IBOutlet weak var gameBoardView: UIView!
+    @IBOutlet weak var playButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,17 @@ class GameViewController: UIViewController {
         buildPlayerControllers()
         changeColor()
         choose3DownCards()
+    }
+    
+    @IBAction func play(_ sender: UIButton) {
+//        let selectedCards = cardController.getSelectedCards()
+//        if selectedCards.getCardCount() != 3 {
+//            print("Please select 3 cards")
+//        } else {
+//            player.getCardHand().setDownCards(downCards: selectedCards)
+//            print("Playing cards:\n\(selectedCards.toString())")
+//            cardController.redrawView(player: player)
+//        }
     }
     
     func changeColor() {

@@ -10,7 +10,6 @@ import UIKit
 
 class Player1ViewController: PlayerViewController {
     @IBOutlet weak var playerView: Player1View!
-    @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var buttonLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -30,13 +29,7 @@ class Player1ViewController: PlayerViewController {
     }
     
     @IBAction func playCards(_ sender: UIButton) {
-        let selectedCards = cardController.getSelectedCards()
-        if selectedCards.getCardCount() != 3 {
-            print("Please select 3 cards")
-        } else {
-            player.getCardHand().setDownCards(downCards: selectedCards)
-            print("Playing cards:\n\(selectedCards.toString())")
-        }
+        
     }
     
     private lazy var cardController: CardController = {
@@ -58,26 +51,6 @@ class Player1ViewController: PlayerViewController {
         
         return viewController
     }()
-    
-//    private lazy var buttonController: ButtonController = {
-//        // Load Storyboard
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//        // Instantiate View Controller
-//        var viewController = storyboard.instantiateViewController(withIdentifier: "ButtonController") as! ButtonController
-//
-//        // Add View Controller as Child View Controller
-//        self.add(asChildViewController: viewController)
-//
-//        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: buttonView, attribute: .width, multiplier: 1.0, constant: 0)
-//        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: buttonView, attribute: .height, multiplier: 1.0, constant: 0)
-//        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: buttonView, attribute: .top, multiplier: 1.0, constant: 0)
-//        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: buttonView, attribute: .leading, multiplier: 1.0, constant: 0)
-//
-//        NSLayoutConstraint.activate([width,height,top,leading])
-//
-//        return viewController
-//    }()
     
     private func add(asChildViewController viewController: UIViewController) {
         // Add Child View Controller

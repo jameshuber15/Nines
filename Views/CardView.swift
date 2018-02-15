@@ -27,14 +27,23 @@ class CardView: UIView {
     func redrawCards(cards: [String: UIButton], upCards: [String: UIButton], downCards: [String: UIButton], moveType: MoveType) {
         switch moveType {
         case MoveType.ThreeCardsDown:
-            print("ThreeCardsDown move")
+            print("Drawing cards for ThreeCardsDown")
+            self.delete()
             drawForThreeCardsDown(cards: cards)
         case MoveType.ThreeCardsUp:
-            print("ThreeCardsUp move")
+            print("Drawing cards for ThreeCardsUp")
+            self.delete()
         case MoveType.GamePlay:
-            print("GamePlay move")
+            print("Drawing cards for Game Play")
+            self.delete()
         }
-        
+    }
+    
+    func delete() {
+        let subviews = self.subviews as [UIView]
+        for v in subviews {
+            v.removeFromSuperview()
+        }
     }
     
     func drawForThreeCardsDown(cards: [String: UIButton]) {
