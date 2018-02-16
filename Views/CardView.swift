@@ -9,9 +9,6 @@
 import UIKit
 
 class CardView: UIView {
-    var handConstraints = [NSLayoutConstraint]()
-    var upCardConstraints = [NSLayoutConstraint]()
-    var downCardConstraints = [NSLayoutConstraint]()
 
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -27,32 +24,22 @@ class CardView: UIView {
     
     
     func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
-        handleConstraints()
+        self.delete()
         switch moveType {
         case MoveType.ThreeCardsDown:
             print("Drawing cards for ThreeCardsDown")
-            draw(handCards: cards, upCards: upCards, downCards: downCards)
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.ThreeCardsUp:
             print("Drawing cards for ThreeCardsUp")
             self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards)
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.GamePlay:
             print("Drawing cards for Game Play")
             self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards)
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         }
     }
-    
-    func handleConstraints() {
-        self.delete()
-        NSLayoutConstraint.deactivate(handConstraints)
-        NSLayoutConstraint.deactivate(downCardConstraints)
-        NSLayoutConstraint.deactivate(upCardConstraints)
-        handConstraints.removeAll()
-        downCardConstraints.removeAll()
-        upCardConstraints.removeAll()
-    }
-    
+
     func delete() {
         let subviews = self.subviews as [UIView]
         for v in subviews {
@@ -60,43 +47,47 @@ class CardView: UIView {
         }
     }
     
-    func draw(handCards: [UIButton],upCards: [UIButton],downCards: [UIButton]) {
+    func draw(handCards: [UIButton],upCards: [UIButton],downCards: [UIButton], moveType: MoveType) {
         if downCards.count > 0 {
-            drawHand(cards: downCards, cardType: CardType.Board)
+            drawHand(cards: downCards, cardType: CardType.Board, moveType: moveType)
         }
         if upCards.count > 0 {
-            drawHand(cards: upCards, cardType: CardType.Board)
+            drawHand(cards: upCards, cardType: CardType.Board, moveType: moveType)
         }
         if handCards.count > 0 {
-            drawHand(cards: handCards, cardType: CardType.Hand)
+            drawHand(cards: handCards, cardType: CardType.Hand, moveType: moveType)
         }
     }
     
-    func drawHand(cards: [UIButton], cardType: CardType) {
-        var spaceBeetweenButtons = NSNumber(value: 0)
+    func drawHand(cards: [UIButton], cardType: CardType, moveType: MoveType) {
+        var spaceBetweenButtons = NSNumber(value: 0)
         var buttonWidth = NSNumber(value: 0)
         var buttonHeight = NSNumber(value: 0)
         var fromTop = NSNumber(value: 0)
         
         switch cardType {
         case CardType.Board:
-            spaceBeetweenButtons = NSNumber(value: 30)
+            spaceBetweenButtons = NSNumber(value: 30)
             buttonWidth = NSNumber(value: 55)
             buttonHeight = NSNumber(value: 94)
             fromTop = NSNumber(value: -20)
         case CardType.Hand:
-            spaceBeetweenButtons = NSNumber(value: 5)
+            if moveType == MoveType.GamePlay {
+                spaceBetweenButtons = NSNumber(value: -30)
+            } else {
+                spaceBetweenButtons = NSNumber(value: 5)
+            }
             buttonWidth = NSNumber(value: 55)
             buttonHeight = NSNumber(value: 94)
             fromTop = NSNumber(value: 20)
         }
         
-        let containerWidth = NSNumber(value: (cards.count * buttonWidth.intValue) + (cards.count - 1) * spaceBeetweenButtons.intValue)
+        let containerWidth = NSNumber(value: (cards.count * buttonWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         var views = [String : AnyObject]()
-        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBeetweenButtons" : spaceBeetweenButtons, "containerWidth" : containerWidth]
+        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBetweenButtons" : spaceBetweenButtons, "containerWidth" : containerWidth]
         var format = "H:|-0-"
         
         for i in 0..<cards.count
@@ -105,7 +96,7 @@ class CardView: UIView {
             format += "[button\(i)(==buttonWidth)]"
             if i != cards.count - 1
             {
-                format += "-spaceBeetweenButtons-"
+                format += "-spaceBetweenButtons-"
             }
             else
             {

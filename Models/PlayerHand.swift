@@ -45,6 +45,7 @@ class PlayerHand : CardGroup {
         self.upCards = upCards
         for x in 0..<upCards.getCardCount() {
             let card = upCards.getCards()[x]
+            card.setFacingUp(faceUp: true)
             upCards.getCards()[x].setSelected(cardSelected: false)
             removeCard(newCard: card)
         }
@@ -62,7 +63,6 @@ class PlayerHand : CardGroup {
             downCards.getCards()[x].setSelected(cardSelected: false)
             removeCard(newCard: card)
         }
-        flipOverHand()
         print(self.toString())
     }
     

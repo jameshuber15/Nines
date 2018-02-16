@@ -42,6 +42,7 @@ class GameViewController: UIViewController {
             switch player1Controller.getPlayer().getMoveType() {
             case MoveType.ThreeCardsDown:
                 player1Controller.getPlayer().getCardHand().setDownCards(downCards: selectedCards.copy())
+                player1Controller.getPlayer().getCardHand().flipOverHand()
             case MoveType.ThreeCardsUp:
                 player1Controller.getPlayer().getCardHand().setUpCards(upCards: selectedCards.copy())
             case MoveType.GamePlay:
@@ -49,7 +50,7 @@ class GameViewController: UIViewController {
             }
             player1Controller.getCardController().removeSelectedCards()
             player1Controller.getPlayer().turnOver()
-            player1Controller.getCardController().redrawView(player: player1Controller.getPlayer())
+            player1Controller.myTurn()
 
             //End Turn
             playersTurn+=1
@@ -62,16 +63,19 @@ class GameViewController: UIViewController {
         if numOfPlayers == 2 {
             let controller = player3Controller
             print("Player 2's turn\n \(controller.getPlayer().toString())")
+            controller.myTurn()
             controller.getPlayer().turnOver()
         } else {
             let controller = player2Controller
             print("Player 2's turn\n \(controller.getPlayer().toString())")
+            controller.myTurn()
             controller.getPlayer().turnOver()
         }
         
         if numOfPlayers == 3 {
             let controller = player3Controller
             print("Player 3's turn\n \(controller.getPlayer().toString())")
+            controller.myTurn()
             controller.getPlayer().turnOver()
         }
         
