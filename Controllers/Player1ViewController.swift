@@ -12,11 +12,9 @@ class Player1ViewController: PlayerViewController {
     @IBOutlet weak var playerView: Player1View!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var buttonLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playButton.layer.cornerRadius = 4
     }
     
     override func changeColor() {

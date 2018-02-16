@@ -181,16 +181,16 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8l-97-tBt" userLabel="Player 1">
-                                <rect key="frame" x="158" y="230" width="509" height="144"/>
+                                <rect key="frame" x="155" y="230" width="512" height="145"/>
                                 <connections>
                                     <segue destination="lt2-rU-VVN" kind="embed" id="kuc-he-ONc"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-8P-uH3" userLabel="Button">
-                                <rect key="frame" x="0.0" y="230" width="163" height="144"/>
+                                <rect key="frame" x="0.0" y="231" width="160" height="144"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZc-Ut-als">
-                                        <rect key="frame" x="58" y="57" width="46" height="30"/>
+                                        <rect key="frame" x="58" y="57" width="43" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
                                         <state key="normal" title="Play">
@@ -198,7 +198,7 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play Selected Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djG-Fc-QAf">
-                                        <rect key="frame" x="10" y="28" width="143" height="21"/>
+                                        <rect key="frame" x="10" y="28" width="140" height="21"/>
                                         <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -219,31 +219,28 @@
                         </subviews>
                         <color key="backgroundColor" red="0.61971169710159302" green="0.72904902696609497" blue="0.92514318227767944" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wgX-yA-dL4" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="trailing" constant="34" id="19a-JI-Xe9"/>
-                            <constraint firstItem="e8l-97-tBt" firstAttribute="bottom" secondItem="ndJ-Mq-biX" secondAttribute="bottom" constant="-1" id="2Zl-9z-dxu"/>
-                            <constraint firstItem="e8l-97-tBt" firstAttribute="top" secondItem="wgX-yA-dL4" secondAttribute="bottom" constant="-4" id="4UJ-nu-9Pv"/>
-                            <constraint firstItem="wgX-yA-dL4" firstAttribute="centerY" secondItem="Jeo-9d-xeg" secondAttribute="centerY" id="70H-kN-zBk"/>
-                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="leading" secondItem="wgX-yA-dL4" secondAttribute="leading" id="8yw-T2-5L1"/>
-                            <constraint firstItem="ntS-JV-N9V" firstAttribute="leading" secondItem="mhO-Dx-iHm" secondAttribute="trailing" id="9AX-dc-DpX"/>
-                            <constraint firstItem="wgX-yA-dL4" firstAttribute="top" secondItem="mhO-Dx-iHm" secondAttribute="bottom" constant="-4" id="BF6-BJ-bea"/>
-                            <constraint firstItem="iJi-km-Ro8" firstAttribute="leading" secondItem="Jeo-9d-xeg" secondAttribute="leading" id="CaR-8C-z1F"/>
-                            <constraint firstItem="wgX-yA-dL4" firstAttribute="centerX" secondItem="ndJ-Mq-biX" secondAttribute="centerX" id="EXJ-Gb-9JO"/>
-                            <constraint firstItem="ntS-JV-N9V" firstAttribute="leading" secondItem="wgX-yA-dL4" secondAttribute="trailing" id="P0t-zZ-mm4"/>
-                            <constraint firstItem="iJi-km-Ro8" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" constant="64" id="QEb-3d-ip6"/>
-                            <constraint firstItem="iJi-km-Ro8" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leading" id="Qfi-Cd-QUY"/>
-                            <constraint firstItem="e8l-97-tBt" firstAttribute="centerX" secondItem="ndJ-Mq-biX" secondAttribute="centerX" constant="79" id="UDY-9V-Xc1"/>
-                            <constraint firstItem="jYP-8P-uH3" firstAttribute="bottom" secondItem="e8l-97-tBt" secondAttribute="bottom" id="ZBg-Nb-CzU"/>
-                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" id="aGR-RM-5Bh"/>
-                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="centerX" secondItem="ndJ-Mq-biX" secondAttribute="centerX" id="cTq-2P-w6H"/>
-                            <constraint firstItem="jYP-8P-uH3" firstAttribute="top" secondItem="iJi-km-Ro8" secondAttribute="bottom" constant="-4" id="eBM-Uj-dQN"/>
-                            <constraint firstItem="e8l-97-tBt" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="trailing" constant="-5" id="ggu-bf-Qig"/>
-                            <constraint firstItem="e8l-97-tBt" firstAttribute="top" secondItem="iJi-km-Ro8" secondAttribute="bottom" constant="-4" id="iUh-Lz-4Tu"/>
-                            <constraint firstItem="ntS-JV-N9V" firstAttribute="trailing" secondItem="e8l-97-tBt" secondAttribute="trailing" id="l1J-Wg-nxg"/>
-                            <constraint firstItem="e8l-97-tBt" firstAttribute="top" secondItem="ntS-JV-N9V" secondAttribute="bottom" constant="-4" id="mbt-vc-cuV"/>
-                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="leading" secondItem="iJi-km-Ro8" secondAttribute="trailing" id="pSB-fh-ui5"/>
-                            <constraint firstItem="wgX-yA-dL4" firstAttribute="leading" secondItem="iJi-km-Ro8" secondAttribute="trailing" id="rzc-6d-SUQ"/>
-                            <constraint firstItem="iJi-km-Ro8" firstAttribute="top" secondItem="ntS-JV-N9V" secondAttribute="top" id="wU5-z2-hVc"/>
-                            <constraint firstItem="iJi-km-Ro8" firstAttribute="leading" secondItem="e8l-97-tBt" secondAttribute="leading" constant="-158" id="whc-q9-ufw"/>
+                            <constraint firstItem="ndJ-Mq-biX" firstAttribute="bottom" secondItem="jYP-8P-uH3" secondAttribute="bottom" id="0va-da-2cd"/>
+                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" id="A51-Sc-SOq"/>
+                            <constraint firstItem="e8l-97-tBt" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="trailing" constant="-5" id="B5F-DB-ShK"/>
+                            <constraint firstItem="iJi-km-Ro8" firstAttribute="leading" secondItem="ndJ-Mq-biX" secondAttribute="leading" id="CJM-Yj-SgR"/>
+                            <constraint firstItem="iJi-km-Ro8" firstAttribute="bottom" secondItem="wgX-yA-dL4" secondAttribute="bottom" id="DXF-zp-mJk"/>
+                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="leading" secondItem="Jeo-9d-xeg" secondAttribute="leading" constant="197" id="EOB-vV-mWe"/>
+                            <constraint firstItem="iJi-km-Ro8" firstAttribute="top" secondItem="ntS-JV-N9V" secondAttribute="top" id="HHZ-LQ-03q"/>
+                            <constraint firstItem="iJi-km-Ro8" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" constant="64" id="MRa-gx-ogx"/>
+                            <constraint firstItem="wgX-yA-dL4" firstAttribute="bottom" secondItem="ntS-JV-N9V" secondAttribute="bottom" id="MqV-E0-eIa"/>
+                            <constraint firstItem="jYP-8P-uH3" firstAttribute="leading" secondItem="ndJ-Mq-biX" secondAttribute="leading" id="TSR-xH-kOV"/>
+                            <constraint firstItem="wgX-yA-dL4" firstAttribute="centerY" secondItem="ndJ-Mq-biX" secondAttribute="centerY" id="UGc-xA-MwN"/>
+                            <constraint firstItem="wgX-yA-dL4" firstAttribute="top" secondItem="ndJ-Mq-biX" secondAttribute="top" constant="140" id="Vqg-IY-lOO"/>
+                            <constraint firstItem="e8l-97-tBt" firstAttribute="trailing" secondItem="ndJ-Mq-biX" secondAttribute="trailing" id="Vzz-7L-mKh"/>
+                            <constraint firstItem="wgX-yA-dL4" firstAttribute="leading" secondItem="iJi-km-Ro8" secondAttribute="trailing" id="cTV-oi-5nk"/>
+                            <constraint firstItem="ntS-JV-N9V" firstAttribute="leading" secondItem="wgX-yA-dL4" secondAttribute="trailing" id="eYy-jb-N8e"/>
+                            <constraint firstItem="ndJ-Mq-biX" firstAttribute="bottom" secondItem="e8l-97-tBt" secondAttribute="bottom" id="mCD-kH-lXA"/>
+                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="leading" secondItem="wgX-yA-dL4" secondAttribute="leading" id="qJq-0c-2PS"/>
+                            <constraint firstItem="mhO-Dx-iHm" firstAttribute="trailing" secondItem="wgX-yA-dL4" secondAttribute="trailing" id="qWh-tu-dEW"/>
+                            <constraint firstItem="wgX-yA-dL4" firstAttribute="top" secondItem="mhO-Dx-iHm" secondAttribute="bottom" constant="-4" id="t3w-L7-Ehc"/>
+                            <constraint firstItem="ntS-JV-N9V" firstAttribute="trailing" secondItem="ndJ-Mq-biX" secondAttribute="trailing" id="uG2-vV-xtl"/>
+                            <constraint firstItem="e8l-97-tBt" firstAttribute="top" secondItem="wgX-yA-dL4" secondAttribute="bottom" constant="-4" id="ulR-5s-3dh"/>
+                            <constraint firstItem="wgX-yA-dL4" firstAttribute="centerX" secondItem="ndJ-Mq-biX" secondAttribute="centerX" id="zOW-2q-J4L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ndJ-Mq-biX"/>
                     </view>
@@ -266,11 +263,11 @@
             <objects>
                 <viewController storyboardIdentifier="Player1ViewController" id="lt2-rU-VVN" customClass="Player1ViewController" customModule="Three_Down" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BOX-wu-5HO" userLabel="Player View">
-                        <rect key="frame" x="0.0" y="0.0" width="509" height="144"/>
+                        <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSa-3U-xdW" userLabel="Card View">
-                                <rect key="frame" x="0.0" y="0.0" width="509" height="144"/>
+                                <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
                                 <connections>
                                     <segue destination="N1D-rL-d2X" kind="embed" id="zro-m4-RIF"/>
                                 </connections>
@@ -418,11 +415,11 @@
             <objects>
                 <viewController storyboardIdentifier="CardController" id="N1D-rL-d2X" customClass="CardController" customModule="Three_Down" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KGQ-Px-JhI">
-                        <rect key="frame" x="0.0" y="0.0" width="509" height="144"/>
+                        <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bun-l4-dcW" customClass="CardView" customModule="Three_Down" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="509" height="144"/>
+                                <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
                                 <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>

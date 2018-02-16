@@ -26,12 +26,14 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         gameBoard = GameBoard()
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
+        playButton.layer.cornerRadius = 4
         buildPlayerControllers()
         changeColor()
         choose3DownCards()
     }
     
     @IBAction func play(_ sender: UIButton) {
+        print("I am here")
 //        let selectedCards = cardController.getSelectedCards()
 //        if selectedCards.getCardCount() != 3 {
 //            print("Please select 3 cards")
