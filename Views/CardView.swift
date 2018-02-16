@@ -42,6 +42,7 @@ class CardView: UIView {
     func delete() {
         let subviews = self.subviews as [UIView]
         for v in subviews {
+            print(v)
             v.removeFromSuperview()
         }
     }

@@ -45,7 +45,6 @@ class CardController: UIViewController {
             upCards[cardName] = card
         }
         
-        
         let downHand = player.getCardHand().getDownCards()
         for x in 0..<downHand.getCardCount() {
             let card = downHand.getCards()[x]

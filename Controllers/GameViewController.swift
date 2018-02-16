@@ -29,30 +29,43 @@ class GameViewController: UIViewController {
         playButton.layer.cornerRadius = 4
         buildPlayerControllers()
         changeColor()
-        choose3DownCards()
+        startGame()
+    }
+    
+    func startGame() {
+        print("Player \(playersTurn+1)'s turn")
+        print(playerControllers[playersTurn].getPlayer().toString())
+        playerControllers[playersTurn].myTurn()
     }
     
     @IBAction func play(_ sender: UIButton) {
         print("I am here")
-//        let selectedCards = cardController.getSelectedCards()
-//        if selectedCards.getCardCount() != 3 {
-//            print("Please select 3 cards")
-//        } else {
-//            player.getCardHand().setDownCards(downCards: selectedCards)
-//            print("Playing cards:\n\(selectedCards.toString())")
-//            cardController.redrawView(player: player)
-//        }
+        nextTurn()
+        
+        //        let selectedCards = cardController.getSelectedCards()
+        //        if selectedCards.getCardCount() != 3 {
+        //            print("Please select 3 cards")
+        //        } else {
+        //            player.getCardHand().setDownCards(downCards: selectedCards)
+        //            print("Playing cards:\n\(selectedCards.toString())")
+        //            cardController.redrawView(player: player)
+        //        }
+    }
+    
+    func nextTurn() {
+        playerControllers[playersTurn].getPlayer().turnOver()
+        if playersTurn == (playerControllers.count-1) {
+            playersTurn = 0
+        } else {
+            playersTurn+=1
+        }
+        print(playerControllers[playersTurn].getPlayer().toString())
     }
     
     func changeColor() {
         for x in 0..<playerControllers.count {
             playerControllers[x].changeColor()
         }
-    }
-    
-    func choose3DownCards() {
-        playerControllers[0].drawCards()
-        playerControllers[0].getPlayer().nextMove()
     }
     
     func buildPlayerControllers() {

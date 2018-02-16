@@ -64,7 +64,7 @@ class Player {
         return playingCard
     }
     
-    func nextMove() {
+    func turnOver() {
         switch self.moveType {
         case MoveType.ThreeCardsDown:
             self.moveType = MoveType.ThreeCardsUp
@@ -124,6 +124,6 @@ class Player {
     }
     
     func toString() -> String {
-        return "Player \(self.getPlayerNum()) \(self.cardHand.toString())\n"
+        return "Player \(self.getPlayerNum()) (\(self.moveType)): \(self.cardHand.toString())\n"
     }
 }

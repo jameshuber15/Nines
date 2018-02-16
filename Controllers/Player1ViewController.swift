@@ -22,12 +22,8 @@ class Player1ViewController: PlayerViewController {
         cardController.changeColor()
     }
     
-    override func drawCards() {
+    override func myTurn() {
         cardController.redrawView(player: player)
-    }
-    
-    @IBAction func playCards(_ sender: UIButton) {
-        
     }
     
     private lazy var cardController: CardController = {
