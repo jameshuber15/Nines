@@ -19,6 +19,14 @@ class CardGroup {
         self.cards = cards
     }
     
+    func copy() -> CardGroup {
+        var copyCards = [PlayingCard]()
+        for card in cards {
+            copyCards.append(card.copy())
+        }
+        return CardGroup(cards: copyCards)
+    }
+    
     func sortHandByRank() {
         guard self.cards.count > 1 else { return }
         
@@ -79,13 +87,19 @@ class CardGroup {
     
     func removeCard(newCard: PlayingCard) {
         for x in 0..<cards.count {
-            if cards[x] === newCard {
+            if sameCard(card1: cards[x], card2: newCard) {
                 cards.remove(at: x)
                 break
             }
         }
     }
-    
+   
+    func sameCard(card1: PlayingCard, card2: PlayingCard) -> Bool {
+        if card1.getRank() == card2.getRank() && card1.getSuit() == card2.getSuit() {
+            return true
+        }
+        return false
+    }
     func getCardCount() -> Int {
         return cards.count
     }

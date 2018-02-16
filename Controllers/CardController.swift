@@ -25,49 +25,53 @@ class CardController: UIViewController {
     }
     
     func redrawView(player: Player) {
-        var cards = [String: PlayingCard]()
-        var upCards = [String: PlayingCard]()
-        var downCards = [String: PlayingCard]()
-        
+        var cards = [UIButton]()
         let cardHand = player.getCardHand().cards
         for x in 0..<cardHand.count {
             let card = cardHand[x]
             card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
-            let cardName = "handButton\(x)"
-            cards[cardName] = card
+            cards.append(card)
         }
-        
-        let upHand = player.getCardHand().getUpCards()
-        for x in 0..<upHand.getCardCount() {
-            let card = upHand.getCards()[x]
+        var upCards = [UIButton]()
+        let upHand = player.getCardHand().getUpCards().getCards()
+        for x in 0..<upHand.count {
+            let card = upHand[x]
+            if cardHand.count > 0 {
+                card.isEnabled = false
+            }
             card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
-            let cardName = "upButton\(x)"
-            upCards[cardName] = card
+            upCards.append(card)
         }
-        
-        let downHand = player.getCardHand().getDownCards()
-        for x in 0..<downHand.getCardCount() {
-            let card = downHand.getCards()[x]
+        var downCards = [UIButton]()
+        let downHand = player.getCardHand().getDownCards().getCards()
+        for x in 0..<downHand.count {
+            let card = downHand[x]
+            if cardHand.count > 0  || upHand.count > 0{
+                card.isEnabled = false
+            }
             card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
-            let cardName = "downButton\(x)"
-            downCards[cardName] = card
+            downCards.append(card)
         }
-        
         cardView.redrawCards(cards: cards, upCards: upCards, downCards: downCards, moveType: player.getMoveType())
     }
     
     func getSelectedCards() -> CardGroup {
-            return selectedCards
+        return selectedCards
+    }
+    
+    func removeSelectedCards() {
+        for card in selectedCards.getCards() {
+            selectedCards.removeCard(newCard: card)
+        }
     }
     
     @objc func selectFromHand(sender:PlayingCard!) {
-        print("Selected: \(sender.toString())")
-        let addCard = sender.toggleSelection(button: sender, cardCount: selectedCards.getCardCount())
+        print("Clicked on \(sender.toString())")
+        let addCard = sender.toggleSelection(button: sender, selectable: selectedCards.getCardCount() < 3)
         if addCard {
             selectedCards.addCard(newCard: sender)
         } else {
             selectedCards.removeCard(newCard: sender)
         }
-        print("Currently Selected: \(self.selectedCards.toString())")
     }
 }

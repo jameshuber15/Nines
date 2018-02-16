@@ -8,38 +8,20 @@
 
 import UIKit
 
-class PlayingCard : Card {
+class PlayingCard : UIButton {
     internal var rank : Int
     internal var suit : String
     internal var frontImage : UIImage
     internal var clearCards : Bool
     internal var cardSelected : Bool = false
+    internal var backImage : UIImage
+    internal var isFaceUp : Bool
     //internal var cardButton : UIButton = UIButton(type: UIButtonType.custom)
-    
-    required init(){
-        self.frontImage = UIImage(named: "cardfront")!
-        self.rank = 0
-        self.suit = String()
-        self.clearCards = false
-        super.init()
-        createCard()
-    }
-    
-    init(withRank: Int, ofSuit: String, frontImage : String){
-        self.frontImage = UIImage(named: frontImage)!
-        rank = withRank
-        suit = ofSuit
-        if (withRank == 10) {
-            clearCards = true
-        } else {
-            clearCards = false
-        }
-        super.init()
-        createCard()
-    }
     
     required init?(coder aDecoder: NSCoder) {
         self.frontImage = UIImage(named: "cardfront")!
+        backImage = UIImage(named: "back")!
+        isFaceUp = false
         self.rank = 0
         self.suit = String()
         self.clearCards = false
@@ -47,42 +29,88 @@ class PlayingCard : Card {
         createCard()
     }
     
+    required init(){
+        self.frontImage = UIImage(named: "cardfront")!
+        backImage = UIImage(named: "back")!
+        isFaceUp = false
+        self.rank = 0
+        self.suit = String()
+        self.clearCards = false
+        super.init(frame: CGRect.zero)
+        createCard()
+    }
+    
+    init(withRank: Int, ofSuit: String, frontImage : UIImage){
+        self.frontImage = frontImage
+        backImage = UIImage(named: "back")!
+        isFaceUp = false
+        rank = withRank
+        suit = ofSuit
+        if (withRank == 10) {
+            clearCards = true
+        } else {
+            clearCards = false
+        }
+        super.init(frame: CGRect.zero)
+        createCard()
+    }
+    
     func createCard() {
-        //TODO
-        //self.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
-        self.setImage(frontImage, for: UIControlState.normal)
+        self.setImage(self.isUp() ? self.frontImage : self.backImage, for: UIControlState.normal)
         self.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         self.backgroundColor = UIColor.white
-        self.frame = CGRect(x: 15, y: 50, width: 204, height: 104)
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.borderWidth = 3.0
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.cornerRadius = 4.0
+        self.adjustsImageWhenDisabled = false
     }
     
-    func toggleSelection(button: UIButton, cardCount: Int) -> Bool{
+    func toggleSelection(button: UIButton, selectable: Bool) -> Bool{
         var addCard = false
         if self.isSelected() {
             button.layer.borderColor = UIColor.black.cgColor
             setSelected(cardSelected: false)
         } else {
-            if cardCount < 3 {
+            if selectable {
                 button.layer.borderColor = UIColor.red.cgColor
                 setSelected(cardSelected: true)
                 addCard = true
             } else {
-                print("Already selected 3 cards")
                 addCard = false
             }
         }
         return addCard
     }
     
+    func copy() -> PlayingCard {
+        let card = PlayingCard(withRank: self.rank, ofSuit: self.suit, frontImage : self.frontImage)
+        card.setFacingUp(faceUp: self.isFaceUp)
+        return card
+    }
     func isSelected() -> Bool {
         return cardSelected
     }
     
     func setSelected(cardSelected: Bool) {
         self.cardSelected = cardSelected
+    }
+    
+    func getBackImage() -> UIImage {
+        return backImage
+    }
+    
+    func setBackImage(backImage : UIImage) {
+        self.backImage = backImage
+    }
+    
+    func isUp() -> Bool {
+        return isFaceUp
+    }
+    
+    func setFacingUp(faceUp : Bool) {
+        self.setImage(faceUp ? self.frontImage : self.backImage, for: UIControlState.normal)
+        self.isFaceUp = faceUp
     }
     
     func getRank() -> Int {

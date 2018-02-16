@@ -34,13 +34,9 @@ class GameBoard {
     func startGame(numOfPlayers: Int, numHumanPlayers: Int, difficulty: Difficulty) {
         createPlayers(numOfPlayers: numOfPlayers, numHumanPlayers: numHumanPlayers, difficulty: difficulty)
         self.setDeck(deck: Deck())
-        print("Created \(self.getDeck().toString()) \n")
         self.getDeck().shuffleDeck()
-        print("Shuffled \(self.getDeck().toString()) \n")
         self.getDeck().cutDeck(cutAt: 25)
-        print("Cut \(self.getDeck().toString()) \n")
         self.deal()
-        print(self.toString())
     }
     
     func deal() {
@@ -49,13 +45,6 @@ class GameBoard {
                 let dealtCard = deck.takeCard()
                 playerArray[y].getCardHand().addCard(newCard: dealtCard)
             }
-        }
-        sortPlayersHands()
-    }
-    
-    func sortPlayersHands() {
-        for y in 0..<playerArray.count {
-            playerArray[y].getCardHand().sortHandByRank()
         }
     }
     

@@ -33,19 +33,6 @@ class Player {
         playerNum = 0
     }
     
-    func playersTurn() {
-        switch moveType {
-        case MoveType.ThreeCardsDown:
-            print("State: ThreeCardsDown")
-            self.setMoveType(moveType: MoveType.ThreeCardsUp)
-        case MoveType.ThreeCardsUp:
-            print("State: ThreeCardsUp")
-            self.setMoveType(moveType: MoveType.GamePlay)
-        case MoveType.GamePlay:
-            print("State: GamePlay")
-        }
-    }
-    
     func selectCardToPlay(topCard: PlayingCard) -> PlayingCard? {
         var playingCard : PlayingCard?
         playingCard = nil
@@ -68,6 +55,7 @@ class Player {
         switch self.moveType {
         case MoveType.ThreeCardsDown:
             self.moveType = MoveType.ThreeCardsUp
+            getCardHand().sortHandByRank()
         case MoveType.ThreeCardsUp:
             self.moveType = MoveType.GamePlay
         case MoveType.GamePlay:

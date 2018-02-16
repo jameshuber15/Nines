@@ -12,7 +12,6 @@ class GameViewController: UIViewController {
     var numOfPlayers: Int = 0
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
-    var playerControllers: [PlayerViewController] = []
     var playersTurn = 0
     @IBOutlet var gameView: UIView!
     @IBOutlet weak var player1View: UIView!
@@ -29,25 +28,28 @@ class GameViewController: UIViewController {
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
         playButton.layer.cornerRadius = 4
         buildPlayerControllers()
-        changeColor()
         startGame()
     }
     
     func startGame() {
-        print("Player \(playersTurn+1)'s turn\n \(playerControllers[playersTurn].getPlayer().toString())")
-        playerControllers[playersTurn].myTurn()
+        print("Player 1's turn\n \(player1Controller.getPlayer().toString())")
+        player1Controller.myTurn()
     }
     
     @IBAction func play(_ sender: UIButton) {
-        let controller = player1Controller
-        let selectedCards = controller.getCardController().getSelectedCards()
-        if selectedCards.getCardCount() != 3 {
-            print("Please select 3 cards")
-        } else {
-            controller.getPlayer().getCardHand().setDownCards(downCards: selectedCards)
-            print("Playing cards:\n\(selectedCards.toString())")
-            playerControllers[playersTurn].getPlayer().turnOver()
-            controller.getCardController().redrawView(player: controller.getPlayer())
+        let selectedCards = player1Controller.getCardController().getSelectedCards()
+        if selectedCards.getCardCount() == 3 {
+            switch player1Controller.getPlayer().getMoveType() {
+            case MoveType.ThreeCardsDown:
+                player1Controller.getPlayer().getCardHand().setDownCards(downCards: selectedCards.copy())
+            case MoveType.ThreeCardsUp:
+                player1Controller.getPlayer().getCardHand().setUpCards(upCards: selectedCards.copy())
+            case MoveType.GamePlay:
+                player1Controller.getPlayer().getCardHand().playCards(selectedCards: selectedCards.copy())
+            }
+            player1Controller.getCardController().removeSelectedCards()
+            player1Controller.getPlayer().turnOver()
+            player1Controller.getCardController().redrawView(player: player1Controller.getPlayer())
 
             //End Turn
             playersTurn+=1
@@ -66,43 +68,41 @@ class GameViewController: UIViewController {
             print("Player 2's turn\n \(controller.getPlayer().toString())")
             controller.getPlayer().turnOver()
         }
+        
         if numOfPlayers == 3 {
             let controller = player3Controller
             print("Player 3's turn\n \(controller.getPlayer().toString())")
             controller.getPlayer().turnOver()
         }
+        
         if numOfPlayers == 4 {
             let controller = player4Controller
             print("Player 4's turn\n \(controller.getPlayer().toString())")
             controller.getPlayer().turnOver()
         }
-    }
-    
-    func changeColor() {
-        for x in 0..<playerControllers.count {
-            playerControllers[x].changeColor()
-        }
+        
+        print("Player 1's turn\n \(player1Controller.getPlayer().toString())")
     }
     
     func buildPlayerControllers() {
         player1Controller.setPlayer(player: gameBoard.getPlayerArray()[0])
-        playerControllers.append(player1Controller)
+        player1Controller.changeColor()
         switch numOfPlayers {
         case 2:
-            playerControllers.append(player3Controller)
             player3Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
+            player3Controller.changeColor()
         case 3:
-            playerControllers.append(player2Controller)
             player2Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
-            playerControllers.append(player3Controller)
+            player2Controller.changeColor()
             player3Controller.setPlayer(player: gameBoard.getPlayerArray()[2])
+            player3Controller.changeColor()
         case 4:
-            playerControllers.append(player2Controller)
             player2Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
-            playerControllers.append(player3Controller)
+            player2Controller.changeColor()
             player3Controller.setPlayer(player: gameBoard.getPlayerArray()[2])
-            playerControllers.append(player4Controller)
+            player3Controller.changeColor()
             player4Controller.setPlayer(player: gameBoard.getPlayerArray()[3])
+            player4Controller.changeColor()
         default:
             return
         }

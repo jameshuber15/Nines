@@ -42,7 +42,7 @@ class Deck: CardGroup {
                     suitStr = ""
                 }
                 let frontImage = "\(rankStr)_of_\(suitStr)"
-                let currentCard = PlayingCard(withRank: rank, ofSuit: suit, frontImage: frontImage)
+                let currentCard = PlayingCard(withRank: rank, ofSuit: suit, frontImage: UIImage(named: frontImage)!)
                 if rank == 10 {
                     currentCard.setClearCards(clearCards: true)
                 }

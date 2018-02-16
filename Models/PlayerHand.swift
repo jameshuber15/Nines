@@ -37,12 +37,18 @@ class PlayerHand : CardGroup {
         return playableCards
     }
     
+    func playCards(selectedCards: CardGroup) {
+        print("Playing: \(selectedCards)")
+    }
+    
     func setUpCards(upCards: CardGroup) {
         self.upCards = upCards
         for x in 0..<upCards.getCardCount() {
             let card = upCards.getCards()[x]
+            upCards.getCards()[x].setSelected(cardSelected: false)
             removeCard(newCard: card)
         }
+        print(self.toString())
     }
     
     func getUpCards() -> CardGroup {
@@ -53,9 +59,17 @@ class PlayerHand : CardGroup {
         self.downCards = downCards
         for x in 0..<downCards.getCardCount() {
             let card = downCards.getCards()[x]
+            downCards.getCards()[x].setSelected(cardSelected: false)
             removeCard(newCard: card)
         }
+        flipOverHand()
         print(self.toString())
+    }
+    
+    func flipOverHand() {
+        for card in cards {
+            card.setFacingUp(faceUp: true)
+        }
     }
     
     func getDownCards() -> CardGroup {
@@ -74,14 +88,21 @@ class PlayerHand : CardGroup {
         
         result += "\nCards up: "
         if upCards.getCardCount() == 0 {
-            result += "Empty\n"
+            result += "Empty"
         } else {
             for x in 0..<upCards.getCardCount(){
                 result = "\(result) \(upCards.getCards()[x].toString())"
             }
         }
-        result += "Number of down cards: \(self.downCards.getCardCount())"
-
+        //result += "Cards down: \(self.downCards.getCardCount())\n"
+        result += "\nCards down: "
+        if downCards.getCardCount() == 0 {
+            result += "Empty"
+        } else {
+            for x in 0..<downCards.getCardCount(){
+                result = "\(result) \(downCards.getCards()[x].toString())"
+            }
+        }
         return result
     }
 }

@@ -26,7 +26,6 @@ class DiscardPile: CardGroup {
         
         for x in cards.count-1...0{
             result = "\(result) \(cards[x].toString())"
-            print(result)
         }
         return result
     }

@@ -20,6 +20,11 @@ enum MoveType {
     case GamePlay
 }
 
+enum CardType {
+    case Board
+    case Hand
+}
+
 enum Difficulty {
     case Easy
     case Hard

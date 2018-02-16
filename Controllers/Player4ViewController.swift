@@ -16,7 +16,6 @@ class Player4ViewController: PlayerViewController {
     }
     
     override func changeColor() {
-        print(player.toString())
         playerView.changeColor()
     }
 }

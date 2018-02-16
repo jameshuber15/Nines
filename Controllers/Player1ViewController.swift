@@ -18,7 +18,6 @@ class Player1ViewController: PlayerViewController {
     }
     
     override func changeColor() {
-        print(player.toString())
         cardController.changeColor()
     }
     
