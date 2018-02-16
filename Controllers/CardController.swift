@@ -33,7 +33,7 @@ class CardController: UIViewController {
         for x in 0..<cardHand.count {
             let card = cardHand[x]
             card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
-            let cardName = "button\(x)"
+            let cardName = "handButton\(x)"
             cards[cardName] = card
         }
         
@@ -41,7 +41,7 @@ class CardController: UIViewController {
         for x in 0..<upHand.getCardCount() {
             let card = upHand.getCards()[x]
             card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
-            let cardName = "button\(x)"
+            let cardName = "upButton\(x)"
             upCards[cardName] = card
         }
         
@@ -49,7 +49,7 @@ class CardController: UIViewController {
         for x in 0..<downHand.getCardCount() {
             let card = downHand.getCards()[x]
             card.addTarget(self, action: #selector(selectFromHand), for: .touchUpInside)
-            let cardName = "button\(x)"
+            let cardName = "downButton\(x)"
             downCards[cardName] = card
         }
         

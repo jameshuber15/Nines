@@ -21,6 +21,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var player4View: UIView!
     @IBOutlet weak var gameBoardView: UIView!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var playButtonLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,33 +34,48 @@ class GameViewController: UIViewController {
     }
     
     func startGame() {
-        print("Player \(playersTurn+1)'s turn")
-        print(playerControllers[playersTurn].getPlayer().toString())
+        print("Player \(playersTurn+1)'s turn\n \(playerControllers[playersTurn].getPlayer().toString())")
         playerControllers[playersTurn].myTurn()
     }
     
     @IBAction func play(_ sender: UIButton) {
-        print("I am here")
-        nextTurn()
-        
-        //        let selectedCards = cardController.getSelectedCards()
-        //        if selectedCards.getCardCount() != 3 {
-        //            print("Please select 3 cards")
-        //        } else {
-        //            player.getCardHand().setDownCards(downCards: selectedCards)
-        //            print("Playing cards:\n\(selectedCards.toString())")
-        //            cardController.redrawView(player: player)
-        //        }
+        let controller = player1Controller
+        let selectedCards = controller.getCardController().getSelectedCards()
+        if selectedCards.getCardCount() != 3 {
+            print("Please select 3 cards")
+        } else {
+            controller.getPlayer().getCardHand().setDownCards(downCards: selectedCards)
+            print("Playing cards:\n\(selectedCards.toString())")
+            playerControllers[playersTurn].getPlayer().turnOver()
+            controller.getCardController().redrawView(player: controller.getPlayer())
+
+            //End Turn
+            playersTurn+=1
+            
+            aiTurn()
+        }
     }
     
-    func nextTurn() {
-        playerControllers[playersTurn].getPlayer().turnOver()
-        if playersTurn == (playerControllers.count-1) {
-            playersTurn = 0
+    func aiTurn() {
+        if numOfPlayers == 2 {
+            let controller = player3Controller
+            print("Player 2's turn\n \(controller.getPlayer().toString())")
+            controller.getPlayer().turnOver()
         } else {
-            playersTurn+=1
+            let controller = player2Controller
+            print("Player 2's turn\n \(controller.getPlayer().toString())")
+            controller.getPlayer().turnOver()
         }
-        print(playerControllers[playersTurn].getPlayer().toString())
+        if numOfPlayers == 3 {
+            let controller = player3Controller
+            print("Player 3's turn\n \(controller.getPlayer().toString())")
+            controller.getPlayer().turnOver()
+        }
+        if numOfPlayers == 4 {
+            let controller = player4Controller
+            print("Player 4's turn\n \(controller.getPlayer().toString())")
+            controller.getPlayer().turnOver()
+        }
     }
     
     func changeColor() {

@@ -181,16 +181,16 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8l-97-tBt" userLabel="Player 1">
-                                <rect key="frame" x="155" y="230" width="512" height="145"/>
+                                <rect key="frame" x="143" y="230" width="524" height="145"/>
                                 <connections>
                                     <segue destination="lt2-rU-VVN" kind="embed" id="kuc-he-ONc"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-8P-uH3" userLabel="Button">
-                                <rect key="frame" x="0.0" y="231" width="160" height="144"/>
+                                <rect key="frame" x="0.0" y="231" width="148" height="144"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZc-Ut-als">
-                                        <rect key="frame" x="58" y="57" width="43" height="30"/>
+                                        <rect key="frame" x="58" y="57" width="31" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
                                         <state key="normal" title="Play">
@@ -200,8 +200,14 @@
                                             <action selector="play:" destination="uNZ-gT-R7D" eventType="touchUpInside" id="w7t-ip-CHZ"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play Selected Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djG-Fc-QAf">
-                                        <rect key="frame" x="10" y="28" width="140" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djG-Fc-QAf">
+                                        <rect key="frame" x="28" y="31.5" width="93" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 3 Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5E-5c-SLV">
+                                        <rect key="frame" x="0.0" y="95" width="148" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -211,12 +217,14 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="fZc-Ut-als" secondAttribute="bottom" constant="57" id="6Ny-Ai-fHf"/>
                                     <constraint firstItem="fZc-Ut-als" firstAttribute="centerY" secondItem="jYP-8P-uH3" secondAttribute="centerY" id="8P5-Sf-mr9"/>
-                                    <constraint firstItem="djG-Fc-QAf" firstAttribute="top" secondItem="jYP-8P-uH3" secondAttribute="top" constant="28" id="GEM-3c-0D7"/>
+                                    <constraint firstAttribute="trailing" secondItem="s5E-5c-SLV" secondAttribute="trailing" id="DkD-bz-h1Q"/>
+                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="centerX" secondItem="jYP-8P-uH3" secondAttribute="centerX" id="Fl9-hc-MDz"/>
                                     <constraint firstItem="fZc-Ut-als" firstAttribute="top" secondItem="djG-Fc-QAf" secondAttribute="bottom" constant="8" id="KBD-CC-dux"/>
-                                    <constraint firstItem="djG-Fc-QAf" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leading" constant="10" id="b1s-f8-Pbp"/>
-                                    <constraint firstItem="djG-Fc-QAf" firstAttribute="centerX" secondItem="jYP-8P-uH3" secondAttribute="centerX" id="lzl-Ut-dWI"/>
+                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leading" id="fg9-kc-5p2"/>
                                     <constraint firstItem="fZc-Ut-als" firstAttribute="centerX" secondItem="jYP-8P-uH3" secondAttribute="centerX" id="mNs-ew-X5b"/>
+                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="top" secondItem="fZc-Ut-als" secondAttribute="bottom" constant="8" id="nlv-Gd-dm9"/>
                                     <constraint firstItem="fZc-Ut-als" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leading" constant="58" id="wJC-SM-cYt"/>
+                                    <constraint firstItem="djG-Fc-QAf" firstAttribute="centerX" secondItem="jYP-8P-uH3" secondAttribute="centerX" id="xve-og-P9s"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -251,6 +259,7 @@
                         <outlet property="gameBoardView" destination="wgX-yA-dL4" id="hwV-9j-ple"/>
                         <outlet property="gameView" destination="Jeo-9d-xeg" id="MUI-cY-bMs"/>
                         <outlet property="playButton" destination="fZc-Ut-als" id="g9j-LQ-mBH"/>
+                        <outlet property="playButtonLabel" destination="djG-Fc-QAf" id="EGj-8A-eiU"/>
                         <outlet property="player1View" destination="e8l-97-tBt" id="Ged-So-LO1"/>
                         <outlet property="player2View" destination="ntS-JV-N9V" id="389-zH-idk"/>
                         <outlet property="player3View" destination="mhO-Dx-iHm" id="XkX-lc-ocx"/>
@@ -266,11 +275,11 @@
             <objects>
                 <viewController storyboardIdentifier="Player1ViewController" id="lt2-rU-VVN" customClass="Player1ViewController" customModule="Three_Down" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BOX-wu-5HO" userLabel="Player View">
-                        <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
+                        <rect key="frame" x="0.0" y="0.0" width="524" height="145"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSa-3U-xdW" userLabel="Card View">
-                                <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
+                                <rect key="frame" x="0.0" y="0.0" width="524" height="145"/>
                                 <connections>
                                     <segue destination="N1D-rL-d2X" kind="embed" id="zro-m4-RIF"/>
                                 </connections>
@@ -418,11 +427,11 @@
             <objects>
                 <viewController storyboardIdentifier="CardController" id="N1D-rL-d2X" customClass="CardController" customModule="Three_Down" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KGQ-Px-JhI">
-                        <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
+                        <rect key="frame" x="0.0" y="0.0" width="524" height="145"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bun-l4-dcW" customClass="CardView" customModule="Three_Down" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="512" height="145"/>
+                                <rect key="frame" x="0.0" y="0.0" width="524" height="145"/>
                                 <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>

@@ -26,6 +26,10 @@ class Player1ViewController: PlayerViewController {
         cardController.redrawView(player: player)
     }
     
+    func getCardController() -> CardController {
+        return cardController
+    }
+    
     private lazy var cardController: CardController = {
         // Load Storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

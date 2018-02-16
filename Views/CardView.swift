@@ -55,7 +55,7 @@ class CardView: UIView {
         
         var horizontalConstraintsString = "H:|-\(cardEnd)-"
         for x in 0..<cards.count {
-            let cardName = "button\(x)"
+            let cardName = "handButton\(x)"
             let card = cards[cardName]
             card!.translatesAutoresizingMaskIntoConstraints = false
             card!.clipsToBounds = true
