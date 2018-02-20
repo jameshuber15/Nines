@@ -20,4 +20,46 @@ class Player4View: UIView {
     func changeColor() {
         self.backgroundColor = UIColor.red
     }
+    
+    func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
+        self.delete()
+        switch moveType {
+        case MoveType.ThreeCardsDown:
+            print("Drawing cards for ThreeCardsDown for AI")
+            draw(handCards: cards, upCards: upCards, downCards: downCards)
+        case MoveType.ThreeCardsUp:
+            print("Drawing cards for ThreeCardsUp for AI")
+            self.delete()
+            draw(handCards: cards, upCards: upCards, downCards: downCards)
+        case MoveType.GamePlay:
+            print("Drawing cards for Game Play for AI")
+            self.delete()
+            draw(handCards: cards, upCards: upCards, downCards: downCards)
+        default:
+            print("")
+        }
+    }
+    
+    func delete() {
+        let subviews = self.subviews as [UIView]
+        for v in subviews {
+            v.removeFromSuperview()
+        }
+    }
+    
+    func draw(handCards: [UIButton],upCards: [UIButton],downCards: [UIButton]) {
+        if downCards.count > 0 {
+            drawHand(cards: downCards, cardType: CardType.Board)
+        }
+        if upCards.count > 0 {
+            drawHand(cards: upCards, cardType: CardType.Board)
+        }
+        if handCards.count > 0 {
+            drawHand(cards: handCards, cardType: CardType.Hand)
+        }
+    }
+    
+    func drawHand(cards: [UIButton], cardType: CardType) {
+        
+    }
 }

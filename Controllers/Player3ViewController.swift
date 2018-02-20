@@ -25,6 +25,8 @@ class Player3ViewController: PlayerViewController {
     
     override func myTurn() {
         switch player.getMoveType() {
+        case MoveType.DrawCards:
+            print(player.toString())
         case MoveType.ThreeCardsDown:
             let downCards = select3Cards()
             player.getCardHand().setDownCards(downCards: downCards.copy())
@@ -40,6 +42,7 @@ class Player3ViewController: PlayerViewController {
     }
     
     func select3Cards() -> CardGroup{
+        //TODO Make AI Worthy
         let result = CardGroup()
         let rand:UInt32 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
         var num:Int = Int(rand)

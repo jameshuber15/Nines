@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
     var playersTurn = 0
+    var firstTurn = false
     @IBOutlet var gameView: UIView!
     @IBOutlet weak var player1View: UIView!
     @IBOutlet weak var player2View: UIView!
@@ -34,57 +35,128 @@ class GameViewController: UIViewController {
     func startGame() {
         print("Player 1's turn\n \(player1Controller.getPlayer().toString())")
         player1Controller.myTurn()
+        player1Controller.getPlayer().turnOver()
+        
+        aiTurn()
     }
     
     @IBAction func play(_ sender: UIButton) {
         let selectedCards = player1Controller.getCardController().getSelectedCards()
-        if selectedCards.getCardCount() == 3 {
-            switch player1Controller.getPlayer().getMoveType() {
-            case MoveType.ThreeCardsDown:
+        switch player1Controller.getPlayer().getMoveType() {
+        case MoveType.ThreeCardsDown:
+            if selectedCards.getCardCount() == 3 {
                 player1Controller.getPlayer().getCardHand().setDownCards(downCards: selectedCards.copy())
                 player1Controller.getPlayer().getCardHand().flipOverHand()
-            case MoveType.ThreeCardsUp:
-                player1Controller.getPlayer().getCardHand().setUpCards(upCards: selectedCards.copy())
-            case MoveType.GamePlay:
-                player1Controller.getPlayer().getCardHand().playCards(selectedCards: selectedCards.copy())
+                player1Controller.getCardController().removeSelectedCards()
+                player1Controller.getPlayer().turnOver()
+                player1Controller.myTurn()
+                
+                //End Turn
+                playersTurn+=1
+                
+                aiTurn()
             }
-            player1Controller.getCardController().removeSelectedCards()
-            player1Controller.getPlayer().turnOver()
-            player1Controller.myTurn()
-
-            //End Turn
-            playersTurn+=1
-            
-            aiTurn()
+        case MoveType.ThreeCardsUp:
+            if selectedCards.getCardCount() == 3 {
+                player1Controller.getPlayer().getCardHand().setUpCards(upCards: selectedCards.copy())
+                player1Controller.getPlayer().getCardHand().flipOverHand()
+                player1Controller.getCardController().removeSelectedCards()
+                player1Controller.getPlayer().turnOver()
+                player1Controller.myTurn()
+                
+                //End Turn
+                playersTurn+=1
+                
+                aiTurn()
+                gameBoard.findWhoGoesFirst()
+                firstTurn = true
+                if firstTurn {
+                    if player1Controller.getPlayer().getGoesFirst() {
+                        player1Controller.getPlayer().turnOver()
+                        player1Controller.myTurn()
+                        self.firstTurn = false
+                    }
+                    aiTurn()
+                }
+                firstTurn = false
+            }
+        case MoveType.GamePlay:
+            if selectedCards.getCardCount() == 3 {
+                player1Controller.getPlayer().getCardHand().playCards(selectedCards: selectedCards.copy())
+                player1Controller.getPlayer().getCardHand().flipOverHand()
+                player1Controller.getCardController().removeSelectedCards()
+                player1Controller.getPlayer().turnOver()
+                player1Controller.myTurn()
+                
+                //End Turn
+                playersTurn+=1
+                
+                aiTurn()
+            }
+        default:
+            print("")
         }
     }
     
     func aiTurn() {
+        var controller: PlayerViewController!
         if numOfPlayers == 2 {
-            let controller = player3Controller
+            controller = player3Controller
             print("Player 2's turn\n \(controller.getPlayer().toString())")
-            controller.myTurn()
-            controller.getPlayer().turnOver()
+            if firstTurn {
+                if controller.getPlayer().getGoesFirst() {
+                    controller.myTurn()
+                    controller.getPlayer().turnOver()
+                    self.firstTurn = false
+                }
+            } else {
+                controller.myTurn()
+                controller.getPlayer().turnOver()
+            }
         } else {
-            let controller = player2Controller
+            controller = player2Controller
             print("Player 2's turn\n \(controller.getPlayer().toString())")
-            controller.myTurn()
-            controller.getPlayer().turnOver()
+            if firstTurn {
+                if controller.getPlayer().getGoesFirst() {
+                    controller.myTurn()
+                    controller.getPlayer().turnOver()
+                    self.firstTurn = false
+                }
+            } else {
+                controller.myTurn()
+                controller.getPlayer().turnOver()
+            }
         }
         
-        if numOfPlayers == 3 {
-            let controller = player3Controller
+        if numOfPlayers >= 3 {
+            controller = player3Controller
             print("Player 3's turn\n \(controller.getPlayer().toString())")
-            controller.myTurn()
-            controller.getPlayer().turnOver()
+            if firstTurn {
+                if controller.getPlayer().getGoesFirst() {
+                    controller.myTurn()
+                    controller.getPlayer().turnOver()
+                    self.firstTurn = false
+                }
+            } else {
+                controller.myTurn()
+                controller.getPlayer().turnOver()
+            }
         }
         
         if numOfPlayers == 4 {
-            let controller = player4Controller
+            controller = player4Controller
             print("Player 4's turn\n \(controller.getPlayer().toString())")
-            controller.getPlayer().turnOver()
+            if firstTurn {
+                if controller.getPlayer().getGoesFirst() {
+                    controller.myTurn()
+                    controller.getPlayer().turnOver()
+                    self.firstTurn = false
+                }
+            } else {
+                controller.myTurn()
+                controller.getPlayer().turnOver()
+            }
         }
-        
         print("Player 1's turn\n \(player1Controller.getPlayer().toString())")
     }
     

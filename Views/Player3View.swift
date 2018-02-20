@@ -24,17 +24,20 @@ class Player3View: UIView {
     func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
         self.delete()
         switch moveType {
+        case MoveType.DrawCards:
+            print("Drawing cards for ThreeCardsDown for AI")
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.ThreeCardsDown:
             print("Drawing cards for ThreeCardsDown for AI")
-            draw(handCards: cards, upCards: upCards, downCards: downCards)
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.ThreeCardsUp:
             print("Drawing cards for ThreeCardsUp for AI")
             self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards)
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.GamePlay:
             print("Drawing cards for Game Play for AI")
             self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards)
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         }
     }
     
@@ -45,43 +48,47 @@ class Player3View: UIView {
         }
     }
     
-    func draw(handCards: [UIButton],upCards: [UIButton],downCards: [UIButton]) {
+    func draw(handCards: [UIButton],upCards: [UIButton],downCards: [UIButton], moveType: MoveType) {
         if downCards.count > 0 {
-            drawHand(cards: downCards, cardType: CardType.Board)
+            drawHand(cards: downCards, cardType: CardType.Board, moveType: moveType)
         }
         if upCards.count > 0 {
-            drawHand(cards: upCards, cardType: CardType.Board)
+            drawHand(cards: upCards, cardType: CardType.Board, moveType: moveType)
         }
         if handCards.count > 0 {
-            drawHand(cards: handCards, cardType: CardType.Hand)
+            drawHand(cards: handCards, cardType: CardType.Hand, moveType: moveType)
         }
     }
     
-    func drawHand(cards: [UIButton], cardType: CardType) {
-        var spaceBeetweenButtons = NSNumber(value: 0)
+    func drawHand(cards: [UIButton], cardType: CardType, moveType: MoveType) {
+        var spaceBetweenButtons = NSNumber(value: 0)
         var buttonWidth = NSNumber(value: 0)
         var buttonHeight = NSNumber(value: 0)
         var fromTop = NSNumber(value: 0)
         
         switch cardType {
         case CardType.Board:
-            spaceBeetweenButtons = NSNumber(value: 30)
+            spaceBetweenButtons = NSNumber(value: 30)
             buttonWidth = NSNumber(value: 55)
             buttonHeight = NSNumber(value: 94)
             fromTop = NSNumber(value: 20)
         case CardType.Hand:
-            spaceBeetweenButtons = NSNumber(value: -40)
+            if moveType == MoveType.GamePlay {
+                spaceBetweenButtons = NSNumber(value: -45)
+            } else {
+                spaceBetweenButtons = NSNumber(value: -20)
+            }
             buttonWidth = NSNumber(value: 55)
             buttonHeight = NSNumber(value: 94)
             fromTop = NSNumber(value: -20)
         }
         
-        let containerWidth = NSNumber(value: (cards.count * buttonWidth.intValue) + (cards.count - 1) * spaceBeetweenButtons.intValue)
+        let containerWidth = NSNumber(value: (cards.count * buttonWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         var views = [String : AnyObject]()
-        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBeetweenButtons" : spaceBeetweenButtons, "containerWidth" : containerWidth]
+        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBetweenButtons" : spaceBetweenButtons, "containerWidth" : containerWidth]
         var format = "H:|-0-"
         
         for i in 0..<cards.count
@@ -90,7 +97,7 @@ class Player3View: UIView {
             format += "[button\(i)(==buttonWidth)]"
             if i != cards.count - 1
             {
-                format += "-spaceBeetweenButtons-"
+                format += "-spaceBetweenButtons-"
             }
             else
             {

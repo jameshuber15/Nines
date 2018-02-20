@@ -39,6 +39,30 @@ class GameBoard {
         self.deal()
     }
     
+    func findWhoGoesFirst() {
+        var goFirst = false
+        while !goFirst {
+            for rank in 3 ... PlayingCard.maxRank() {
+                for suit in PlayingCard.validSuits() {
+                    for player in playerArray {
+                        if player.checkForCard(suit: suit, rank: rank) {
+                            player.goesFirst(goFirst: true)
+                            goFirst = true
+                            print("Player \(player.playerNum) goes first!")
+                            break
+                        }
+                    }
+                    if goFirst {
+                        break
+                    }
+                }
+                if goFirst {
+                    break
+                }
+            }
+        }
+    }
+    
     func deal() {
         for _ in 0...8{
             for y in 0..<playerArray.count {

@@ -15,6 +15,7 @@ enum PlayerType {
 }
 
 enum MoveType {
+    case DrawCards
     case ThreeCardsDown
     case ThreeCardsUp
     case GamePlay

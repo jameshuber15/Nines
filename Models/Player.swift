@@ -15,13 +15,15 @@ class Player {
     internal var difficulty : Difficulty
     internal var moveType : MoveType
     internal var playerNum : Int
+    internal var goFirst : Bool
     
     init(playerNum: Int) {
         cardHand = PlayerHand()
         playerType = PlayerType.NA
         difficulty = Difficulty.None
-        moveType = MoveType.ThreeCardsDown
+        moveType = MoveType.DrawCards
         self.playerNum = playerNum
+        goFirst = false;
     }
     
     init(cardHand: PlayerHand, playerType: PlayerType) {
@@ -31,6 +33,7 @@ class Player {
         self.difficulty = Difficulty.None
         moveType = MoveType.ThreeCardsDown
         playerNum = 0
+        goFirst = false;
     }
     
     func selectCardToPlay(topCard: PlayingCard) -> PlayingCard? {
@@ -53,6 +56,8 @@ class Player {
     
     func turnOver() {
         switch self.moveType {
+        case MoveType.DrawCards:
+            self.moveType = MoveType.ThreeCardsDown
         case MoveType.ThreeCardsDown:
             self.moveType = MoveType.ThreeCardsUp
             getCardHand().sortHandByRank()
@@ -71,7 +76,16 @@ class Player {
         return cardHand.findValidCards(topCard: topCard)
     }
     
-    func getPlayerType() -> PlayerType{
+    func checkForCard(suit: String, rank: Int) -> Bool{
+        for card in cardHand.cards {
+            if card.getRank() == rank && card.getSuit() == suit {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func getPlayerType() -> PlayerType {
         return playerType
     }
     
@@ -109,6 +123,14 @@ class Player {
     
     func setPlayerNum(playerNum: Int) {
         self.playerNum = playerNum
+    }
+    
+    func getGoesFirst() -> Bool{
+        return goFirst
+    }
+    
+    func goesFirst(goFirst: Bool) {
+        self.goFirst = goFirst
     }
     
     func toString() -> String {

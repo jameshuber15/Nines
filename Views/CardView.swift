@@ -26,15 +26,14 @@ class CardView: UIView {
     func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
         self.delete()
         switch moveType {
+        case MoveType.DrawCards:
+            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.ThreeCardsDown:
-            print("Drawing cards for ThreeCardsDown")
             draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.ThreeCardsUp:
-            print("Drawing cards for ThreeCardsUp")
             self.delete()
             draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         case MoveType.GamePlay:
-            print("Drawing cards for Game Play")
             self.delete()
             draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         }
@@ -75,7 +74,7 @@ class CardView: UIView {
             if moveType == MoveType.GamePlay {
                 spaceBetweenButtons = NSNumber(value: -30)
             } else {
-                spaceBetweenButtons = NSNumber(value: 5)
+                spaceBetweenButtons = NSNumber(value: -20)
             }
             buttonWidth = NSNumber(value: 55)
             buttonHeight = NSNumber(value: 94)
