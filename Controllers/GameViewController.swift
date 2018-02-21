@@ -12,7 +12,6 @@ class GameViewController: UIViewController {
     var numOfPlayers: Int = 0
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
-    var playersTurn = 0
     var firstTurn = false
     @IBOutlet var gameView: UIView!
     @IBOutlet weak var player1View: UIView!
@@ -51,9 +50,6 @@ class GameViewController: UIViewController {
                 player1Controller.getPlayer().turnOver()
                 player1Controller.myTurn()
                 
-                //End Turn
-                playersTurn+=1
-                
                 aiTurn()
             }
         case MoveType.ThreeCardsUp:
@@ -64,17 +60,13 @@ class GameViewController: UIViewController {
                 player1Controller.getPlayer().turnOver()
                 player1Controller.myTurn()
                 
-                //End Turn
-                playersTurn+=1
-                
                 aiTurn()
                 gameBoard.findWhoGoesFirst()
                 firstTurn = true
                 if firstTurn {
                     if player1Controller.getPlayer().getGoesFirst() {
-                        player1Controller.getPlayer().turnOver()
-                        player1Controller.myTurn()
                         self.firstTurn = false
+                        return
                     }
                     aiTurn()
                 }
@@ -87,9 +79,6 @@ class GameViewController: UIViewController {
                 player1Controller.getCardController().removeSelectedCards()
                 player1Controller.getPlayer().turnOver()
                 player1Controller.myTurn()
-                
-                //End Turn
-                playersTurn+=1
                 
                 aiTurn()
             }

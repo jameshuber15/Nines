@@ -60,15 +60,13 @@ class CardView: UIView {
     
     func drawHand(cards: [UIButton], cardType: CardType, moveType: MoveType) {
         var spaceBetweenButtons = NSNumber(value: 0)
-        var buttonWidth = NSNumber(value: 0)
-        var buttonHeight = NSNumber(value: 0)
+        let buttonWidth = NSNumber(value: 55)
+        let buttonHeight = NSNumber(value: 94)
         var fromTop = NSNumber(value: 0)
         
         switch cardType {
         case CardType.Board:
             spaceBetweenButtons = NSNumber(value: 30)
-            buttonWidth = NSNumber(value: 55)
-            buttonHeight = NSNumber(value: 94)
             fromTop = NSNumber(value: -20)
         case CardType.Hand:
             if moveType == MoveType.GamePlay {
@@ -76,8 +74,6 @@ class CardView: UIView {
             } else {
                 spaceBetweenButtons = NSNumber(value: -20)
             }
-            buttonWidth = NSNumber(value: 55)
-            buttonHeight = NSNumber(value: 94)
             fromTop = NSNumber(value: 20)
         }
         
