@@ -11,7 +11,7 @@ import UIKit
 class PlayerHand : CardGroup {
     internal var upCards: CardGroup = CardGroup()
     internal var downCards: CardGroup = CardGroup()
-
+    
     override init() {
         super.init()
     }
@@ -106,3 +106,4 @@ class PlayerHand : CardGroup {
         return result
     }
 }
+

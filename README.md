@@ -1,2 +1,0 @@
-# NinesCardGame
-Card Game - Nines

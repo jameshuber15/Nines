@@ -30,3 +30,4 @@ class DiscardPile: CardGroup {
         return result
     }
 }
+

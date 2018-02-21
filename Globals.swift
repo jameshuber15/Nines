@@ -31,3 +31,4 @@ enum Difficulty {
     case Hard
     case None //For Humans
 }
+

@@ -9,7 +9,7 @@
 import UIKit
 
 class CardView: UIView {
-
+    
     override init(frame: CGRect){
         super.init(frame: frame)
     }
@@ -38,7 +38,7 @@ class CardView: UIView {
             draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
         }
     }
-
+    
     func delete() {
         let subviews = self.subviews as [UIView]
         for v in subviews {
@@ -110,3 +110,4 @@ class CardView: UIView {
         self.addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: CGFloat(truncating: fromTop)))
     }
 }
+

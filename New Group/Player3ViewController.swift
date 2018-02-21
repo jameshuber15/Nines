@@ -1,5 +1,5 @@
 //
-//  Player2ViewController.swift
+//  Player3ViewController.swift
 //  Three-Down
 //
 //  Created by James HUBER on 2/14/18.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class Player2ViewController: PlayerViewController {
+class Player3ViewController: PlayerViewController {
+    @IBOutlet weak var playerView: Player3View!
     
-    @IBOutlet weak var playerView: Player2View!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,8 +19,14 @@ class Player2ViewController: PlayerViewController {
         playerView.changeColor()
     }
     
+    func delete() {
+        playerView.delete()
+    }
+    
     override func myTurn() {
         switch player.getMoveType() {
+        case MoveType.DrawCards:
+            print(player.toString())
         case MoveType.ThreeCardsDown:
             let downCards = select3Cards()
             player.getCardHand().setDownCards(downCards: downCards.copy())
@@ -31,8 +37,6 @@ class Player2ViewController: PlayerViewController {
             print(player.toString())
         case MoveType.GamePlay:
             print("3")
-        default:
-            print("")
         }
         redrawView(player: player)
     }
@@ -87,3 +91,4 @@ class Player2ViewController: PlayerViewController {
         playerView.redrawCards(cards: cards, upCards: upCards, downCards: downCards, moveType: player.getMoveType())
     }
 }
+

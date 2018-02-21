@@ -179,7 +179,7 @@ class GameViewController: UIViewController {
         
         // Instantiate View Controller
         var viewController = storyboard.instantiateViewController(withIdentifier: "Player1ViewController") as! Player1ViewController
-
+        
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
         
@@ -209,7 +209,7 @@ class GameViewController: UIViewController {
         let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player2View, attribute: .leading, multiplier: 1.0, constant: 0)
         
         NSLayoutConstraint.activate([width,height,top,leading])
-
+        
         return viewController
     }()
     
@@ -249,7 +249,7 @@ class GameViewController: UIViewController {
         let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player4View, attribute: .leading, multiplier: 1.0, constant: 0)
         
         NSLayoutConstraint.activate([width,height,top,leading])
-
+        
         return viewController
     }()
     
@@ -289,3 +289,4 @@ class GameViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
     }
 }
+

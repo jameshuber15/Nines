@@ -66,3 +66,4 @@ class Deck: CardGroup {
         return result
     }
 }
+

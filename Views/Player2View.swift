@@ -100,7 +100,7 @@ class Player2View: UIView {
             containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[button\(i)(==buttonWidth)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
         }
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
-
+        
         self.addSubview(containerView)
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[containerView(==containerHeight)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: ["containerView" : containerView]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[containerView(==buttonHeight)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: ["containerView" : containerView]))
@@ -108,3 +108,4 @@ class Player2View: UIView {
         self.addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: CGFloat(truncating: fromLeft)))
     }
 }
+

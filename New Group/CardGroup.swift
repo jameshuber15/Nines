@@ -56,7 +56,7 @@ class CardGroup {
                 count+=1
             }
         }
-
+        
         for z in 0..<twoAndTen.count {
             cards[count] = twoAndTen[z]
             count+=1
@@ -93,7 +93,7 @@ class CardGroup {
             }
         }
     }
-   
+    
     func sameCard(card1: PlayingCard, card2: PlayingCard) -> Bool {
         if card1.getRank() == card2.getRank() && card1.getSuit() == card2.getSuit() {
             return true
@@ -115,3 +115,4 @@ class CardGroup {
         return result
     }
 }
+

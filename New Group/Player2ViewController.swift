@@ -1,16 +1,16 @@
 //
-//  PlayerViewController.swift
+//  Player2ViewController.swift
 //  Three-Down
 //
-//  Created by James HUBER on 2/13/18.
+//  Created by James HUBER on 2/14/18.
 //  Copyright © 2018 James HUBER. All rights reserved.
 //
 
 import UIKit
 
-class Player4ViewController: PlayerViewController {
-
-    @IBOutlet weak var playerView: Player4View!
+class Player2ViewController: PlayerViewController {
+    
+    @IBOutlet weak var playerView: Player2View!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -87,3 +87,4 @@ class Player4ViewController: PlayerViewController {
         playerView.redrawCards(cards: cards, upCards: upCards, downCards: downCards, moveType: player.getMoveType())
     }
 }
+

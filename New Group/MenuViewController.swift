@@ -31,7 +31,7 @@ class MenuViewController: UIViewController {
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -50,3 +50,4 @@ class MenuViewController: UIViewController {
         }
     }
 }
+

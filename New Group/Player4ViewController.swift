@@ -1,16 +1,16 @@
 //
-//  Player3ViewController.swift
+//  PlayerViewController.swift
 //  Three-Down
 //
-//  Created by James HUBER on 2/14/18.
+//  Created by James HUBER on 2/13/18.
 //  Copyright © 2018 James HUBER. All rights reserved.
 //
 
 import UIKit
 
-class Player3ViewController: PlayerViewController {
-    @IBOutlet weak var playerView: Player3View!
+class Player4ViewController: PlayerViewController {
     
+    @IBOutlet weak var playerView: Player4View!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,14 +19,8 @@ class Player3ViewController: PlayerViewController {
         playerView.changeColor()
     }
     
-    func delete() {
-        playerView.delete()
-    }
-    
     override func myTurn() {
         switch player.getMoveType() {
-        case MoveType.DrawCards:
-            print(player.toString())
         case MoveType.ThreeCardsDown:
             let downCards = select3Cards()
             player.getCardHand().setDownCards(downCards: downCards.copy())
@@ -37,6 +31,8 @@ class Player3ViewController: PlayerViewController {
             print(player.toString())
         case MoveType.GamePlay:
             print("3")
+        default:
+            print("")
         }
         redrawView(player: player)
     }
@@ -46,7 +42,7 @@ class Player3ViewController: PlayerViewController {
         let result = CardGroup()
         let rand:UInt32 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
         var num:Int = Int(rand)
-
+        
         result.addCard(newCard: player.getCardHand().cards[num])
         
         var rand2:UInt32 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
@@ -91,3 +87,4 @@ class Player3ViewController: PlayerViewController {
         playerView.redrawCards(cards: cards, upCards: upCards, downCards: downCards, moveType: player.getMoveType())
     }
 }
+

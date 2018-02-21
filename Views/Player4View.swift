@@ -108,3 +108,4 @@ class Player4View: UIView {
         self.addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: CGFloat(truncating: fromLeft)))
     }
 }
+
