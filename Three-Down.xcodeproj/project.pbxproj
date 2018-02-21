@@ -51,13 +51,13 @@
 		A0694AAA203E1CFF007D3920 /* Player3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player3ViewController.swift; sourceTree = "<group>"; };
 		A0694AAC203E1D05007D3920 /* Player4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player4ViewController.swift; sourceTree = "<group>"; };
 		A0694AAE203E1D0F007D3920 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		A0694AB0203E1D1C007D3920 /* CardGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardGroup.swift; path = "New Group/CardGroup.swift"; sourceTree = SOURCE_ROOT; };
-		A0694AB2203E1D20007D3920 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Deck.swift; path = "New Group/Deck.swift"; sourceTree = SOURCE_ROOT; };
-		A0694AB4203E1D25007D3920 /* DiscardPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DiscardPile.swift; path = "New Group/DiscardPile.swift"; sourceTree = SOURCE_ROOT; };
-		A0694AB6203E1D2E007D3920 /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameBoard.swift; path = "New Group/GameBoard.swift"; sourceTree = SOURCE_ROOT; };
-		A0694AB8203E1D33007D3920 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Player.swift; path = "New Group/Player.swift"; sourceTree = SOURCE_ROOT; };
-		A0694ABA203E1D36007D3920 /* PlayerHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerHand.swift; path = "New Group/PlayerHand.swift"; sourceTree = SOURCE_ROOT; };
-		A0694ABC203E1D3B007D3920 /* PlayingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayingCard.swift; path = "New Group/PlayingCard.swift"; sourceTree = SOURCE_ROOT; };
+		A0694AB0203E1D1C007D3920 /* CardGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardGroup.swift; path = Model/CardGroup.swift; sourceTree = SOURCE_ROOT; };
+		A0694AB2203E1D20007D3920 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Deck.swift; path = Model/Deck.swift; sourceTree = SOURCE_ROOT; };
+		A0694AB4203E1D25007D3920 /* DiscardPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DiscardPile.swift; path = Model/DiscardPile.swift; sourceTree = SOURCE_ROOT; };
+		A0694AB6203E1D2E007D3920 /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameBoard.swift; path = Model/GameBoard.swift; sourceTree = SOURCE_ROOT; };
+		A0694AB8203E1D33007D3920 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Model/Player.swift; sourceTree = SOURCE_ROOT; };
+		A0694ABA203E1D36007D3920 /* PlayerHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerHand.swift; path = Model/PlayerHand.swift; sourceTree = SOURCE_ROOT; };
+		A0694ABC203E1D3B007D3920 /* PlayingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayingCard.swift; path = Model/PlayingCard.swift; sourceTree = SOURCE_ROOT; };
 		A0694ABE203E1D4A007D3920 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A0694AC0203E1D50007D3920 /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
 		A0694AC2203E1D55007D3920 /* Player1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player1View.swift; sourceTree = "<group>"; };
@@ -84,46 +84,13 @@
 		A0694A7C203E1C4B007D3920 = {
 			isa = PBXGroup;
 			children = (
+				A0694B46203E21B8007D3920 /* Controllers */,
+				A0694B45203E2186007D3920 /* Model */,
 				A0694B40203E1ED9007D3920 /* Default-568h@2x.png */,
-				A0694ACA203E1D6C007D3920 /* Globals.swift */,
-				A0694A9A203E1C74007D3920 /* Controllers */,
-				A0694A9B203E1C82007D3920 /* Models */,
 				A0694A9D203E1CAB007D3920 /* Views */,
 				A0694A9C203E1C9F007D3920 /* SupportFiles */,
 				A0694B3F203E1ED4007D3920 /* Three-Down.app */,
 			);
-			sourceTree = "<group>";
-		};
-		A0694A9A203E1C74007D3920 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A0694A9E203E1CCE007D3920 /* CardController.swift */,
-				A0694AA0203E1CD8007D3920 /* GameBoardViewController.swift */,
-				A0694AA2203E1CE2007D3920 /* GameViewController.swift */,
-				A0694AA4203E1CEA007D3920 /* MenuViewController.swift */,
-				A0694AA6203E1CF2007D3920 /* Player1ViewController.swift */,
-				A0694AA8203E1CF9007D3920 /* Player2ViewController.swift */,
-				A0694AAA203E1CFF007D3920 /* Player3ViewController.swift */,
-				A0694AAC203E1D05007D3920 /* Player4ViewController.swift */,
-				A0694AAE203E1D0F007D3920 /* PlayerViewController.swift */,
-			);
-			name = Controllers;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		A0694A9B203E1C82007D3920 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A0694AB0203E1D1C007D3920 /* CardGroup.swift */,
-				A0694AB2203E1D20007D3920 /* Deck.swift */,
-				A0694AB4203E1D25007D3920 /* DiscardPile.swift */,
-				A0694AB6203E1D2E007D3920 /* GameBoard.swift */,
-				A0694AB8203E1D33007D3920 /* Player.swift */,
-				A0694ABA203E1D36007D3920 /* PlayerHand.swift */,
-				A0694ABC203E1D3B007D3920 /* PlayingCard.swift */,
-			);
-			name = Models;
-			path = "New Group/New Group";
 			sourceTree = "<group>";
 		};
 		A0694A9C203E1C9F007D3920 /* SupportFiles */ = {
@@ -149,6 +116,37 @@
 				A0694AC8203E1D61007D3920 /* Player4View.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A0694B45203E2186007D3920 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A0694ACA203E1D6C007D3920 /* Globals.swift */,
+				A0694AB0203E1D1C007D3920 /* CardGroup.swift */,
+				A0694AB2203E1D20007D3920 /* Deck.swift */,
+				A0694AB4203E1D25007D3920 /* DiscardPile.swift */,
+				A0694AB6203E1D2E007D3920 /* GameBoard.swift */,
+				A0694AB8203E1D33007D3920 /* Player.swift */,
+				A0694ABA203E1D36007D3920 /* PlayerHand.swift */,
+				A0694ABC203E1D3B007D3920 /* PlayingCard.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A0694B46203E21B8007D3920 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A0694A9E203E1CCE007D3920 /* CardController.swift */,
+				A0694AA0203E1CD8007D3920 /* GameBoardViewController.swift */,
+				A0694AA2203E1CE2007D3920 /* GameViewController.swift */,
+				A0694AA4203E1CEA007D3920 /* MenuViewController.swift */,
+				A0694AA6203E1CF2007D3920 /* Player1ViewController.swift */,
+				A0694AA8203E1CF9007D3920 /* Player2ViewController.swift */,
+				A0694AAA203E1CFF007D3920 /* Player3ViewController.swift */,
+				A0694AAC203E1D05007D3920 /* Player4ViewController.swift */,
+				A0694AAE203E1D0F007D3920 /* PlayerViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
