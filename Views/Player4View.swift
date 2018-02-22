@@ -71,7 +71,7 @@ class Player4View: UIView {
             spaceBetweenButtons = NSNumber(value: 30)
             fromLeft = NSNumber(value: 20)
         case CardType.Hand:
-            fromLeft = NSNumber(value: -20)
+            fromLeft = NSNumber(value: -40)
         }
         
         let containerHeight = NSNumber(value: (cards.count * buttonHeight.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)

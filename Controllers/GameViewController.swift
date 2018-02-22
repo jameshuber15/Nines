@@ -18,9 +18,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var player2View: UIView!
     @IBOutlet weak var player3View: UIView!
     @IBOutlet weak var player4View: UIView!
-    @IBOutlet weak var gameBoardView: UIView!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playButtonLabel: UILabel!
+    @IBOutlet weak var gameBoardView: GameBoardView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
         playButton.layer.cornerRadius = 4
         buildPlayerControllers()
+        gameBoardView.changeColor()
         startGame()
     }
     
@@ -91,27 +92,29 @@ class GameViewController: UIViewController {
         var controller: PlayerViewController!
         if numOfPlayers == 2 {
             controller = player3Controller
-            print("Player 2's turn\n \(controller.getPlayer().toString())")
             if firstTurn {
                 if controller.getPlayer().getGoesFirst() {
+                    print("Player 2's turn\n \(controller.getPlayer().toString())")
                     controller.myTurn()
                     controller.getPlayer().turnOver()
                     self.firstTurn = false
                 }
             } else {
+                print("Player 2's turn\n \(controller.getPlayer().toString())")
                 controller.myTurn()
                 controller.getPlayer().turnOver()
             }
         } else {
             controller = player2Controller
-            print("Player 2's turn\n \(controller.getPlayer().toString())")
             if firstTurn {
                 if controller.getPlayer().getGoesFirst() {
+                    print("Player 2's turn\n \(controller.getPlayer().toString())")
                     controller.myTurn()
                     controller.getPlayer().turnOver()
                     self.firstTurn = false
                 }
             } else {
+                print("Player 2's turn\n \(controller.getPlayer().toString())")
                 controller.myTurn()
                 controller.getPlayer().turnOver()
             }
@@ -119,14 +122,15 @@ class GameViewController: UIViewController {
         
         if numOfPlayers >= 3 {
             controller = player3Controller
-            print("Player 3's turn\n \(controller.getPlayer().toString())")
             if firstTurn {
                 if controller.getPlayer().getGoesFirst() {
+                    print("Player 3's turn\n \(controller.getPlayer().toString())")
                     controller.myTurn()
                     controller.getPlayer().turnOver()
                     self.firstTurn = false
                 }
             } else {
+                print("Player 3's turn\n \(controller.getPlayer().toString())")
                 controller.myTurn()
                 controller.getPlayer().turnOver()
             }
@@ -134,14 +138,15 @@ class GameViewController: UIViewController {
         
         if numOfPlayers == 4 {
             controller = player4Controller
-            print("Player 4's turn\n \(controller.getPlayer().toString())")
             if firstTurn {
                 if controller.getPlayer().getGoesFirst() {
+                    print("Player 4's turn\n \(controller.getPlayer().toString())")
                     controller.myTurn()
                     controller.getPlayer().turnOver()
                     self.firstTurn = false
                 }
             } else {
+                print("Player 4's turn\n \(controller.getPlayer().toString())")
                 controller.myTurn()
                 controller.getPlayer().turnOver()
             }
@@ -247,26 +252,6 @@ class GameViewController: UIViewController {
         let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: player4View, attribute: .height, multiplier: 1.0, constant: 0)
         let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: player4View, attribute: .top, multiplier: 1.0, constant: 0)
         let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: player4View, attribute: .leading, multiplier: 1.0, constant: 0)
-        
-        NSLayoutConstraint.activate([width,height,top,leading])
-        
-        return viewController
-    }()
-    
-    private lazy var gameBoardController: GameBoardViewController = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "GameBoardViewController") as! GameBoardViewController
-        
-        // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
-        
-        let width = NSLayoutConstraint(item: viewController.view, attribute: .width, relatedBy: .equal, toItem: gameBoardView, attribute: .width, multiplier: 1.0, constant: 0)
-        let height = NSLayoutConstraint(item: viewController.view, attribute: .height, relatedBy: .equal, toItem: gameBoardView, attribute: .height, multiplier: 1.0, constant: 0)
-        let top = NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: gameBoardView, attribute: .top, multiplier: 1.0, constant: 0)
-        let leading = NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: gameBoardView, attribute: .leading, multiplier: 1.0, constant: 0)
         
         NSLayoutConstraint.activate([width,height,top,leading])
         

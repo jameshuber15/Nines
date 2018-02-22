@@ -67,14 +67,14 @@ class CardView: UIView {
         switch cardType {
         case CardType.Board:
             spaceBetweenButtons = NSNumber(value: 30)
-            fromTop = NSNumber(value: -20)
+            fromTop = NSNumber(value: -35)
         case CardType.Hand:
             if moveType == MoveType.GamePlay {
                 spaceBetweenButtons = NSNumber(value: -30)
             } else {
                 spaceBetweenButtons = NSNumber(value: -20)
             }
-            fromTop = NSNumber(value: 20)
+            fromTop = NSNumber(value: 5)
         }
         
         let containerWidth = NSNumber(value: (cards.count * buttonWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
