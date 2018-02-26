@@ -61,9 +61,7 @@ class Player2View: UIView {
     }
     
     func drawHand(cards: [UIButton], cardType: CardType, moveType: MoveType) {
-        var spaceBetweenButtons = NSNumber(value: -30)
-        let buttonWidth = NSNumber(value: 94)
-        let buttonHeight = NSNumber(value: 55)
+        var spaceBetweenButtons = NSNumber(value: -40)
         var fromLeft = NSNumber(value: 0)
         
         switch cardType {
@@ -74,13 +72,13 @@ class Player2View: UIView {
             fromLeft = NSNumber(value: 20)
         }
         
-        let containerHeight = NSNumber(value: (cards.count * buttonHeight.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
+        let containerHeight = NSNumber(value: (cards.count * cardWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         var views = [String : AnyObject]()
-        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBetweenButtons" : spaceBetweenButtons, "containerHeight" : containerHeight]
+        let metrics = ["buttonWidth" : cardHeight, "buttonHeight" : cardWidth, "spaceBetweenButtons" : spaceBetweenButtons, "containerHeight" : containerHeight]
         var format = "V:|-0-"
         
         for i in 0..<cards.count

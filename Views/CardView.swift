@@ -60,35 +60,29 @@ class CardView: UIView {
     
     func drawHand(cards: [UIButton], cardType: CardType, moveType: MoveType) {
         var spaceBetweenButtons = NSNumber(value: 0)
-        let buttonWidth = NSNumber(value: 55)
-        let buttonHeight = NSNumber(value: 94)
         var fromTop = NSNumber(value: 0)
         
         switch cardType {
         case CardType.Board:
             spaceBetweenButtons = NSNumber(value: 30)
-            fromTop = NSNumber(value: -35)
+            fromTop = NSNumber(value: -5)
         case CardType.Hand:
-            if moveType == MoveType.GamePlay {
-                spaceBetweenButtons = NSNumber(value: -30)
-            } else {
-                spaceBetweenButtons = NSNumber(value: -20)
-            }
-            fromTop = NSNumber(value: 5)
+            spaceBetweenButtons = NSNumber(value: -40)
+            fromTop = NSNumber(value: 35)
         }
         
-        let containerWidth = NSNumber(value: (cards.count * buttonWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
+        let containerWidth = NSNumber(value: (cards.count * cardWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         var views = [String : AnyObject]()
-        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBetweenButtons" : spaceBetweenButtons, "containerWidth" : containerWidth]
+        let metrics = ["cardWidth" : cardWidth, "cardHeight" : cardHeight, "spaceBetweenButtons" : spaceBetweenButtons, "containerWidth" : containerWidth]
         var format = "H:|-0-"
         
         for i in 0..<cards.count
         {
             views["button\(i)"] = cards[i]
-            format += "[button\(i)(==buttonWidth)]"
+            format += "[button\(i)(==cardWidth)]"
             if i != cards.count - 1
             {
                 format += "-spaceBetweenButtons-"
@@ -98,13 +92,13 @@ class CardView: UIView {
                 format += "-0-|"
             }
             containerView.addSubview(cards[i])
-            containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[button\(i)(==buttonHeight)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
+            containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[button\(i)(==cardHeight)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
         }
         
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
         
         self.addSubview(containerView)
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[containerView(==buttonHeight)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: ["containerView" : containerView]))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[containerView(==cardHeight)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: ["containerView" : containerView]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[containerView(==containerWidth)]", options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: ["containerView" : containerView]))
         self.addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         self.addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: CGFloat(truncating: fromTop)))

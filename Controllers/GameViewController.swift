@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
         playButton.layer.cornerRadius = 4
         buildPlayerControllers()
-        gameBoardView.changeColor()
+        drawBoard()
         startGame()
     }
     
@@ -62,6 +62,7 @@ class GameViewController: UIViewController {
                 player1Controller.myTurn()
                 
                 aiTurn()
+
                 gameBoard.findWhoGoesFirst()
                 firstTurn = true
                 if firstTurn {
@@ -80,12 +81,37 @@ class GameViewController: UIViewController {
                 player1Controller.getCardController().removeSelectedCards()
                 player1Controller.getPlayer().turnOver()
                 player1Controller.myTurn()
-                
                 aiTurn()
             }
         default:
             print("")
         }
+    }
+    
+    func drawBoard() {
+        var deck = [UIButton]()
+        let deckCards = gameBoard.getDeck()
+        for x in 0..<deckCards.getCardCount() {
+            let card = deckCards.cards[x]
+            card.addTarget(self, action: #selector(pressDeck), for: .touchUpInside)
+            deck.append(card)
+        }
+        var discardPile = [UIButton]()
+        let discardCards = gameBoard.getDiscardPile()
+        for x in 0..<discardCards.getCardCount() {
+            let card = discardCards.cards[x]
+            card.addTarget(self, action: #selector(pressPile), for: .touchUpInside)
+            discardPile.append(card)
+        }
+        gameBoardView.redrawBoard(deck: deck, discardPile: discardPile)
+    }
+    
+    @IBAction func pressDeck(_ sender: UIButton) {
+        print("DECK")
+    }
+    
+    @IBAction func pressPile(_ sender: UIButton) {
+        print("DISCARD PILE")
     }
     
     func aiTurn() {
@@ -156,23 +182,16 @@ class GameViewController: UIViewController {
     
     func buildPlayerControllers() {
         player1Controller.setPlayer(player: gameBoard.getPlayerArray()[0])
-        player1Controller.changeColor()
         switch numOfPlayers {
         case 2:
             player3Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
-            player3Controller.changeColor()
         case 3:
             player2Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
-            player2Controller.changeColor()
             player3Controller.setPlayer(player: gameBoard.getPlayerArray()[2])
-            player3Controller.changeColor()
         case 4:
             player2Controller.setPlayer(player: gameBoard.getPlayerArray()[1])
-            player2Controller.changeColor()
             player3Controller.setPlayer(player: gameBoard.getPlayerArray()[2])
-            player3Controller.changeColor()
             player4Controller.setPlayer(player: gameBoard.getPlayerArray()[3])
-            player4Controller.changeColor()
         default:
             return
         }

@@ -32,3 +32,6 @@ enum Difficulty {
     case None //For Humans
 }
 
+let cardHeight = NSNumber(value: 113)
+let cardWidth = NSNumber(value: 65)
+
