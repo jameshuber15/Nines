@@ -28,7 +28,6 @@ class GameViewController: UIViewController {
         gameBoard.startGame(numOfPlayers: numOfPlayers, numHumanPlayers: 1, difficulty: difficulty)
         playButton.layer.cornerRadius = 4
         buildPlayerControllers()
-        drawBoard()
         startGame()
     }
     
@@ -38,6 +37,7 @@ class GameViewController: UIViewController {
         player1Controller.getPlayer().turnOver()
         
         aiTurn()
+        drawBoard()
     }
     
     @IBAction func play(_ sender: UIButton) {
