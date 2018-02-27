@@ -9,13 +9,29 @@
 import Foundation
 
 class DiscardPile: CardGroup {
-    internal var topCard: PlayingCard?
+    internal var topCard: PlayingCard
     internal var numTopCards: Int
     
     override init() {
-        self.topCard = nil
+        self.topCard = PlayingCard()
         self.numTopCards = 0
         super.init()
+    }
+    
+    func setTopCard(topCard: PlayingCard) {
+        self.topCard = topCard
+    }
+    
+    func setNumTopCards(numTopCards: Int) {
+        self.numTopCards = numTopCards
+    }
+    
+    func getTopCard() -> PlayingCard{
+        return topCard
+    }
+    
+    func getNumTopCards() -> Int {
+        return numTopCards
     }
     
     override func toString() -> String {
