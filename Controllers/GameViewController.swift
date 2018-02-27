@@ -93,7 +93,7 @@ class GameViewController: UIViewController {
         let deckCards = gameBoard.getDeck()
         for x in 0..<deckCards.getCardCount() {
             let card = deckCards.cards[x]
-            card.addTarget(self, action: #selector(pressDeck), for: .touchUpInside)
+            card.isEnabled = false
             deck.append(card)
         }
         var discardPile = [UIButton]()
@@ -104,10 +104,6 @@ class GameViewController: UIViewController {
             discardPile.append(card)
         }
         gameBoardView.redrawBoard(deck: deck, discardPile: discardPile)
-    }
-    
-    @IBAction func pressDeck(_ sender: UIButton) {
-        print("DECK")
     }
     
     @IBAction func pressPile(_ sender: UIButton) {

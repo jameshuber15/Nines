@@ -68,9 +68,9 @@ class Player3View: UIView {
         switch cardType {
         case CardType.Board:
             spaceBetweencards = NSNumber(value: 30)
-            fromTop = NSNumber(value: 30)
+            fromTop = NSNumber(value: 0)
         case CardType.Hand:
-            fromTop = NSNumber(value: -10)
+            fromTop = NSNumber(value: -40)
         }
         
         let containerWidth = NSNumber(value: (cards.count * cardWidth.intValue) + (cards.count - 1) * spaceBetweencards.intValue)
