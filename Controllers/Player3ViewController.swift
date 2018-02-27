@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Player3ViewController: PlayerViewController {
+class Player3ViewController: AIViewController {
     @IBOutlet weak var playerView: Player3View!
     
     override func viewDidLoad() {
@@ -23,7 +23,8 @@ class Player3ViewController: PlayerViewController {
         playerView.delete()
     }
     
-    override func myTurn() {
+    override func myTurn(firstTurn: Bool) -> CardGroup {
+        var cardHand = CardGroup()
         switch player.getMoveType() {
         case MoveType.DrawCards:
             print(player.toString())
@@ -36,37 +37,15 @@ class Player3ViewController: PlayerViewController {
             player.getCardHand().setUpCards(upCards: upCards.copy())
             print(player.toString())
         case MoveType.GamePlay:
-            print("3")
+            if firstTurn {
+                cardHand = forcePlayLowestCards()
+            }
         }
-        redrawView(player: player)
+        redrawView()
+        return cardHand
     }
     
-    func select3Cards() -> CardGroup{
-        //TODO Make AI Worthy
-        let result = CardGroup()
-        let rand:UInt32 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
-        var num:Int = Int(rand)
-        
-        result.addCard(newCard: player.getCardHand().cards[num])
-        
-        var rand2:UInt32 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
-        while rand2 == rand {
-            rand2 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
-        }
-        num = Int(rand2)
-        result.addCard(newCard: player.getCardHand().cards[num])
-        
-        var rand3:UInt32 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
-        while rand3 == rand || rand3 == rand2 {
-            rand3 = arc4random_uniform(UInt32(player.getCardHand().getCardCount()))
-        }
-        num = Int(rand3)
-        result.addCard(newCard: player.getCardHand().cards[num])
-        print(result.toString())
-        return result
-    }
-    
-    func redrawView(player: Player) {
+    func redrawView() {
         var cards = [UIButton]()
         let cardHand = player.getCardHand().cards
         for x in 0..<cardHand.count {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0584CDB2045D9D500ABAF08 /* AIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0584CDA2045D9D500ABAF08 /* AIViewController.swift */; };
 		A0694A89203E1C4B007D3920 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0694A88203E1C4B007D3920 /* AppDelegate.swift */; };
 		A0694A90203E1C4B007D3920 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0694A8F203E1C4B007D3920 /* Assets.xcassets */; };
 		A0694A93203E1C4B007D3920 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0694A91203E1C4B007D3920 /* LaunchScreen.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0584CDA2045D9D500ABAF08 /* AIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIViewController.swift; sourceTree = "<group>"; };
 		A0694A88203E1C4B007D3920 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0694A8F203E1C4B007D3920 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0694A92203E1C4B007D3920 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				A0694AAA203E1CFF007D3920 /* Player3ViewController.swift */,
 				A0694AAC203E1D05007D3920 /* Player4ViewController.swift */,
 				A0694AAE203E1D0F007D3920 /* PlayerViewController.swift */,
+				A0584CDA2045D9D500ABAF08 /* AIViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				A0694AC9203E1D61007D3920 /* Player4View.swift in Sources */,
 				A0694ABF203E1D4A007D3920 /* CardView.swift in Sources */,
 				A0694AC7203E1D5D007D3920 /* Player3View.swift in Sources */,
+				A0584CDB2045D9D500ABAF08 /* AIViewController.swift in Sources */,
 				A0694AA7203E1CF2007D3920 /* Player1ViewController.swift in Sources */,
 				A0694AB5203E1D25007D3920 /* DiscardPile.swift in Sources */,
 				A0694ACB203E1D6C007D3920 /* Globals.swift in Sources */,

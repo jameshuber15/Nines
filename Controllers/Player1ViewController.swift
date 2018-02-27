@@ -21,7 +21,32 @@ class Player1ViewController: PlayerViewController {
         cardController.changeColor()
     }
     
-    override func myTurn() {
+    func myTurn(selectedCards: CardGroup, firstTurn: Bool) {
+        switch player.getMoveType() {
+        case MoveType.ThreeCardsDown:
+            if selectedCards.getCardCount() == 3 {
+                player.getCardHand().setDownCards(downCards: selectedCards.copy())
+                player.getCardHand().flipOverHand()
+                cardController.removeSelectedCards()
+                player.turnOver()
+            }
+        case MoveType.ThreeCardsUp:
+            if selectedCards.getCardCount() == 3 {
+                player.getCardHand().setUpCards(upCards: selectedCards.copy())
+                player.getCardHand().flipOverHand()
+                cardController.removeSelectedCards()
+                player.turnOver()
+            }
+        case MoveType.GamePlay:
+            if selectedCards.getCardCount() == 3 {
+                player.getCardHand().playCards(selectedCards: selectedCards.copy())
+                player.getCardHand().flipOverHand()
+                cardController.removeSelectedCards()
+                player.turnOver()
+            }
+        default:
+            print("")
+        }
         cardController.redrawView(player: player)
     }
     
