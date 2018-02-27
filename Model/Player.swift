@@ -62,6 +62,8 @@ class Player {
             self.moveType = MoveType.ThreeCardsUp
             getCardHand().sortHandByRank()
         case MoveType.ThreeCardsUp:
+            self.moveType = MoveType.FirstTurn
+        case MoveType.FirstTurn:
             self.moveType = MoveType.GamePlay
         case MoveType.GamePlay:
             self.moveType = MoveType.GamePlay

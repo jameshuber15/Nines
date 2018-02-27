@@ -48,7 +48,7 @@ class GameBoard {
                         if player.checkForCard(suit: suit, rank: rank) {
                             player.goesFirst(goFirst: true)
                             goFirst = true
-                            print("Player \(player.playerNum) goes first!")
+                            print("Player \(player.playerNum) goes first!\n")
                             break
                         }
                     }
@@ -70,6 +70,36 @@ class GameBoard {
                 playerArray[y].getCardHand().addCard(newCard: dealtCard)
             }
         }
+    }
+    
+    func playCards(cards: CardGroup, player: Player) -> Bool {
+        var turnAgain = false
+        for x in 0..<cards.getCardCount() {
+            let card = cards.getCards()[x]
+            discardPile.addCard(newCard: card.copy())
+            player.getCardHand().removeCard(newCard: card)
+            if card.getRank() == 10 {
+                discardPile.setTopCard(topCard: PlayingCard())
+                discardPile.setNumTopCards(numTopCards: 0)
+                turnAgain = true
+            } else {
+                if discardPile.getTopCard().getRank() == card.getRank() {
+                    let newNum = cards.getCardCount() + discardPile.getNumTopCards()
+                    if newNum == 4 {
+                        discardPile.setTopCard(topCard: PlayingCard())
+                        discardPile.setNumTopCards(numTopCards: 0)
+                        turnAgain = true
+                    } else {
+                        discardPile.setTopCard(topCard: card)
+                        discardPile.setNumTopCards(numTopCards: newNum)
+                    }
+                } else {
+                    discardPile.setTopCard(topCard: card)
+                    discardPile.setNumTopCards(numTopCards: cards.getCardCount())
+                }
+            }
+        }
+        return turnAgain
     }
     
     func getPlayerArray() -> [Player] {
