@@ -23,22 +23,7 @@ class Player3View: UIView {
     
     func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
         self.delete()
-        switch moveType {
-        case MoveType.DrawCards:
-            print("Drawing cards for ThreeCardsDown for AI")
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.ThreeCardsDown:
-            print("Drawing cards for ThreeCardsDown for AI")
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.ThreeCardsUp:
-            print("Drawing cards for ThreeCardsUp for AI")
-            self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.GamePlay:
-            print("Drawing cards for Game Play for AI")
-            self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        }
+        draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
     }
     
     func delete() {

@@ -23,21 +23,24 @@ class Player2ViewController: AIViewController {
         playerView.delete()
     }
     
-    override func myTurn(firstTurn: Bool) -> CardGroup {
-        let cardHand = CardGroup()
+    override func myTurn() -> CardGroup {
+        var cardHand = CardGroup()
         switch player.getMoveType() {
         case MoveType.DrawCards:
-            print(player.toString())
+            print("")
         case MoveType.ThreeCardsDown:
-            let downCards = select3Cards()
-            player.getCardHand().setDownCards(downCards: downCards.copy())
-            print(player.toString())
+            cardHand = select3Cards()
+            player.getCardHand().setDownCards(downCards: cardHand.copy())
+            player.getCardHand().sortHandByRank()
         case MoveType.ThreeCardsUp:
-            let upCards = select3Cards()
-            player.getCardHand().setUpCards(upCards: upCards.copy())
-            print(player.toString())
+            cardHand = select3Cards()
+            player.getCardHand().setUpCards(upCards: cardHand.copy())
+        case MoveType.FirstTurn:
+            if player.getGoesFirst() {
+                cardHand = forcePlayLowestCards()
+            }
         case MoveType.GamePlay:
-            print("3")
+            print("GamePlay")
         }
         redrawView()
         return cardHand

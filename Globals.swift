@@ -18,6 +18,7 @@ enum MoveType {
     case DrawCards
     case ThreeCardsDown
     case ThreeCardsUp
+    case FirstTurn
     case GamePlay
 }
 

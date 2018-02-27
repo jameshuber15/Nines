@@ -12,7 +12,6 @@ class GameViewController: UIViewController {
     var numOfPlayers: Int = 0
     var difficulty: Difficulty = Difficulty.None
     var gameBoard : GameBoard!
-    var firstTurn = false
     @IBOutlet var gameView: UIView!
     @IBOutlet weak var player1View: UIView!
     @IBOutlet weak var player2View: UIView!
@@ -32,8 +31,8 @@ class GameViewController: UIViewController {
     }
     
     func startGame() {
-        print("Player 1's turn\n \(player1Controller.getPlayer().toString())")
-        player1Controller.myTurn(selectedCards: CardGroup(), firstTurn: firstTurn)
+        print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
+        player1Controller.myTurn(selectedCards: CardGroup())
         player1Controller.getPlayer().turnOver()
         
         aiTurn()
@@ -42,24 +41,12 @@ class GameViewController: UIViewController {
     
     @IBAction func play(_ sender: UIButton) {
         let selectedCards = player1Controller.getCardController().getSelectedCards()
-        player1Controller.myTurn(selectedCards: selectedCards, firstTurn: firstTurn)
-        switch player1Controller.getPlayer().getMoveType() {
-        case MoveType.GamePlay:
-            gameBoard.findWhoGoesFirst()
-            firstTurn = true
-            if firstTurn {
-                if player1Controller.getPlayer().getGoesFirst() {
-                    firstTurn = false
-                    return
-                }
-                aiTurn()
-            }
-            firstTurn = false
-        default:
-            print("")
-        }
-        
+        player1Controller.myTurn(selectedCards: selectedCards)
+        player1Controller.getPlayer().turnOver()
         aiTurn()
+        if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn {
+            firstTurn()
+        }
     }
     
     func drawBoard() {
@@ -86,69 +73,37 @@ class GameViewController: UIViewController {
     
     func aiTurn() {
         var controller: AIViewController!
+        var playedCards = CardGroup()
         if numOfPlayers == 2 {
             controller = player3Controller
-            if firstTurn {
-                if controller.getPlayer().getGoesFirst() {
-                    print("Player 2's turn\n \(controller.getPlayer().toString())")
-                    print(controller.myTurn(firstTurn: firstTurn))
-                    
-                    controller.getPlayer().turnOver()
-                    self.firstTurn = false
-                }
-            } else {
-                print("Player 2's turn\n \(controller.getPlayer().toString())")
-                print(controller.myTurn(firstTurn: firstTurn))
-                controller.getPlayer().turnOver()
-            }
+            print("Player 2's turn\n\(controller.getPlayer().toString())")
+            playedCards = controller.myTurn()
+            print("Player 2 is playing : \(playedCards.toString())\n")
+            controller.getPlayer().turnOver()
         } else {
             controller = player2Controller
-            if firstTurn {
-                if controller.getPlayer().getGoesFirst() {
-                    print("Player 2's turn\n \(controller.getPlayer().toString())")
-                    print(controller.myTurn(firstTurn: firstTurn))
-                    controller.getPlayer().turnOver()
-                    self.firstTurn = false
-                }
-            } else {
-                print("Player 2's turn\n \(controller.getPlayer().toString())")
-                print(controller.myTurn(firstTurn: firstTurn))
-                controller.getPlayer().turnOver()
-            }
+            print("Player 2's turn\n\(controller.getPlayer().toString())")
+            playedCards = controller.myTurn()
+            print("Player 2 is playing : \(playedCards.toString())\n")
+            controller.getPlayer().turnOver()
         }
         
         if numOfPlayers >= 3 {
             controller = player3Controller
-            if firstTurn {
-                if controller.getPlayer().getGoesFirst() {
-                    print("Player 3's turn\n \(controller.getPlayer().toString())")
-                    print(controller.myTurn(firstTurn: firstTurn))
-                    controller.getPlayer().turnOver()
-                    self.firstTurn = false
-                }
-            } else {
-                print("Player 3's turn\n \(controller.getPlayer().toString())")
-                print(controller.myTurn(firstTurn: firstTurn))
-                controller.getPlayer().turnOver()
-            }
+            print("Player 3's turn\n\(controller.getPlayer().toString())")
+            playedCards = controller.myTurn()
+            print("Player 3 is playing : \(playedCards.toString())\n")
+            controller.getPlayer().turnOver()
         }
         
         if numOfPlayers == 4 {
             controller = player4Controller
-            if firstTurn {
-                if controller.getPlayer().getGoesFirst() {
-                    print("Player 4's turn\n \(controller.getPlayer().toString())")
-                    print(controller.myTurn(firstTurn: firstTurn))
-                    controller.getPlayer().turnOver()
-                    self.firstTurn = false
-                }
-            } else {
-                print("Player 4's turn\n \(controller.getPlayer().toString())")
-                print(controller.myTurn(firstTurn: firstTurn))
-                controller.getPlayer().turnOver()
-            }
+            print("Player 4's turn\n\(controller.getPlayer().toString())")
+            playedCards = controller.myTurn()
+            print("Player 4 is playing : \(playedCards.toString())\n")
+            controller.getPlayer().turnOver()
         }
-        print("Player 1's turn\n \(player1Controller.getPlayer().toString())")
+        print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
     }
     
     func buildPlayerControllers() {
@@ -168,6 +123,85 @@ class GameViewController: UIViewController {
         }
     }
     
+    func firstTurn() {
+        gameBoard.findWhoGoesFirst()
+        switch numOfPlayers {
+        case 2:
+            if player1Controller.getPlayer().getGoesFirst() {
+                player3Controller.getPlayer().turnOver()
+            } else {
+                player1Controller.getPlayer().turnOver()
+                
+                let playedCards = player3Controller.myTurn()
+                print("Player 2 is playing : \(playedCards.toString())\n")
+                player3Controller.getPlayer().turnOver()
+            }
+        case 3:
+            if player1Controller.getPlayer().getGoesFirst() {
+                player2Controller.getPlayer().turnOver()
+                player3Controller.getPlayer().turnOver()
+            } else if player2Controller.getPlayer().getGoesFirst(){
+                player1Controller.getPlayer().turnOver()
+                
+                var playedCards = player2Controller.myTurn()
+                print("Player 2 is playing : \(playedCards.toString())\n")
+                player2Controller.getPlayer().turnOver()
+                
+                playedCards = player3Controller.myTurn()
+                print("Player 3 is playing : \(playedCards.toString())\n")
+                player3Controller.getPlayer().turnOver()
+            } else {
+                player1Controller.getPlayer().turnOver()
+                player2Controller.getPlayer().turnOver()
+                
+                let playedCards = player3Controller.myTurn()
+                print("Player 3 is playing : \(playedCards.toString())\n")
+                player3Controller.getPlayer().turnOver()
+            }
+        case 4:
+            if player1Controller.getPlayer().getGoesFirst() {
+                player2Controller.getPlayer().turnOver()
+                player3Controller.getPlayer().turnOver()
+                player4Controller.getPlayer().turnOver()
+            } else if player2Controller.getPlayer().getGoesFirst() {
+                player1Controller.getPlayer().turnOver()
+                
+                var playedCards = player2Controller.myTurn()
+                print("Player 2 is playing : \(playedCards.toString())\n")
+                player2Controller.getPlayer().turnOver()
+                
+                playedCards = player3Controller.myTurn()
+                print("Player 3 is playing : \(playedCards.toString())\n")
+                player3Controller.getPlayer().turnOver()
+                
+                playedCards = player4Controller.myTurn()
+                print("Player 4 is playing : \(playedCards.toString())\n")
+                player4Controller.getPlayer().turnOver()
+            } else if player3Controller.getPlayer().getGoesFirst() {
+                player1Controller.getPlayer().turnOver()
+                player2Controller.getPlayer().turnOver()
+                
+                var playedCards = player3Controller.myTurn()
+                print("Player 3 is playing : \(playedCards.toString())\n")
+                player3Controller.getPlayer().turnOver()
+                
+                playedCards = player4Controller.myTurn()
+                print("Player 4 is playing : \(playedCards.toString())\n")
+                player4Controller.getPlayer().turnOver()
+            } else {
+                player1Controller.getPlayer().turnOver()
+                player2Controller.getPlayer().turnOver()
+                player3Controller.getPlayer().turnOver()
+                
+                let playedCards = player4Controller.myTurn()
+                print("Player 4 is playing : \(playedCards.toString())\n")
+                player4Controller.getPlayer().turnOver()
+            }
+        default:
+            print("")
+        }
+    }
+        
     private lazy var player1Controller: Player1ViewController = {
         // Load Storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

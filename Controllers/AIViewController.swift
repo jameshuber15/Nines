@@ -12,7 +12,7 @@ class AIViewController: PlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    func myTurn(firstTurn: Bool) -> CardGroup {return CardGroup()}
+    func myTurn() -> CardGroup {return CardGroup()}
     func forcePlayLowestCards() -> CardGroup {
         let result = CardGroup()
         let cardHand = player.getCardHand().cards
@@ -25,7 +25,6 @@ class AIViewController: PlayerViewController {
                 break
             }
         }
-        print(result.toString())
         return result
     }
     
@@ -50,7 +49,6 @@ class AIViewController: PlayerViewController {
         }
         num = Int(rand3)
         result.addCard(newCard: player.getCardHand().cards[num])
-        print(result.toString())
         return result
     }
     

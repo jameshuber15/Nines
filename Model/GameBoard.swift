@@ -48,7 +48,7 @@ class GameBoard {
                         if player.checkForCard(suit: suit, rank: rank) {
                             player.goesFirst(goFirst: true)
                             goFirst = true
-                            print("Player \(player.playerNum) goes first!")
+                            print("Player \(player.playerNum) goes first!\n")
                             break
                         }
                     }

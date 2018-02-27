@@ -25,18 +25,7 @@ class CardView: UIView {
     
     func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
         self.delete()
-        switch moveType {
-        case MoveType.DrawCards:
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.ThreeCardsDown:
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.ThreeCardsUp:
-            self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.GamePlay:
-            self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        }
+        draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
     }
     
     func delete() {

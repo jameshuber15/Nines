@@ -49,7 +49,6 @@ class PlayerHand : CardGroup {
             upCards.getCards()[x].setSelected(cardSelected: false)
             removeCard(newCard: card)
         }
-        print(self.toString())
     }
     
     func getUpCards() -> CardGroup {
@@ -63,7 +62,6 @@ class PlayerHand : CardGroup {
             downCards.getCards()[x].setSelected(cardSelected: false)
             removeCard(newCard: card)
         }
-        print(self.toString())
     }
     
     func flipOverHand() {
