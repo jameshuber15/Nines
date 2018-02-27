@@ -157,6 +157,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8l-97-tBt" userLabel="Player 1">
+                                <rect key="frame" x="197" y="244" width="273" height="131"/>
+                                <connections>
+                                    <segue destination="lt2-rU-VVN" kind="embed" id="kuc-he-ONc"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-8P-uH3" userLabel="Button">
+                                <rect key="frame" x="-1" y="312" width="200" height="63"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZc-Ut-als">
+                                        <rect key="frame" x="94" y="0.0" width="62.5" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="play:" destination="uNZ-gT-R7D" eventType="touchUpInside" id="w7t-ip-CHZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 3 Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5E-5c-SLV">
+                                        <rect key="frame" x="75" y="38" width="100.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="fZc-Ut-als" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leading" constant="94" id="SA1-yw-6Y6"/>
+                                    <constraint firstItem="fZc-Ut-als" firstAttribute="centerX" secondItem="s5E-5c-SLV" secondAttribute="centerX" id="V1D-K9-MPu"/>
+                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leadingMargin" constant="67" id="Z6y-V8-9NY"/>
+                                    <constraint firstItem="fZc-Ut-als" firstAttribute="top" secondItem="jYP-8P-uH3" secondAttribute="top" id="mA3-4b-Dxs"/>
+                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="top" secondItem="fZc-Ut-als" secondAttribute="bottom" constant="8" symbolic="YES" id="vwV-8r-oYD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoi-Wc-Vcu" customClass="GameBoardView" customModule="Three_Down" customModuleProvider="target">
+                                <rect key="frame" x="197" y="122" width="273" height="125"/>
+                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntS-JV-N9V" userLabel="Player 2">
                                 <rect key="frame" x="470" y="38" width="197" height="273"/>
                                 <connections>
@@ -173,46 +213,6 @@
                                 <rect key="frame" x="0.0" y="38" width="199" height="273"/>
                                 <connections>
                                     <segue destination="uv1-vu-bSV" kind="embed" id="26M-pf-iaN"/>
-                                </connections>
-                            </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-8P-uH3" userLabel="Button">
-                                <rect key="frame" x="-1" y="312" width="200" height="63"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 3 Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5E-5c-SLV">
-                                        <rect key="frame" x="8" y="39" width="101" height="18"/>
-                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZc-Ut-als">
-                                        <rect key="frame" x="27" y="1" width="63" height="30"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="15"/>
-                                        <state key="normal" title="Play">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="play:" destination="uNZ-gT-R7D" eventType="touchUpInside" id="w7t-ip-CHZ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="fZc-Ut-als" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leading" constant="27" id="SA1-yw-6Y6"/>
-                                    <constraint firstItem="fZc-Ut-als" firstAttribute="centerX" secondItem="s5E-5c-SLV" secondAttribute="centerX" id="V1D-K9-MPu"/>
-                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="leading" secondItem="jYP-8P-uH3" secondAttribute="leadingMargin" id="Z6y-V8-9NY"/>
-                                    <constraint firstItem="fZc-Ut-als" firstAttribute="top" secondItem="jYP-8P-uH3" secondAttribute="top" constant="1" id="mA3-4b-Dxs"/>
-                                    <constraint firstItem="s5E-5c-SLV" firstAttribute="top" secondItem="fZc-Ut-als" secondAttribute="bottom" constant="8" symbolic="YES" id="vwV-8r-oYD"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoi-Wc-Vcu" customClass="GameBoardView" customModule="Three_Down" customModuleProvider="target">
-                                <rect key="frame" x="197" y="122" width="273" height="125"/>
-                                <color key="backgroundColor" red="0.61971169709999996" green="0.72904902699999996" blue="0.92514318230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8l-97-tBt" userLabel="Player 1">
-                                <rect key="frame" x="197" y="244" width="273" height="131"/>
-                                <connections>
-                                    <segue destination="lt2-rU-VVN" kind="embed" id="kuc-he-ONc"/>
                                 </connections>
                             </containerView>
                         </subviews>

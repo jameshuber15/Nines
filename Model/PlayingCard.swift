@@ -22,7 +22,7 @@ class PlayingCard : UIButton {
         self.frontImage = UIImage(named: "cardfront")!
         backImage = UIImage(named: "back")!
         isFaceUp = false
-        self.rank = 0
+        self.rank = -1
         self.suit = String()
         self.clearCards = false
         super.init(coder: aDecoder)
@@ -33,7 +33,7 @@ class PlayingCard : UIButton {
         self.frontImage = UIImage(named: "cardfront")!
         backImage = UIImage(named: "back")!
         isFaceUp = false
-        self.rank = 0
+        self.rank = -1
         self.suit = String()
         self.clearCards = false
         super.init(frame: CGRect.zero)

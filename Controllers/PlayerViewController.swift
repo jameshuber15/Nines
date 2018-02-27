@@ -14,7 +14,6 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
     }
     func changeColor(){}
-    func myTurn() {}
     func setPlayer(player: Player) {
         self.player = player
     }

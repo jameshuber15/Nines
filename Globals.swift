@@ -18,6 +18,7 @@ enum MoveType {
     case DrawCards
     case ThreeCardsDown
     case ThreeCardsUp
+    case FirstTurn
     case GamePlay
 }
 
@@ -31,4 +32,7 @@ enum Difficulty {
     case Hard
     case None //For Humans
 }
+
+let cardHeight = NSNumber(value: 113)
+let cardWidth = NSNumber(value: 65)
 

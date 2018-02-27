@@ -23,22 +23,7 @@ class Player2View: UIView {
     
     func redrawCards(cards: [UIButton], upCards: [UIButton], downCards: [UIButton], moveType: MoveType) {
         self.delete()
-        switch moveType {
-        case MoveType.DrawCards:
-            print("Drawing cards for ThreeCardsDown for AI")
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.ThreeCardsDown:
-            print("Drawing cards for ThreeCardsDown for AI")
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.ThreeCardsUp:
-            print("Drawing cards for ThreeCardsUp for AI")
-            self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        case MoveType.GamePlay:
-            print("Drawing cards for Game Play for AI")
-            self.delete()
-            draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
-        }
+        draw(handCards: cards, upCards: upCards, downCards: downCards, moveType: moveType)
     }
     
     func delete() {
@@ -61,26 +46,24 @@ class Player2View: UIView {
     }
     
     func drawHand(cards: [UIButton], cardType: CardType, moveType: MoveType) {
-        var spaceBetweenButtons = NSNumber(value: -30)
-        let buttonWidth = NSNumber(value: 94)
-        let buttonHeight = NSNumber(value: 55)
+        var spaceBetweenButtons = NSNumber(value: -40)
         var fromLeft = NSNumber(value: 0)
         
         switch cardType {
         case CardType.Board:
             spaceBetweenButtons = NSNumber(value: 30)
-            fromLeft = NSNumber(value: -40)
+            fromLeft = NSNumber(value: -60)
         case CardType.Hand:
-            fromLeft = NSNumber(value: 20)
+            fromLeft = NSNumber(value: 0)
         }
         
-        let containerHeight = NSNumber(value: (cards.count * buttonHeight.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
+        let containerHeight = NSNumber(value: (cards.count * cardWidth.intValue) + (cards.count - 1) * spaceBetweenButtons.intValue)
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         var views = [String : AnyObject]()
-        let metrics = ["buttonWidth" : buttonWidth, "buttonHeight" : buttonHeight, "spaceBetweenButtons" : spaceBetweenButtons, "containerHeight" : containerHeight]
+        let metrics = ["buttonWidth" : cardHeight, "buttonHeight" : cardWidth, "spaceBetweenButtons" : spaceBetweenButtons, "containerHeight" : containerHeight]
         var format = "V:|-0-"
         
         for i in 0..<cards.count

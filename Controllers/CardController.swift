@@ -66,11 +66,12 @@ class CardController: UIViewController {
     }
     
     @objc func selectFromHand(sender:PlayingCard!) {
-        print("Clicked on \(sender.toString())")
         let addCard = sender.toggleSelection(button: sender, selectable: selectedCards.getCardCount() < 3)
         if addCard {
+            print("Selecting on \(sender.toString())\n")
             selectedCards.addCard(newCard: sender)
         } else {
+            print("Deselecting on \(sender.toString())\n")
             selectedCards.removeCard(newCard: sender)
         }
     }
