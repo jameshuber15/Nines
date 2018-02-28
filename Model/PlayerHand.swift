@@ -37,10 +37,6 @@ class PlayerHand : CardGroup {
         return playableCards
     }
     
-    func playCards(selectedCards: CardGroup) {
-        print("Playing: \(selectedCards)")
-    }
-    
     func setUpCards(upCards: CardGroup) {
         self.upCards = upCards
         for x in 0..<upCards.getCardCount() {

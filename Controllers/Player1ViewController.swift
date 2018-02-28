@@ -21,40 +21,44 @@ class Player1ViewController: PlayerViewController {
         cardController.changeColor()
     }
     
+    
+    
     func myTurn(selectedCards: CardGroup) -> Bool {
         switch player.getMoveType() {
         case MoveType.DrawCards:
             print("")
+            cardController.redrawView(player: player)
         case MoveType.ThreeCardsDown:
-            if selectedCards.getCardCount() == 3 {
+            if player.validateCards(selectedCards: selectedCards) {
                 player.getCardHand().setDownCards(downCards: selectedCards.copy())
                 player.getCardHand().flipOverHand()
-                cardController.removeSelectedCards()
                 player.getCardHand().sortHandByRank()
+                removeAndRedraw(cards: selectedCards)
             } else {
                 return false
             }
         case MoveType.ThreeCardsUp:
-            if selectedCards.getCardCount() == 3 {
+            if player.validateCards(selectedCards: selectedCards) {
                 player.getCardHand().setUpCards(upCards: selectedCards.copy())
-                player.getCardHand().flipOverHand()
-                cardController.removeSelectedCards()
+                removeAndRedraw(cards: selectedCards)
             } else {
                 return false
             }
         case MoveType.FirstTurn:
-            print("")
+            if !player.validateCards(selectedCards: selectedCards) {
+                return false
+            }
         case MoveType.GamePlay:
-            if selectedCards.getCardCount() == 3 {
-                player.getCardHand().playCards(selectedCards: selectedCards.copy())
-                player.getCardHand().flipOverHand()
-                cardController.removeSelectedCards()
-            } else {
+            if !player.validateCards(selectedCards: selectedCards) {
                 return false
             }
         }
-        cardController.redrawView(player: player)
         return true
+    }
+    
+    func removeAndRedraw(cards: CardGroup) {
+        cardController.removeSelectedCards()
+        cardController.redrawView(player: player)
     }
     
     func getCardController() -> CardController {

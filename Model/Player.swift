@@ -87,6 +87,42 @@ class Player {
         return false
     }
     
+    func validateCards(selectedCards: CardGroup) -> Bool {
+        switch self.moveType {
+        case MoveType.ThreeCardsDown:
+            if selectedCards.getCardCount() != 3 {
+                return false
+            }
+        case MoveType.ThreeCardsUp:
+            if selectedCards.getCardCount() != 3 {
+                return false
+            }
+        case MoveType.FirstTurn:
+            return validateFirstTurn(selectedCards: selectedCards)
+        case MoveType.GamePlay:
+            print("Validate for GamePlay")
+        default:
+            print("")
+        }
+        return true
+    }
+    
+    func validateFirstTurn(selectedCards: CardGroup) -> Bool {
+        if selectedCards.getCardCount() < 1 {
+            print("No Cards Selected\n")
+            return false
+        }
+        let lowestRank = self.cardHand.cards[0].getRank()
+        for card in selectedCards.getCards() {
+            if lowestRank != card.getRank() {
+                print("Lowest Rank: \(lowestRank)\n")
+                print("Current Selected Card: \(card.toString())\n")
+                return false
+            }
+        }
+        return true
+    }
+    
     func getPlayerType() -> PlayerType {
         return playerType
     }

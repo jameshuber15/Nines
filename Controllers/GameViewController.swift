@@ -41,11 +41,18 @@ class GameViewController: UIViewController {
     
     @IBAction func play(_ sender: UIButton) {
         let selectedCards = player1Controller.getCardController().getSelectedCards()
+        var stillMyTurn = false
         if player1Controller.myTurn(selectedCards: selectedCards) {
-            player1Controller.getPlayer().turnOver()
-            aiTurn()
-            if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn {
-                firstTurn()
+            if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn || player1Controller.getPlayer().getMoveType() == MoveType.GamePlay {
+                stillMyTurn = playCards(cards: selectedCards, player: player1Controller.getPlayer())
+                player1Controller.removeAndRedraw(cards: selectedCards)
+            }
+            if !stillMyTurn {
+                player1Controller.getPlayer().turnOver()
+                aiTurn()
+                if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn {
+                    firstTurn()
+                }
             }
         }
     }

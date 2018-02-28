@@ -87,18 +87,17 @@ class GameBoard {
                 turnAgain = true
             } else {
                 if discardPile.getTopCard().getRank() == card.getRank() {
-                    let newNum = cards.getCardCount() + discardPile.getNumTopCards()
-                    if newNum == 4 {
+                    discardPile.setNumTopCards(numTopCards: 1 + discardPile.getNumTopCards())
+                    if discardPile.getNumTopCards() == 4 {
                         discardPile.setTopCard(topCard: PlayingCard())
                         discardPile.setNumTopCards(numTopCards: 0)
                         turnAgain = true
                     } else {
                         discardPile.setTopCard(topCard: card)
-                        discardPile.setNumTopCards(numTopCards: newNum)
                     }
                 } else {
                     discardPile.setTopCard(topCard: card)
-                    discardPile.setNumTopCards(numTopCards: cards.getCardCount())
+                    discardPile.setNumTopCards(numTopCards: 1)
                 }
             }
         }
