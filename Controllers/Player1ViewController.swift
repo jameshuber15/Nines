@@ -23,13 +23,13 @@ class Player1ViewController: PlayerViewController {
     
     
     
-    func myTurn(selectedCards: CardGroup) -> Bool {
+    func myTurn(selectedCards: CardGroup, topCard: PlayingCard) -> Bool {
         switch player.getMoveType() {
         case MoveType.DrawCards:
             print("")
             cardController.redrawView(player: player)
         case MoveType.ThreeCardsDown:
-            if player.validateCards(selectedCards: selectedCards) {
+            if player.validateCards(selectedCards: selectedCards, topCard: PlayingCard()) {
                 player.getCardHand().setDownCards(downCards: selectedCards.copy())
                 player.getCardHand().flipOverHand()
                 player.getCardHand().sortHandByRank()
@@ -38,18 +38,18 @@ class Player1ViewController: PlayerViewController {
                 return false
             }
         case MoveType.ThreeCardsUp:
-            if player.validateCards(selectedCards: selectedCards) {
+            if player.validateCards(selectedCards: selectedCards, topCard: PlayingCard()) {
                 player.getCardHand().setUpCards(upCards: selectedCards.copy())
                 removeAndRedraw(cards: selectedCards)
             } else {
                 return false
             }
         case MoveType.FirstTurn:
-            if !player.validateCards(selectedCards: selectedCards) {
+            if !player.validateCards(selectedCards: selectedCards, topCard: PlayingCard()) {
                 return false
             }
         case MoveType.GamePlay:
-            if !player.validateCards(selectedCards: selectedCards) {
+            if !player.validateCards(selectedCards: selectedCards, topCard: topCard) {
                 return false
             }
         }

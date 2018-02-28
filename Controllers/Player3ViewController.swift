@@ -23,7 +23,7 @@ class Player3ViewController: AIViewController {
         playerView.delete()
     }
     
-    override func myTurn() -> CardGroup {
+    override func myTurn(topCard: PlayingCard) -> CardGroup {
         var cardHand = CardGroup()
         switch player.getMoveType() {
         case MoveType.DrawCards:

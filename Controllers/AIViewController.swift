@@ -12,7 +12,7 @@ class AIViewController: PlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    func myTurn() -> CardGroup {return CardGroup()}
+    func myTurn(topCard: PlayingCard) -> CardGroup {return CardGroup()}
     func forcePlayLowestCards() -> CardGroup {
         let result = CardGroup()
         let cardHand = player.getCardHand().cards
