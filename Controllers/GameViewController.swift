@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
     
     func startGame() {
         print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
-        player1Controller.myTurn(selectedCards: CardGroup())
+        print(player1Controller.myTurn(selectedCards: CardGroup()))
         player1Controller.getPlayer().turnOver()
         
         aiTurn()
@@ -41,11 +41,12 @@ class GameViewController: UIViewController {
     
     @IBAction func play(_ sender: UIButton) {
         let selectedCards = player1Controller.getCardController().getSelectedCards()
-        player1Controller.myTurn(selectedCards: selectedCards)
-        player1Controller.getPlayer().turnOver()
-        aiTurn()
-        if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn {
-            firstTurn()
+        if player1Controller.myTurn(selectedCards: selectedCards) {
+            player1Controller.getPlayer().turnOver()
+            aiTurn()
+            if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn {
+                firstTurn()
+            }
         }
     }
     
@@ -123,12 +124,15 @@ class GameViewController: UIViewController {
         }
     }
     
-    func playCards(cards: CardGroup, player: Player) {
+    func playCards(cards: CardGroup, player: Player) -> Bool {
+        var stillMyTurn = true
         if cards.getCardCount() > 0 {
             if validateCards(cards: cards) {
-                gameBoard.playCards(cards: cards, player: player)
+                stillMyTurn = gameBoard.playCards(cards: cards, player: player)
             }
         }
+        drawBoard()
+        return stillMyTurn
     }
     
     func validateCards(cards: CardGroup) -> Bool {
@@ -153,6 +157,7 @@ class GameViewController: UIViewController {
     }
     
     func firstTurn() {
+        var stillMyTurn = true
         gameBoard.findWhoGoesFirst()
         switch numOfPlayers {
         case 2:
@@ -161,9 +166,11 @@ class GameViewController: UIViewController {
             } else {
                 player1Controller.getPlayer().turnOver()
                 
-                let playedCards = player3Controller.myTurn()
-                print("Player 2 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player3Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player3Controller.myTurn()
+                    print("Player 2 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player3Controller.getPlayer())
+                }
                 player3Controller.getPlayer().turnOver()
             }
         case 3:
@@ -173,23 +180,29 @@ class GameViewController: UIViewController {
             } else if player2Controller.getPlayer().getGoesFirst(){
                 player1Controller.getPlayer().turnOver()
                 
-                var playedCards = player2Controller.myTurn()
-                print("Player 2 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player2Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player2Controller.myTurn()
+                    print("Player 2 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player2Controller.getPlayer())
+                }
                 player2Controller.getPlayer().turnOver()
                 
-                playedCards = player3Controller.myTurn()
-                print("Player 3 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player3Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player3Controller.myTurn()
+                    print("Player 3 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player3Controller.getPlayer())
+                }
                 player3Controller.getPlayer().turnOver()
                 
             } else {
                 player1Controller.getPlayer().turnOver()
                 player2Controller.getPlayer().turnOver()
                 
-                let playedCards = player3Controller.myTurn()
-                print("Player 3 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player3Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player3Controller.myTurn()
+                    print("Player 3 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player3Controller.getPlayer())
+                }
                 player3Controller.getPlayer().turnOver()
             }
         case 4:
@@ -200,42 +213,55 @@ class GameViewController: UIViewController {
             } else if player2Controller.getPlayer().getGoesFirst() {
                 player1Controller.getPlayer().turnOver()
                 
-                var playedCards = player2Controller.myTurn()
-                print("Player 2 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player2Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player2Controller.myTurn()
+                    print("Player 2 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player2Controller.getPlayer())
+                }
                 player2Controller.getPlayer().turnOver()
                 
-                playedCards = player3Controller.myTurn()
-                print("Player 3 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player3Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player3Controller.myTurn()
+                    print("Player 3 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player3Controller.getPlayer())
+                }
                 player3Controller.getPlayer().turnOver()
                 
-                playedCards = player4Controller.myTurn()
-                print("Player 4 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player4Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player4Controller.myTurn()
+                    print("Player 4 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player4Controller.getPlayer())
+                }
                 player4Controller.getPlayer().turnOver()
             } else if player3Controller.getPlayer().getGoesFirst() {
                 player1Controller.getPlayer().turnOver()
                 player2Controller.getPlayer().turnOver()
                 
-                var playedCards = player3Controller.myTurn()
-                print("Player 3 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player3Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player3Controller.myTurn()
+                    print("Player 3 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player3Controller.getPlayer())
+                }
                 player3Controller.getPlayer().turnOver()
                 
-                playedCards = player4Controller.myTurn()
-                print("Player 4 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player4Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player4Controller.myTurn()
+                    print("Player 4 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player4Controller.getPlayer())
+                }
                 player4Controller.getPlayer().turnOver()
             } else {
                 player1Controller.getPlayer().turnOver()
                 player2Controller.getPlayer().turnOver()
                 player3Controller.getPlayer().turnOver()
                 
-                let playedCards = player4Controller.myTurn()
-                print("Player 4 is playing : \(playedCards.toString())\n")
-                playCards(cards: playedCards, player: player4Controller.getPlayer())
+                while stillMyTurn {
+                    let playedCards = player4Controller.myTurn()
+                    print("Player 4 is playing : \(playedCards.toString())\n")
+                    stillMyTurn = playCards(cards: playedCards, player: player4Controller.getPlayer())
+                }
                 player4Controller.getPlayer().turnOver()
+                    
             }
         default:
             print("")

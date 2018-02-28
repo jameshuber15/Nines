@@ -41,11 +41,13 @@ class GameBoard {
     
     func findWhoGoesFirst() {
         var goFirst = false
+        var rankOrder = [3,4,5,6,7,8,9,11,12,13,14,2,10]
         while !goFirst {
-            for rank in 3 ... PlayingCard.maxRank() {
+            for rank in 0..<rankOrder.count {
                 for suit in PlayingCard.validSuits() {
+                    print("Check for card: \(rankOrder[rank]) of \(suit)")
                     for player in playerArray {
-                        if player.checkForCard(suit: suit, rank: rank) {
+                        if player.checkForCard(suit: suit, rank: rankOrder[rank]) {
                             player.goesFirst(goFirst: true)
                             goFirst = true
                             print("Player \(player.playerNum) goes first!\n")
@@ -76,6 +78,7 @@ class GameBoard {
         var turnAgain = false
         for x in 0..<cards.getCardCount() {
             let card = cards.getCards()[x]
+            card.setFacingUp(faceUp: true)
             discardPile.addCard(newCard: card.copy())
             player.getCardHand().removeCard(newCard: card)
             if card.getRank() == 10 {

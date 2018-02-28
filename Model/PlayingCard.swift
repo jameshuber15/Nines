@@ -30,7 +30,7 @@ class PlayingCard : UIButton {
     }
     
     required init(){
-        self.frontImage = UIImage(named: "cardfront")!
+        self.frontImage = UIImage(named: "back")!
         backImage = UIImage(named: "back")!
         isFaceUp = false
         self.rank = -1

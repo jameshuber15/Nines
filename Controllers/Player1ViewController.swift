@@ -21,7 +21,7 @@ class Player1ViewController: PlayerViewController {
         cardController.changeColor()
     }
     
-    func myTurn(selectedCards: CardGroup) {
+    func myTurn(selectedCards: CardGroup) -> Bool {
         switch player.getMoveType() {
         case MoveType.DrawCards:
             print("")
@@ -31,12 +31,16 @@ class Player1ViewController: PlayerViewController {
                 player.getCardHand().flipOverHand()
                 cardController.removeSelectedCards()
                 player.getCardHand().sortHandByRank()
+            } else {
+                return false
             }
         case MoveType.ThreeCardsUp:
             if selectedCards.getCardCount() == 3 {
                 player.getCardHand().setUpCards(upCards: selectedCards.copy())
                 player.getCardHand().flipOverHand()
                 cardController.removeSelectedCards()
+            } else {
+                return false
             }
         case MoveType.FirstTurn:
             print("")
@@ -45,9 +49,12 @@ class Player1ViewController: PlayerViewController {
                 player.getCardHand().playCards(selectedCards: selectedCards.copy())
                 player.getCardHand().flipOverHand()
                 cardController.removeSelectedCards()
+            } else {
+                return false
             }
         }
         cardController.redrawView(player: player)
+        return true
     }
     
     func getCardController() -> CardController {
