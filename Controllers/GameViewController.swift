@@ -32,7 +32,8 @@ class GameViewController: UIViewController {
     }
     
     func startGame() {
-        print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
+        //print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
+        print("Player 1's turn\n")
         _ = player1Controller.myTurn(selectedCards: CardGroup(), topCard: PlayingCard())
         player1Controller.getPlayer().turnOver(gameBoard: gameBoard)
         
@@ -46,6 +47,7 @@ class GameViewController: UIViewController {
         var stillMyTurn = false
         if player1Controller.myTurn(selectedCards: selectedCards, topCard: gameBoard.getDiscardPile().getTopCard()) {
             if player1Controller.getPlayer().getMoveType() == MoveType.FirstTurn || player1Controller.getPlayer().getMoveType() == MoveType.GamePlay {
+                print("Player 1 is playing \(selectedCards.toString())\n")
                 stillMyTurn = playCards(cards: selectedCards, player: player1Controller.getPlayer())
                 player1Controller.removeAndRedraw(cards: selectedCards, gameBoard: gameBoard)
             }
@@ -79,6 +81,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func pressPile(_ sender: UIButton) {
+        //TODO Fix picking up discard pile
         playButton.isEnabled = false
         print("Picking up discardPile")
         player1Controller.getPlayer().pickupDiscardPile(discardPile: gameBoard.getDiscardPile())
@@ -104,7 +107,8 @@ class GameViewController: UIViewController {
         }
         
             //TODO figure out how to do waiting
-        print("Player \(playerNum)'s turn\n\(controller.getPlayer().toString())")
+        print("Player \(playerNum)'s turn\n")
+        //print("Player \(playerNum)'s turn\n\(controller.getPlayer().toString())")
         if controller.getPlayer().getMoveType() == MoveType.FirstTurn || controller.getPlayer().getMoveType() == MoveType.GamePlay {
             var stillMyTurn = true
             while stillMyTurn {
@@ -134,7 +138,8 @@ class GameViewController: UIViewController {
         if numOfPlayers == 4 {
             controllerTurn(controlNum: 4, playerNum: 4)
         }
-        print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
+        print("Player 1's turn\n")
+        //print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
     }
     
     func buildPlayerControllers() {
