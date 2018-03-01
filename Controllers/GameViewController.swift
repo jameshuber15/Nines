@@ -91,7 +91,6 @@ class GameViewController: UIViewController {
     func controllerTurn(controlNum: Int, playerNum: Int) {
         var controller: AIViewController!
         var playedCards = CardGroup()
-        let deadline = DispatchTime.now() + .seconds(2)
         switch controlNum {
         case 2:
             controller = player2Controller
@@ -106,16 +105,13 @@ class GameViewController: UIViewController {
             //TODO figure out how to do waiting
         print("Player \(playerNum)'s turn\n\(controller.getPlayer().toString())")
         if controller.getPlayer().getMoveType() == MoveType.FirstTurn || controller.getPlayer().getMoveType() == MoveType.GamePlay {
-            print("Waiting \(deadline)")
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                var stillMyTurn = true
-                while stillMyTurn {
-                    playedCards = controller.myTurn(discardPile: self.gameBoard.getDiscardPile())
-                    print("Player \(playerNum) is playing : \(playedCards.toString())\n")
-                    stillMyTurn = self.playCards(cards: playedCards, player: controller.getPlayer())
-                }
-                controller.getPlayer().turnOver()
+            var stillMyTurn = true
+            while stillMyTurn {
+                playedCards = controller.myTurn(discardPile: self.gameBoard.getDiscardPile())
+                print("Player \(playerNum) is playing : \(playedCards.toString())\n")
+                stillMyTurn = self.playCards(cards: playedCards, player: controller.getPlayer())
             }
+            controller.getPlayer().turnOver()
         } else {
             playedCards = controller.myTurn(discardPile: gameBoard.getDiscardPile())
             print("Player \(playerNum) is playing : \(playedCards.toString())\n")
@@ -124,28 +120,20 @@ class GameViewController: UIViewController {
     }
     
     func aiTurn() {
-        let serialQueue = DispatchQueue(label: "aiQueue")
-        serialQueue.sync {
-            if numOfPlayers == 2 {
-                controllerTurn(controlNum: 3, playerNum: 2)
-            } else {
-                controllerTurn(controlNum: 2, playerNum: 2)
-            }
-        }
-        serialQueue.sync {
-            if numOfPlayers >= 3 {
-                controllerTurn(controlNum: 3, playerNum: 3)
-            }
+        if numOfPlayers == 2 {
+            controllerTurn(controlNum: 3, playerNum: 2)
+        } else {
+            controllerTurn(controlNum: 2, playerNum: 2)
         }
         
-        serialQueue.sync {
-            if numOfPlayers == 4 {
-                controllerTurn(controlNum: 4, playerNum: 4)
-            }
+        if numOfPlayers >= 3 {
+            controllerTurn(controlNum: 3, playerNum: 3)
         }
-        serialQueue.sync {
-            print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
+        
+        if numOfPlayers == 4 {
+            controllerTurn(controlNum: 4, playerNum: 4)
         }
+        print("Player 1's turn\n\(player1Controller.getPlayer().toString())")
     }
     
     func buildPlayerControllers() {
