@@ -12,7 +12,7 @@ class AIViewController: PlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    func myTurn(topCard: PlayingCard) -> CardGroup {return CardGroup()}
+    func myTurn(discardPile: DiscardPile) -> CardGroup {return CardGroup()}
     func forcePlayLowestCards() -> CardGroup {
         let result = CardGroup()
         let cardHand = player.getCardHand().cards
@@ -23,6 +23,21 @@ class AIViewController: PlayerViewController {
                 player.getCardHand().removeCard(newCard: cardHand[i])
             } else {
                 break
+            }
+        }
+        return result
+    }
+    
+    func selectPlayingCard(discardPile: DiscardPile) -> CardGroup {
+        //TODO Make AI Worthy
+        let result = CardGroup()
+        if player.getCardHand().getCardCount() > 0 {
+            for card in player.getCardHand().cards {
+                if card.getRank() == 2 || card.getRank() == 10 || card.getRank() >= discardPile.getTopCard().getRank() {
+                    result.addCard(newCard: card.copy())
+                    player.getCardHand().removeCard(newCard: card)
+                    return result
+                }
             }
         }
         return result
@@ -52,4 +67,7 @@ class AIViewController: PlayerViewController {
         return result
     }
     
+    func pickUpDiscardPile(discardPile: DiscardPile) {
+        player.pickupDiscardPile(discardPile: discardPile)
+    }
 }

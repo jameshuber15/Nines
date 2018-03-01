@@ -34,6 +34,13 @@ class DiscardPile: CardGroup {
         return numTopCards
     }
     
+    
+    func emptyDiscardPile() {
+        self.topCard = PlayingCard()
+        self.numTopCards = 0
+        self.cards = []
+    }
+    
     override func toString() -> String {
         var result = "Discard Pile: "
         if cards.count == 0 {

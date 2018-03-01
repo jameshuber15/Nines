@@ -100,6 +100,7 @@ class CardGroup {
         }
         return false
     }
+    
     func getCardCount() -> Int {
         return cards.count
     }

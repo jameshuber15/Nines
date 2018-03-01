@@ -28,7 +28,6 @@ class Player {
     
     init(cardHand: PlayerHand, playerType: PlayerType) {
         self.cardHand = cardHand
-        self.cardHand.sortHandByRank()
         self.playerType = playerType
         self.difficulty = Difficulty.None
         moveType = MoveType.ThreeCardsDown
@@ -70,7 +69,7 @@ class Player {
         }
     }
     
-    func pickupOrSortHand(discardPile: [PlayingCard]) {
+    func pickupDiscardPile(discardPile: DiscardPile) {
         cardHand.mergeDiscardPile(discardPile: discardPile)
     }
     
@@ -132,7 +131,7 @@ class Player {
             return true
         }
         if selectedCards.getCards()[0].getRank() < topCard.getRank() {
-            print("Card rank is below topCard\n")
+            print("Card rank(\(selectedCards.getCards()[0].toString()) is below topCard: \(topCard.toString())\n")
             return false
         }
         return true

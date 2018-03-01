@@ -23,15 +23,14 @@ class Player3ViewController: AIViewController {
         playerView.delete()
     }
     
-    override func myTurn(topCard: PlayingCard) -> CardGroup {
+    override func myTurn(discardPile: DiscardPile) -> CardGroup {
         var cardHand = CardGroup()
         switch player.getMoveType() {
         case MoveType.DrawCards:
-            print("")
+            player.getCardHand().sortHandByRank()
         case MoveType.ThreeCardsDown:
             cardHand = select3Cards()
             player.getCardHand().setDownCards(downCards: cardHand.copy())
-            player.getCardHand().sortHandByRank()
         case MoveType.ThreeCardsUp:
             cardHand = select3Cards()
             player.getCardHand().setUpCards(upCards: cardHand.copy())
@@ -40,7 +39,7 @@ class Player3ViewController: AIViewController {
                 cardHand = forcePlayLowestCards()
             }
         case MoveType.GamePlay:
-            print("GamePlay")
+            cardHand = selectPlayingCard(discardPile: discardPile)
         }
         redrawView()
         return cardHand

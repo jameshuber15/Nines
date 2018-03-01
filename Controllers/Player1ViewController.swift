@@ -58,6 +58,7 @@ class Player1ViewController: PlayerViewController {
     
     func removeAndRedraw(cards: CardGroup) {
         cardController.removeSelectedCards()
+        //TODO If player doesn't have 3 cards and deck still has cards. Pick up cards
         cardController.redrawView(player: player)
     }
     

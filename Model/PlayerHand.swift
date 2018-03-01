@@ -20,8 +20,10 @@ class PlayerHand : CardGroup {
         super.init(cards: cards)
     }
     
-    func mergeDiscardPile(discardPile: [PlayingCard]) {
-        self.cards.append(contentsOf: discardPile)
+    func mergeDiscardPile(discardPile: DiscardPile) {
+        for card in discardPile.getCards() {
+            self.cards.append(card.copy())
+        }
         self.sortHandByRank()
     }
     
