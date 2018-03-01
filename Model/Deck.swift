@@ -51,7 +51,7 @@ class Deck: CardGroup {
         }
     }
     
-    func takeCard() -> PlayingCard {
+    func drawCard() -> PlayingCard {
         return cards.remove(at: 0)
     }
     

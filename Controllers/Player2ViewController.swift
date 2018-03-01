@@ -23,7 +23,7 @@ class Player2ViewController: AIViewController {
         playerView.delete()
     }
     
-    override func myTurn(discardPile: DiscardPile) -> CardGroup {
+    override func myTurn(discardPile: DiscardPile, gameBoard: GameBoard) -> CardGroup {
         var cardHand = CardGroup()
         switch player.getMoveType() {
         case MoveType.DrawCards:
@@ -43,6 +43,15 @@ class Player2ViewController: AIViewController {
             if cardHand.getCardCount() == 0 {
                 pickUpDiscardPile(discardPile: discardPile)
             }
+        }
+        if player.getCardHand().getCardCount() < 3 {
+            let cards = CardGroup()
+            for _ in player.getCardHand().getCardCount()..<3 {
+                if gameBoard.getDeck().getCardCount() > 0 {
+                    cards.addCard(newCard: gameBoard.getDeck().drawCard())
+                }
+            }
+            player.getCardHand().mergeCardGroup(cardGroup: cards)
         }
         redrawView()
         return cardHand

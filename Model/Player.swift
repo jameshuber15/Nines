@@ -53,13 +53,13 @@ class Player {
         return playingCard
     }
     
-    func turnOver() {
+    func turnOver(gameBoard: GameBoard) {
         switch self.moveType {
         case MoveType.DrawCards:
             self.moveType = MoveType.ThreeCardsDown
         case MoveType.ThreeCardsDown:
             self.moveType = MoveType.ThreeCardsUp
-            getCardHand().sortHandByRank()
+            cardHand.sortHandByRank()
         case MoveType.ThreeCardsUp:
             self.moveType = MoveType.FirstTurn
         case MoveType.FirstTurn:
@@ -70,7 +70,7 @@ class Player {
     }
     
     func pickupDiscardPile(discardPile: DiscardPile) {
-        cardHand.mergeDiscardPile(discardPile: discardPile)
+        cardHand.mergeCardGroup(cardGroup: discardPile)
     }
     
     func findValidCardsToPlay(topCard: PlayingCard) -> [PlayingCard] {

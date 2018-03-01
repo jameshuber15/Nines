@@ -21,8 +21,6 @@ class Player1ViewController: PlayerViewController {
         cardController.changeColor()
     }
     
-    
-    
     func myTurn(selectedCards: CardGroup, topCard: PlayingCard) -> Bool {
         switch player.getMoveType() {
         case MoveType.DrawCards:
@@ -33,14 +31,14 @@ class Player1ViewController: PlayerViewController {
                 player.getCardHand().setDownCards(downCards: selectedCards.copy())
                 player.getCardHand().flipOverHand()
                 player.getCardHand().sortHandByRank()
-                removeAndRedraw(cards: selectedCards)
+                removeAndRedraw(cards: selectedCards, gameBoard: GameBoard())
             } else {
                 return false
             }
         case MoveType.ThreeCardsUp:
             if player.validateCards(selectedCards: selectedCards, topCard: PlayingCard()) {
                 player.getCardHand().setUpCards(upCards: selectedCards.copy())
-                removeAndRedraw(cards: selectedCards)
+                removeAndRedraw(cards: selectedCards, gameBoard: GameBoard())
             } else {
                 return false
             }
@@ -56,9 +54,19 @@ class Player1ViewController: PlayerViewController {
         return true
     }
     
-    func removeAndRedraw(cards: CardGroup) {
+    func removeAndRedraw(cards: CardGroup, gameBoard: GameBoard) {
         cardController.removeSelectedCards()
-        //TODO If player doesn't have 3 cards and deck still has cards. Pick up cards
+        if player.getCardHand().getCardCount() < 3 {
+            let cards = CardGroup()
+            for _ in player.getCardHand().getCardCount()..<3 {
+                if gameBoard.getDeck().getCardCount() > 0 {
+                    let card = gameBoard.getDeck().drawCard()
+                    card.setFacingUp(faceUp: true)
+                    cards.addCard(newCard: card)
+                }
+            }
+            player.getCardHand().mergeCardGroup(cardGroup: cards)
+        }
         cardController.redrawView(player: player)
     }
     

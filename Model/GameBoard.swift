@@ -68,7 +68,7 @@ class GameBoard {
     func deal() {
         for _ in 0...8{
             for y in 0..<playerArray.count {
-                let dealtCard = deck.takeCard()
+                let dealtCard = deck.drawCard()
                 playerArray[y].getCardHand().addCard(newCard: dealtCard)
             }
         }
